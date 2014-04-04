@@ -1,0 +1,15 @@
+**1. Reconstruct the LoLi Objects type (Current lispObj) as a C/C++ type (Current D Class)
+
+2. Start to build the new Read-Parse module
+
+3. Improve the EVAL module
+
+4. Define the primitive functions (E.g. Arithmetic, List Operation, etc.)
+
+5. Implement read from file
+
+6. Build the CLI userinterface using NCurses
+
+7. Finish the core LoLi functions in LoLi
+
+8. Cheer**
