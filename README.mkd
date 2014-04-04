@@ -33,7 +33,7 @@ and other features like the interpreter itself can eval an expression without ge
 
 and even more complicated:
 
->& ./loli --eval “(def foo (x) (lambda (y) (+ y x))) (def bar (foo 2)) (bar  3)”
+>& ./loli --eval “(def foo (x) (.\ (y) (+ y x))) (def bar (foo 2)) (bar  3)”
 
 >5
 
