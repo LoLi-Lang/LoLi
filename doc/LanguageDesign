@@ -45,6 +45,6 @@ Here is the language design of LoLi:
 	+---------------------------------------+
 	|upper [pointer to upper level env.]	|
 	|env [cons]				|	Associated List : [ (SYM . OBJ) . [ (SYM . OBJ) . [ (SYM . OBJ) . NIL]]]
-	|<function>lookup[string -> cons]	|
+	|<function>lookup[string -> cons]	|	That returns a list contains all items that match the symbol name(for the interpreter to infer the value)
 	|<function>expand[cons -> void]		|
 	+---------------------------------------+
