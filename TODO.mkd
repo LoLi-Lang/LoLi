@@ -1,4 +1,5 @@
-1. Reconstruct the LoLi Objects type (Current lispObj) as a C/C++ type (Current D Class)
+1. Reconstruct the LoLi Objects type (Current lispObj) as a C++ Struct (Current D Class)
+>Almost Done.
 
 2. Start to build the new Read-Parse module
 
