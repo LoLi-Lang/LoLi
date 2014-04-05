@@ -13,4 +13,6 @@
 
 7. Finish the core LoLi functions in LoLi
 
-8. Cheer
+8. VIM Plugin
+
+9. Cheer
