@@ -41,17 +41,22 @@ enum loliType {
 };
 
 struct loliObj {
+	typedef loliObj (*procedure)(loliObj &);
 	loliType	type;
 	std::string 	value;
 	loliObj *	head;
 	loliObj * 	tail;	//Array For HEAD and TAIL
 	loliObj * 	env;
-	typedef loliObj (*procedure)(loliObj &);
-//	procedure 	proc;
+	procedure 	proc;
+
+	loliObj(loliType tp){
+		type = tp;
+	}
 };
 
-extern loliObj mksym(std::string symName);
-extern loliObj mkint(int number);
-extern loliObj mkflt(double number);
+extern loliObj* mksym(std::string symName);
+extern loliObj* mkint(int number);
+extern loliObj* mkflt(double number);
+extern loliObj* mkproc(loliObj::procedure &proc);
 
 #endif

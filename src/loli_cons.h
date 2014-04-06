@@ -23,8 +23,8 @@
 #include "loli_types.h"
 #endif
 
-extern loliObj cons(loliObj hd, loliObj tl);
-extern loliObj head(loliObj cons);
-extern loliObj tail(loliObj cons);
+extern loliObj* cons(loliObj* hd, loliObj* tl);
+extern loliObj* head(loliObj* cons);
+extern loliObj* tail(loliObj* cons);
 
 #endif

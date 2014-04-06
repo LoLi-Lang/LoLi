@@ -23,9 +23,9 @@
 #include "loli_types.h"
 #endif
 
-extern loliObj nil;
-extern loliObj t;
+extern loliObj *nil;
+extern loliObj *t;
  
-extern bool nilp(loliObj o);
+extern bool nilp(loliObj* o);
 
 #endif
