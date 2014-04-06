@@ -47,4 +47,8 @@ Also, LoLi contains some features from other language, for example, the **..** o
 
 >=>'(1 3 5)
 
-to be continued
+
+JOIN US (ME) PLEASE
+-
+---
+If you are not satisfied with current Lisp dialects, or if you have some great ideas want to make them into a programming language, then just fork and send me a pull request, any help is appreciated.
