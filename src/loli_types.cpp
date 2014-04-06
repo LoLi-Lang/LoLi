@@ -17,7 +17,6 @@
  */
 
 #include <string>
-#include <map>
 //#include "loli.h"
 #include "loli_types.h"
 #include "loli_symbols.h"

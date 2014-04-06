@@ -19,6 +19,10 @@
 #ifndef __LOLI_CONS_
 #define __LOLI_CONS_
 
+#ifndef __LOLI_TYPES_
+#include "loli_types.h"
+#endif
+
 extern loliObj cons(loliObj hd, loliObj tl);
 extern loliObj head(loliObj cons);
 extern loliObj tail(loliObj cons);

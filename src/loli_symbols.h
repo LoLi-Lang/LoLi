@@ -25,5 +25,7 @@
 
 extern loliObj nil;
 extern loliObj t;
+ 
+extern bool nilp(loliObj o);
 
 #endif

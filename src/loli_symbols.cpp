@@ -20,3 +20,10 @@
 
 loliObj nil = mksym("nil");
 loliObj t = mksym("t");
+
+bool nilp(loliObj o){
+	if(o.type == SYM && o.value == "nil"){
+		return true;
+	}
+	return false;
+}

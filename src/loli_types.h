@@ -20,7 +20,14 @@
 #define __LOLI_TYPES_
 
 #include <string>
-#include <map>
+
+//#ifndef __LOLI_CONS_
+//#include "loli_cons.h"
+//#endif
+
+//#ifndef __LOLI_SYMS_
+//#include "loli_symbols.h"
+//#endif
 
 enum loliType {
 	SYM,	//Symbol
@@ -32,17 +39,15 @@ enum loliType {
 	STRING,	//String
 	LAMBDA	//Lambda Expression
 };
-struct environment;
 
 struct loliObj {
-	loliType type;
-	std::string value;
-	loliObj * head;
-	loliObj * tail;	//Array For HEAD and TAIL
-	environment * env;
+	loliType	type;
+	std::string 	value;
+	loliObj *	head;
+	loliObj * 	tail;	//Array For HEAD and TAIL
+	loliObj * 	env;
 	typedef loliObj (*procedure)(loliObj &);
-	typedef std::map<std::string, loliObj> map;
-
+//	procedure 	proc;
 };
 
 extern loliObj mksym(std::string symName);
