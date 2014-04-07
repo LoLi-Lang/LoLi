@@ -72,7 +72,9 @@ loliObj* proc_div(loliObj* lst){
 	double tmp = std::stoi(head(lst)->value);
 	for(loliObj* e = tail(lst);!nilp(e);e = tail(e)){
 		if(head(e)->type == INT || (head(e)->type == FLT)){
-			tmp = tmp / std::stod(head(e)->value);
+			if(std::stod(head(e)->value) != 0){
+				tmp = tmp / std::stod(head(e)->value);
+			}
 		}
 	}
 	if((int)tmp == tmp){
