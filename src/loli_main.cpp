@@ -3,7 +3,7 @@
  *
  *       Filename:  loli_main.cpp
  *
- *    Description:  The main part (aka. the entence of LoLi)
+ *    Description:  The main part (aka. the entrence of LoLi)
  *
  *        Version:  1.0
  *        Created:  04/05/2014 01:45:34 AM
@@ -22,26 +22,7 @@
 #include "loli_types.h"
 #include "loli_symbols.h"
 #include "loli_cons.h"
-
-loliObj* proc_sum(loliObj* lst){
-	double tmp = 0;
-	for(loliObj* e = lst;!nilp(e);e = tail(e)){
-		if(head(e)->type == INT){
-			std::cout<<"SUM HEAD: "<<std::stoi(head(e)->value)<<std::endl;
-			tmp = tmp + std::stoi(head(e)->value);
-			std::cout<<"TMP: "<<tmp<<std::endl;
-		}else if(head(e)->type == FLT){
-			std::cout<<"SUM HEAD: "<<std::stod(head(e)->value)<<std::endl;
-			tmp = tmp + std::stod(head(e)->value);
-			std::cout<<"TMP: "<<tmp<<std::endl;
-		}
-	}
-	std::cout<<"TMP: "<<tmp<<std::endl;
-	if((int)tmp == tmp){
-		return mkint((int)tmp);
-	}
-	return mkflt(tmp);
-}
+#include "loli_prim.h"
 
 int main(int argc, char * argv[]){
 	std::cout<<nil->value<<std::endl;
@@ -52,5 +33,8 @@ int main(int argc, char * argv[]){
 	std::cout<<tail(tail(b))->value<<std::endl;
 	loliObj* test = cons(mkint(1), cons(mkint(2), cons(mkint(3), nil)));
 //	std::cout<<"TEST HEAD: "<<head(test).value<<std::endl;
-	std::cout<<proc_sum(test)->value<<std::endl;
+	std::cout<<"SUM (1 2 3): "<<proc_sum(test)->value<<std::endl;
+	std::cout<<"SUB (1 2 3): "<<proc_sub(test)->value<<std::endl;
+	std::cout<<"MUL (1 2 3): "<<proc_mul(test)->value<<std::endl;
+	std::cout<<"DIV (1 2 3): "<<proc_div(test)->value<<std::endl;
 }

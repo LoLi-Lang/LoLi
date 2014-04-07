@@ -22,17 +22,17 @@
 
 loliObj* cons(loliObj* hd, loliObj* tl){	//HD stands for HEAD, TL stands for TAIL
 	loliObj * tmp = new loliObj(CONS);
-	std::cout<<"HEAD: "<<hd->value<<std::endl;
+//	std::cout<<"HEAD: "<<hd->value<<std::endl;
 	//tmp.type = CONS;
 	tmp->head = hd;
 	tmp->tail = tl;
-	std::cout<<"TMP HEAD: "<<tmp->head->value<<std::endl;
+//	std::cout<<"TMP HEAD: "<<tmp->head->value<<std::endl;
 	return tmp;
 }
 
 loliObj* head(loliObj* cons){
 	if(cons->type == CONS){
-		std::cout<<"CONS HEAD: "<<cons->head->value<<std::endl;
+//		std::cout<<"CONS HEAD: "<<cons->head->value<<std::endl;
 		return cons->head;
 	}else{
 		return nil;
