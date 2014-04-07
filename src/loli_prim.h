@@ -23,9 +23,14 @@
 #include "loli_symbols.h"
 #include "loli_cons.h"
 
+//[NUM] -> NUM
 extern loliObj* proc_sum(loliObj* lst);
 extern loliObj* proc_mul(loliObj* lst);
 extern loliObj* proc_sub(loliObj* lst);
 extern loliObj* proc_div(loliObj* lst);
+
+//NUM -> NUM
+extern loliObj* proc_add1(loliObj* num);
+extern loliObj* proc_sub1(loliObj* num);
 
 #endif

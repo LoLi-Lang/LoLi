@@ -80,3 +80,19 @@ loliObj* proc_div(loliObj* lst){
 	}
 	return mkflt(tmp);
 }
+
+loliObj* proc_add1(loliObj* num){
+	double tmp = std::stod(num->value) + 1;
+	if((int)tmp == tmp){
+		return mkint((int)tmp);
+	}
+	return mkflt(tmp);
+}
+
+loliObj* proc_sub1(loliObj* num){
+	double tmp = std::stod(num->value) - 1;
+	if((int)tmp == tmp){
+		return mkint((int)tmp);
+	}
+	return mkflt(tmp);
+}
