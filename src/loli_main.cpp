@@ -3,7 +3,7 @@
  *
  *       Filename:  loli_main.cpp
  *
- *    Description:  The main part (aka. the entrence of LoLi)
+ *    Description:  The main part (aka. the entrance of LoLi)
  *
  *        Version:  1.0
  *        Created:  04/05/2014 01:45:34 AM
@@ -28,8 +28,8 @@ int main(int argc, char * argv[]){
 	std::cout<<nil->value<<std::endl;
 	std::cout<<t->value<<std::endl;
 //	std::cout<<mkflt(1.2356).value<<std::endl;
-	auto c = cons(t, nil);
-	auto b = cons(t, c);
+	loliObj* c = cons(t, nil);
+	loliObj* b = cons(t, c);
 	std::cout<<tail(tail(b))->value<<std::endl;
 	loliObj* test = cons(mkint(1), cons(mkint(2), cons(mkint(3), nil)));
 //	std::cout<<"TEST HEAD: "<<head(test).value<<std::endl;
