@@ -28,13 +28,14 @@ int main(int argc, char * argv[]){
 	std::cout<<nil->value<<std::endl;
 	std::cout<<t->value<<std::endl;
 //	std::cout<<mkflt(1.2356).value<<std::endl;
-	loliObj* c = cons(t, nil);
-	loliObj* b = cons(t, c);
-	std::cout<<tail(tail(b))->value<<std::endl;
-	loliObj* test = cons(mkint(1), cons(mkint(2), cons(mkint(3), nil)));
+//	loliObj* c = cons(t, nil);
+//	loliObj* b = cons(t, c);
+//	std::cout<<tail(tail(b))->value<<std::endl;
+	std::cout<<"CREATING TEST:"<<std::endl;
+	loliObj* test = cons(mksym("a"), cons(mkint(3), cons(mkint(0), nil)));
 //	std::cout<<"TEST HEAD: "<<head(test).value<<std::endl;
-	std::cout<<"SUM (1 2 3): "<<proc_sum(test)->value<<std::endl;
-	std::cout<<"SUB (1 2 3): "<<proc_sub(test)->value<<std::endl;
-	std::cout<<"MUL (1 2 3): "<<proc_mul(test)->value<<std::endl;
-	std::cout<<"DIV (1 2 3): "<<proc_div(test)->value<<std::endl;
+//	std::cout<<"SUM (1 2 3): "<<proc_sum(test)->value<<std::endl;
+	std::cout<<"SUB (\"a\" 3 0): "<<proc_sub(test)->value<<std::endl;
+///	std::cout<<"MUL (1 2 3): "<<proc_mul(test)->value<<std::endl;
+	std::cout<<"DIV (\"a\" 3 0): "<<proc_div(test)->value<<std::endl;
 }

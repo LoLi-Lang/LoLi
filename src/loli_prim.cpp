@@ -18,6 +18,7 @@
 
 
 #include <string>
+#include <iostream>
 
 #include "loli_types.h"
 #include "loli_symbols.h"
@@ -50,8 +51,14 @@ loliObj* proc_mul(loliObj* lst){
 }
 
 loliObj* proc_sub(loliObj* lst){
-	if(nilp(lst)){
-		return mkint(0);
+	while(true){
+		if(nilp(lst)){
+			return mkint(0);
+		}
+		if(head(lst)->type == INT || (head(lst)->type == FLT)){
+			break;
+		}
+		lst = tail(lst);
 	}
 	double tmp = std::stoi(head(lst)->value);
 	for(loliObj* e = tail(lst);!nilp(e);e = tail(e)){
@@ -66,8 +73,14 @@ loliObj* proc_sub(loliObj* lst){
 }
 
 loliObj* proc_div(loliObj* lst){
-	if(nilp(lst)){
-		return mkint(0);
+	while(true){
+		if(nilp(lst)){
+			return mkint(0);
+		}
+		if(head(lst)->type == INT || (head(lst)->type == FLT)){
+			break;
+		}
+		lst = tail(lst);
 	}
 	double tmp = std::stoi(head(lst)->value);
 	for(loliObj* e = tail(lst);!nilp(e);e = tail(e)){
