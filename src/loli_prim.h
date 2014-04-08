@@ -33,4 +33,11 @@ extern loliObj* proc_div(loliObj* lst);
 extern loliObj* proc_add1(loliObj* num);
 extern loliObj* proc_sub1(loliObj* num);
 
+//[NUM] -> NUM
+extern loliObj* proc_mod(loliObj* lst);
+
+//[NUM] -> SYM
+extern loliObj* proc_greater(loliObj* lst);
+extern loliObj* proc_lesser(loliObj* lst);
+
 #endif

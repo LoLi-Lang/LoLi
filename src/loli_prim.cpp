@@ -60,7 +60,7 @@ loliObj* proc_sub(loliObj* lst){
 		}
 		lst = tail(lst);
 	}
-	double tmp = std::stoi(head(lst)->value);
+	double tmp = std::stod(head(lst)->value);
 	for(loliObj* e = tail(lst);!nilp(e);e = tail(e)){
 		if(head(e)->type == INT || (head(e)->type == FLT)){
 			tmp = tmp - std::stod(head(e)->value);
@@ -82,7 +82,7 @@ loliObj* proc_div(loliObj* lst){
 		}
 		lst = tail(lst);
 	}
-	double tmp = std::stoi(head(lst)->value);
+	double tmp = std::stod(head(lst)->value);
 	for(loliObj* e = tail(lst);!nilp(e);e = tail(e)){
 		if(head(e)->type == INT || (head(e)->type == FLT)){
 			if(std::stod(head(e)->value) != 0){
@@ -110,4 +110,72 @@ loliObj* proc_sub1(loliObj* num){
 		return mkint((int)tmp);
 	}
 	return mkflt(tmp);
+}
+
+loliObj* proc_mod(loliObj* lst){
+	while(true){
+		if(nilp(lst)){
+			return mkint(0);
+		}
+		if(head(lst)->type == INT || (head(lst)->type == FLT)){
+			break;
+		}
+		lst = tail(lst);
+	}
+	double tmp = std::stod(head(lst)->value);
+	for(loliObj* e = tail(lst);!nilp(e);e = tail(e)){
+		if(head(e)->type == INT || (head(e)->type == FLT)){
+			if(std::stod(head(e)->value) != 0){
+				tmp = tmp % std::stod(head(e)->value);
+			}
+		}
+	}
+	double tmp = std::stod(head(lst)->value);
+	% std::stod(head(tail(lst))->value);
+	if((int)tmp == tmp){
+		return mkint((int)tmp);
+	}
+	return mkflt(tmp);
+}
+
+loliObj* proc_greater(loliObj* lst){
+	while(true){
+		if(nilp(lst)){
+			return mkint(0);
+		}
+		if(head(lst)->type == INT || (head(lst)->type == FLT)){
+			break;
+		}
+		lst = tail(lst);
+	}
+	double tmp = std::stod(head(lst)->value);
+	for(loliObj* e = tail(lst);!nilp(e);e = tail(e)){
+		if(head(e)->type == INT || (head(e)->type == FLT)){
+			if(tmp <= std::stod(head(e)->value)){
+				return nil;
+			}
+		}
+	}
+	return t;
+}
+
+loliObj* proc_lesser(loliObj* lst){
+	while(true){
+		if(nilp(lst)){
+			return mkint(0);
+		}
+		if(head(lst)->type == INT || (head(lst)->type == FLT)){
+			break;
+		}
+		lst = tail(lst);
+	}
+	double tmp = std::stod(head(lst)->value);
+	for(loliObj* e = tail(lst);!nilp(e);e = tail(e)){
+		if(head(e)->type == INT || (head(e)->type == FLT)){
+			if(tmp >= std::stod(head(e)->value)){
+				return nil;
+			}
+		}
+	}
+	return t;
 }
