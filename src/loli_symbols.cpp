@@ -20,6 +20,9 @@
 
 loliObj *nil = mksym("nil");
 loliObj *t = mksym("t");
+loliObj *lambda = mksym(".\\");
+loliObj *set = mksym("set!");
+loliObj *quote = mksym("quote");
 
 bool nilp(loliObj* o){
 	if(o->type == SYM && o->value == "nil"){

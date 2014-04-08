@@ -25,6 +25,10 @@
 
 extern loliObj *nil;
 extern loliObj *t;
+extern loliObj *lambda;
+extern loliObj *set;
+extern loliObj *quote;
+
  
 extern bool nilp(loliObj* o);
 
