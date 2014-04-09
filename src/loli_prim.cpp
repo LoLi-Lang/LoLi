@@ -19,6 +19,7 @@
 
 #include <string>
 #include <iostream>
+#include <cmath>
 
 #include "loli_types.h"
 #include "loli_symbols.h"
@@ -87,6 +88,8 @@ loliObj* proc_div(loliObj* lst){
 		if(head(e)->type == INT || (head(e)->type == FLT)){
 			if(std::stod(head(e)->value) != 0){
 				tmp = tmp / std::stod(head(e)->value);
+			}else{
+				std::cout<<"\nWarnning: Cannot be ZERO, ignored\n";
 			}
 		}
 	}
@@ -126,12 +129,12 @@ loliObj* proc_mod(loliObj* lst){
 	for(loliObj* e = tail(lst);!nilp(e);e = tail(e)){
 		if(head(e)->type == INT || (head(e)->type == FLT)){
 			if(std::stod(head(e)->value) != 0){
-				tmp = tmp % std::stod(head(e)->value);
+				tmp = fmod(tmp, std::stod(head(e)->value));
+			}else{
+				std::cout<<"\nWarnning: Cannot be ZERO, ignored\n";
 			}
 		}
 	}
-	double tmp = std::stod(head(lst)->value);
-	% std::stod(head(tail(lst))->value);
 	if((int)tmp == tmp){
 		return mkint((int)tmp);
 	}

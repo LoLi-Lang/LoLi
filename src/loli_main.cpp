@@ -23,6 +23,7 @@
 #include "loli_symbols.h"
 #include "loli_cons.h"
 #include "loli_prim.h"
+#include "loli_list.h"
 
 int main(int argc, char * argv[]){
 	std::cout<<nil->value<<std::endl;
@@ -38,4 +39,6 @@ int main(int argc, char * argv[]){
 	std::cout<<"SUB (\"a\" 3 0): "<<proc_sub(test)->value<<std::endl;
 ///	std::cout<<"MUL (1 2 3): "<<proc_mul(test)->value<<std::endl;
 	std::cout<<"DIV (\"a\" 3 0): "<<proc_div(test)->value<<std::endl;
+	std::cout<<"MOD (\"a\" 3 0): "<<proc_mod(test)->value<<std::endl;
+	std::cout<<"Length of (\"a\" 3 0) is: "<<prim_length(test)<<std::endl;
 }
