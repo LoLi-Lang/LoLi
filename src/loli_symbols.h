@@ -31,5 +31,6 @@ extern loliObj *quote;
 
  
 extern bool nilp(loliObj* o);
+extern void cleanUp();
 
 #endif
