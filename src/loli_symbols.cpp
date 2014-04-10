@@ -30,11 +30,3 @@ bool nilp(loliObj* o){
 	}
 	return false;
 }
-
-void cleanUp(){
-	delete nil;
-	delete t;
-	delete lambda;
-	delete set;
-	delete quote;
-}

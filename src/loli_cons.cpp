@@ -17,11 +17,17 @@
  */
 
 #include <iostream>
+
+//GC
+#include "gc/include/gc.h"
+#include "gc/include/gc_cpp.h"
+#include "gc/include/gc_allocator.h"
+
 #include "loli_types.h"
 #include "loli_symbols.h"
 
 loliObj* cons(loliObj* hd, loliObj* tl){	//HD stands for HEAD, TL stands for TAIL
-	loliObj * tmp = new loliObj(CONS);
+	loliObj * tmp = new (UseGC) loliObj(CONS);
 	tmp->head = hd;
 	tmp->tail = tl;
 	return tmp;
@@ -29,7 +35,6 @@ loliObj* cons(loliObj* hd, loliObj* tl){	//HD stands for HEAD, TL stands for TAI
 
 loliObj* head(loliObj* cons){
 	if(cons->type == CONS){
-//		std::cout<<"CONS HEAD: "<<cons->head->value<<std::endl;
 		return cons->head;
 	}else{
 		return nil;
