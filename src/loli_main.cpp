@@ -42,7 +42,7 @@ int main(int argc, char * argv[]){
 	std::cout<<"MOD (\"a\" 3 0): "<<proc_mod(test)->value<<std::endl;
 	std::cout<<"Length of (\"a\" 3 0) is: "<<prim_length(test)<<std::endl;
 
-	cleanUp();
-	delete test;
+	//cleanUp();
+	//delete test;
 	exit(0);
 }
