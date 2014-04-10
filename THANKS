@@ -1,6 +1,7 @@
 With great thanks to :
 	Andru Luvisi 		(Author of SL3.C)
 	Anthony C. Hay 		(Author of the Lisp interpreter in 90 lines C++)
+	Boehm GC
 	c2.com 			(For their "Implementing Lisp" page)
 	Peter Norvig 		(Author of the Lis.py)
 						(In alphabetical order)
