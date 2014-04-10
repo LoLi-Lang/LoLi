@@ -1,7 +1,7 @@
 1. Reconstruct the LoLi Objects type (Current lispObj) as a C++ Struct (Current D Class)
 >Done. (Procedure / Lambda not tested yet)
 
-2. ***ADD GC***
+2. ***ADD GC*** (Boehm GC)
 
 3. Start to build the new Read-Parse module
 
