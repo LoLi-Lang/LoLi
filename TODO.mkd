@@ -1,14 +1,12 @@
-1. Reconstruct the LoLi Objects type (Current lispObj) as a C++ Struct (Current D Class)
->Done. (Procedure / Lambda not tested yet)
+1. Reconstruct the CONS structure by ***Double Linked List***
 
-2. ***ADD GC*** (Boehm GC)
+2. Implement the parser that parse SEXP to AST
 
 3. Start to build the new Read-Parse module
 
-4. Improve the EVAL module
+4. Improve the EVAL module (With the context based meaning inferring system)
 
-5. Define the primitive functions (E.g. List Operation, etc.)
->Arithmetic Done. List operations almost done(Append not done yet)
+5. Implement the context based meaning inferring system
 
 6. Implement read from file
 

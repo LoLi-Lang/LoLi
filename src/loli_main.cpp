@@ -41,7 +41,7 @@ int main(int argc, char * argv[]){
 	std::cout<<"DIV (\"a\" 3 0): "<<proc_div(test)->value<<std::endl;
 	std::cout<<"MOD (\"a\" 3 0): "<<proc_mod(test)->value<<std::endl;
 	std::cout<<"Length of (\"a\" 3 0) is: "<<prim_length(test)<<std::endl;
-
+	loliObj* testSUM = mkproc(proc_sum);
 	//cleanUp();
 	//delete test;
 	exit(0);

@@ -40,3 +40,15 @@ Here is the language design of LoLi:
 
 	Environment (is a loliObj):
 		([syma . a] ([symb . b] ([symc . c] ( ... ([symn . n] . nil)))))	Note: using [] and () just to be clear for reader, in LoLi there will only have ( and )
+
+-Context Based Meaning Inferring
+	Tentative Idea 1:
+		Set a priority mechanism, for example:
+			PROC		= 10
+			INT / FLT	= 9
+			STRING 		= 8
+			etc.
+		and some inferring rules, for example:
+			Symbol at parent nodes must be PROC
+			Argument of arithematic functions must be INT / FLT
+			etc.

@@ -41,13 +41,13 @@ enum loliType {
 };
 
 struct loliObj {
-	typedef loliObj (*procedure)(loliObj &);
+	typedef loliObj* (procedure)(loliObj *);
 	loliType	type;
 	std::string 	value;
 	loliObj *	head;
 	loliObj * 	tail;	//Array For HEAD and TAIL
 	loliObj * 	env;
-	procedure 	proc;
+	procedure * 	proc;
 
 	loliObj(loliType tp){
 		type = tp;
