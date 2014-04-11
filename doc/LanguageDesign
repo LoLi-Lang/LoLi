@@ -32,17 +32,34 @@ Here is the language design of LoLi:
 	+---------------------------------------+
 	|type [enum]				|
 	|value [string]				|
+	|upper [pointer to upper(loliObj)]	|
 	|head [pointer to head(loliObj)]	|
 	|tail [pointer to tail(loliObj)]	|
 	|proc [pointer to procedure]		|
 	|env [pointer to envrionment(loliObj)]	|
 	+---------------------------------------+
 
+	+-----------------------+
+	|	LoLi-CONS	|
+	+-----------------------+
+	|			|
+	|   +-----+----+----+	|
+	|   |upper|head|tail|	|	CONS in LoLi is a double linked list in order to support the context based meaning inferring system
+	|   +-----+----+----+	|
+	|			|
+	+-----------------------+	
+
 	Environment (is a loliObj):
 		([syma . a] ([symb . b] ([symc . c] ( ... ([symn . n] . nil)))))	Note: using [] and () just to be clear for reader, in LoLi there will only have ( and )
 
--Context Based Meaning Inferring
-	Tentative Idea 1:
+-Environment:
+	Lookup:
+		Will return a list that contains all the symbols that matches the criteria
+	Insert:
+		Insert the new item while adding to environment to make the environment in accending order, that makes environment easier to be looked up
+
+-Context Based Meaning Inferring:
+	Tentative Idea:
 		Set a priority mechanism, for example:
 			PROC		= 10
 			INT / FLT	= 9
