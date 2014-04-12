@@ -21,4 +21,22 @@
 #include "loli_cons.h"
 #include "loli_symbols.h"
 
-
+loliObj* eval(loliObj* obj, loliObj* env){
+	if(nilp(obj)){
+		return nil;
+	}else{
+		switch(obj->type){
+			case INT:
+			case FLT:
+				return obj;
+			case CONS:
+			case SYM:
+			case CHAR:
+			case STRING:
+			case PROC:
+				return obj;
+			default:
+				return nil;
+		}
+	}
+}
