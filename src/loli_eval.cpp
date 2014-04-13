@@ -39,4 +39,6 @@ loliObj* eval(loliObj* obj, loliObj* env){
 				return nil;
 		}
 	}
+
+
 }
