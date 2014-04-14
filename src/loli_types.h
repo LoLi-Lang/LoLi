@@ -45,7 +45,7 @@ struct loliObj {
 	loliType	type;
 	std::string 	value;
 	loliObj *	head;
-	loliObj * 	tail;	//Array For HEAD and TAIL
+	loliObj * 	tail;
 	loliObj * 	env;
 	procedure * 	proc;
 
