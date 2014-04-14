@@ -1,4 +1,4 @@
-1. Reconstruct the CONS structure by ***Double Linked List***
+1. Implement the LoLi VM and the LoLi -> CPP Compiler
 
 2. Implement the parser that parse SEXP to AST
 
