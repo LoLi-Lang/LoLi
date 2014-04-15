@@ -19,24 +19,27 @@
 #ifndef __LOLI_AST_
 #define __LOLI_AST_
 
+#include <vector>
+
 #include "loli_types.h"
 #include "loli_symbols.h"
 
 struct node {
 
+	typedef std::vector<node> nodeLst;
+
 	loliObj*	value;
 	node* 		parent;
-	node[]*		child;
+	nodeLst		child;
 
-	node(loliObj* v){
-		value = v;
-	}
 
-	node(loliObj* v, node[]* c) : value = v, child = c;{}
+	node(loliObj* v) : value (v) {}
 
-	node(loliObj* v, node[]* c, node* p) : value = v, child = c, parent = p {}
+	node(loliObj* v, nodeLst c) : value (v), child (c) {}
 
-	node() : value = nil {}
+	node(loliObj* v, nodeLst c, node* p) : value (v), child (c), parent (p) {}
+
+	node() : value (nil) {}
 };
 
 extern node* NIL;
