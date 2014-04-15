@@ -23,6 +23,11 @@
 #include "loli_list.h"
 #include "loli_ast.h"
 
+//GC
+#include "gc/include/gc.h"
+#include "gc/include/gc_cpp.h"
+#include "gc/include/gc_allocator.h"
+
 node* NIL = new (UseGC) node(nil);
 
 

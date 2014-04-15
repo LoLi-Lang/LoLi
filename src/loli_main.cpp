@@ -24,6 +24,7 @@
 #include "loli_cons.h"
 #include "loli_prim.h"
 #include "loli_list.h"
+#include "loli_ast.h"
 
 int main(int argc, char * argv[]){
 	std::cout<<nil->value<<std::endl;

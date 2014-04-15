@@ -26,27 +26,18 @@ struct node {
 
 	loliObj*	value;
 	node* 		parent;
-	node*[] 	child;
+	node[]*		child;
 
 	node(loliObj* v){
 		value = v;
 	}
 
-	node(loliObj* v, node*[] c){
-		value = v;
-		child = c;
-	}
+	node(loliObj* v, node[]* c) : value = v, child = c;{}
 
-	node(loliObj* v, node*[] c, node* p){
-		value = v;
-		child = c;
-		parent = p;
-	}
+	node(loliObj* v, node[]* c, node* p) : value = v, child = c, parent = p {}
 
-	node(){
-		value = nil;
-	}
-}
+	node() : value = nil {}
+};
 
 extern node* NIL;
 
