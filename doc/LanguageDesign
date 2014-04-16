@@ -47,7 +47,7 @@ Here is the language design of LoLi:
 	Insert:
 		Insert the new item while adding to environment to make the environment in accending order, that makes environment easier to be looked up
 
--Context Based Meaning Inferring(CBMI):
+-Context Based Meaning Inference(CBMI):
 	Parse the input into AST, then lookup the corresponding obj in the environment.
 	
 	-Key concept for the CBMI:
