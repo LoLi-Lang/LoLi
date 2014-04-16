@@ -30,4 +30,17 @@
 
 node* NIL = new (UseGC) node(nil);
 
+/* 
+ * LoLi-AST Rule:
+ * Parent Node must be Verb (Function / Lambda Expression)
+ * Children Node must be Noun that the Verb can take (SYM / INT / FLT / Etc.)
+ * E.g.:
+ * 		V
+ * 	       / \
+ * 	      V   V
+ * 	     /   / \
+ * 	    N    N  N
+ *      (V (V N) (V N N))
+ */
+
 
