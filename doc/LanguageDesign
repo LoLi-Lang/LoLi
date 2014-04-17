@@ -47,6 +47,24 @@ Here is the language design of LoLi:
 	Insert:
 		Insert the new item while adding to environment to make the environment in accending order, that makes environment easier to be looked up
 
+	A procedure in LoLi_ENV:
+	
+	+-----------------------------------------------+
+	|		   Env Entry			|
+	+-----------------------------------------------+
+	|   +----------------------------------------+	|
+	|   |   	     cons		     |	|
+	|   +----------------------------------------+	|
+	|   |		Symbol (Identifier)	     |	|
+	|   |    +------------------------------+    |	|
+	|   |    |  	     cons		|    |	|
+	|   |    +------------------------------+    |	|
+	|   |    |    loliType (Input type)	|    |	|
+	|   |    |   loliObj proc (Procedure)	|    |	|
+	|   |    +------------------------------+    |  |
+	|   +----------------------------------------+	|
+	+-----------------------------------------------+
+
 -Context Based Meaning Inference(CBMI):
 	Parse the input into AST, then lookup the corresponding obj in the environment.
 	

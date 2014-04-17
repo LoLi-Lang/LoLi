@@ -37,7 +37,8 @@ enum loliType {
 	PROC, 	//Procedure
 	CHAR, 	//Character
 	STRING,	//String
-	LAMBDA	//Lambda Expression
+	LAMBDA,	//Lambda Expression
+	_	//Wildcard
 };
 
 struct loliObj {
