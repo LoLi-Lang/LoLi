@@ -21,14 +21,6 @@
 
 #include <string>
 
-//#ifndef __LOLI_CONS_
-//#include "loli_cons.h"
-//#endif
-
-//#ifndef __LOLI_SYMS_
-//#include "loli_symbols.h"
-//#endif
-
 enum loliType {
 	SYM,	//Symbol
 	INT,	//Integer

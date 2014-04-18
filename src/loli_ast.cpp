@@ -21,11 +21,7 @@
 #include "loli_cons.h"
 #include "loli_list.h"
 #include "loli_ast.h"
-
-//GC
-#include "gc/include/gc.h"
-#include "gc/include/gc_cpp.h"
-#include "gc/include/gc_allocator.h"
+#include "loli_gc.h"
 
 /* 
  * LoLi-AST Rule:

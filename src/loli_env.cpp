@@ -29,8 +29,12 @@ loliObj* mkEnvProc(loliObj* sym, loliObj* type, loliObj* proc){
 	return tmp;
 }
 
-void addToEnv(loliObj* env, loliObj* obj){
-	env = cons(obj, env);
+loliObj* addToEnv(loliObj* env, loliObj* obj){
+	if(head(head(env))->value < head(obj)->value){
+		return cons(head(env), addToEnv(tail(env), obj));
+	}else{
+		return cons(obj, env);
+	}
 }
 
 loliObj* lookup(loliObj* sym, loliObj* env){

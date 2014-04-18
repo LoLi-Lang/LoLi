@@ -19,14 +19,9 @@
 #include <iostream>
 #include <string>
 
-//GC
-#include "gc/include/gc.h"
-#include "gc/include/gc_cpp.h"
-#include "gc/include/gc_allocator.h"
-
 #include "loli_types.h"
 #include "loli_symbols.h"
-
+#include "loli_gc.h"
 
 loliObj* mksym(std::string symName){
 	loliObj *tmp = new (UseGC) loliObj(SYM);
