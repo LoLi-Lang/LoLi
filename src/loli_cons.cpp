@@ -18,9 +18,9 @@
 
 #include <iostream>
 
-#include "loli_gc.h"
 #include "loli_types.h"
 #include "loli_symbols.h"
+#include "loli_gc.h"
 
 loliObj* cons(loliObj* hd, loliObj* tl){	//HD stands for HEAD, TL stands for TAIL
 	loliObj * tmp = new (UseGC) loliObj(CONS);
