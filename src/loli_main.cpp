@@ -25,6 +25,7 @@
 #include "loli_prim.h"
 #include "loli_list.h"
 #include "loli_ast.h"
+#include "loli_output.h"
 
 int main(int argc, char * argv[]){
 	std::cout<<nil->value<<std::endl;
@@ -43,6 +44,7 @@ int main(int argc, char * argv[]){
 	std::cout<<"MOD (\"a\" 3 0): "<<proc_mod(test)->value<<std::endl;
 	std::cout<<"Length of (\"a\" 3 0) is: "<<prim_length(test)<<std::endl;
 	loliObj* testSUM = mkproc(proc_sum);
+	std::cout<<toString(test)<<std::endl;
 	//cleanUp();
 	//delete test;
 	exit(0);

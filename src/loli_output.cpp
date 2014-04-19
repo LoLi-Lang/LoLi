@@ -22,7 +22,7 @@
 #include "loli_symbols.h"
 #include "loli_cons.h"
 
-string toString(loliObj* obj){
+std::string toString(loliObj* obj){
 	switch(obj->type){
 		case INT:
 		case FLT:
@@ -31,14 +31,19 @@ string toString(loliObj* obj){
 		case CONS:
 			if(nilp(head(obj))){
 				return "NIL";
-			}else if(nilp(tail(obj))){
-				return "(" + toString(head(obj)) + ")";
+//			}else if(nilp(tail(obj))){
+//				return "(" + toString(head(obj)) + ")";
 			}else{
 				return "(" + toString(head(obj)) + " . " + toString(tail(obj)) + ")";
 			}
+		case CHAR:
+		case STRING:
+			return obj->value;
 		case PROC:
 			return "<PROCEDURE>";
 		case LAMBDA:
 			return "<LAMBDA>";
+		case _:
+			return "_";
 	}
 }
