@@ -27,7 +27,7 @@
 #include "loli_env.h"
 #include "loli_read.h"
 
-void eval(loliObj* env){
+void repl(loliObj* env){
 	std::cout << "LoLi > ";
 	std::string input;
 	std::cin >> input;
