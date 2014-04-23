@@ -23,6 +23,7 @@ loliObj *t = mksym("t");
 loliObj *lambda = mksym(".\\");
 loliObj *set = mksym("set!");
 loliObj *quote = mksym("quote");
+loliObj *anon = mksym("_");
 
 bool nilp(loliObj* o){
 	if(o->type == SYM && o->value == "nil"){
