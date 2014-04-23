@@ -43,7 +43,5 @@ std::string toString(loliObj* obj){
 			return "<PROCEDURE>";
 		case LAMBDA:
 			return "<LAMBDA>";
-		case _:
-			return "_";
 	}
 }
