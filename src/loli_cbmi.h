@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  loli_cons.h
+ *       Filename:  loli_cbmi.h
  *
- *    Description:  Functions of operating cons
+ *    Description:  The Context Based Meaning Inference Header
  *
  *        Version:  1.0
- *        Created:  04/05/2014 02:15:01 AM
+ *        Created:  04/27/2014 02:21:14 AM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,13 +16,12 @@
  * =====================================================================================
  */
 
-#ifndef __LOLI_CONS_
-#define __LOLI_CONS_
+
+#ifndef __LOLI_CBMI_
+#define __LOLI_CBMI_
 
 #include "loli_types.h"
 
-extern loliObj* cons(loliObj* hd, loliObj* tl);
-extern loliObj* head(loliObj* cons);
-extern loliObj* tail(loliObj* cons);
+extern loliObj* getType(loliType type, loliObj* obj, loliObj* env);
 
 #endif

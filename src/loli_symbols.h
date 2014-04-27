@@ -19,9 +19,7 @@
 #ifndef __LOLI_SYMS_
 #define __LOLI_SYMS_
 
-#ifndef __LOLI_TYPES_
 #include "loli_types.h"
-#endif
 
 extern loliObj *nil;
 extern loliObj *t;
