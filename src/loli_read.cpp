@@ -23,11 +23,11 @@
 #include "loli_symbols.h"
 #include "loli_cons.h"
 
-std::string readPaired(){
+std::string readPaired(int i, bool quote){ // i indicates the parentheses balance couting, quote indicated wheather between " or not
 	std::string tmp;
 	std::getline(std::cin, tmp);
-	int p = 0;
-	bool q = false;
+	int p = i;
+	bool q = quote;
 	const char* s = tmp.c_str();
 	while(*s){
 		if(*s == '"'){
@@ -40,9 +40,19 @@ std::string readPaired(){
 			if(!q)
 				p = p - 1;
 		}
+		if(p < 0){
+			std::cout<<"Error! Extra ) found that cannot pair up"<<std::endl;
+			return "";	//Temporary implementation, need to be modified after the error handling
+		}
 		s++;
 	}
 	if(p == 0 && !q){
 		return tmp;
+	}else{
+		return tmp.append(readPaired(p, q));
 	}
+}
+
+int main(){
+	std::cout<<readPaired(0, false)<<std::endl;
 }
