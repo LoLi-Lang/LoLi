@@ -47,4 +47,5 @@ loliObj* lookup(loliObj* sym, loliObj* env){
 			return nil;
 		}
 	}
+	return nil;
 }
