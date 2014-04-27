@@ -17,9 +17,32 @@
  */
 
 #include <iostream>
+#include <string>
 
 #include "loli_types.h"
 #include "loli_symbols.h"
 #include "loli_cons.h"
 
-
+std::string readPaired(){
+	std::string tmp;
+	std::getline(std::cin, tmp);
+	int p = 0;
+	bool q = false;
+	const char* s = tmp.c_str();
+	while(*s){
+		if(*s == '"'){
+			q = !q;
+		}
+		if(*s == '('){
+			if(!q)
+				p = p + 1;
+		}else if(*s == ')'){
+			if(!q)
+				p = p - 1;
+		}
+		s++;
+	}
+	if(p == 0 && !q){
+		return tmp;
+	}
+}
