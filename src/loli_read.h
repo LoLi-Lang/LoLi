@@ -20,5 +20,8 @@
 #ifndef __LOLI_READ_
 #define __LOLI_READ_
 
+#include <string>
+
+extern std::string readPaired(int i, bool quote);
 
 #endif

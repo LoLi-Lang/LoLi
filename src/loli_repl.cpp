@@ -30,7 +30,7 @@
 void repl(loliObj* env){
 	std::cout << "LoLi > ";
 	std::string input;
-	std::cin >> input;
+	input = readPaired(0, false);
 	std::cout<<input<<std::endl;
 	//Pseudo code:
 	//cout << toString(eval(parse(input))) <<endl;
