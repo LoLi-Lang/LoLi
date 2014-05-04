@@ -53,6 +53,6 @@ std::string readPaired(int i, bool quote){ // i indicates the parentheses balanc
 	}
 }
 
-int main(){
-	std::cout<<readPaired(0, false)<<std::endl;
-}
+//int main(){
+//	std::cout<<readPaired(0, false)<<std::endl;
+//}

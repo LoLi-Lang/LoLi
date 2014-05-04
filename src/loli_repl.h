@@ -22,6 +22,6 @@
 
 #include "loli_types.h"
 
-extern void eval(loliObj* obj);
+extern void repl(loliObj* obj);
 
 #endif
