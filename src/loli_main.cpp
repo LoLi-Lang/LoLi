@@ -19,15 +19,7 @@
 #include <iostream>
 #include <string>
 
-#include "loli_types.h"
-#include "loli_symbols.h"
-#include "loli_cons.h"
-#include "loli_prim.h"
-#include "loli_list.h"
-#include "loli_ast.h"
-#include "loli_output.h"
-#include "loli_env.h"
-#include "loli_repl.h"
+#include "loli.h"
 
 int main(int argc, char * argv[]){
 	std::cout<<nil->value<<std::endl;
