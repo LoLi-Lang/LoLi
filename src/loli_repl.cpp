@@ -32,6 +32,7 @@ void repl(loliObj* env){
 	std::string input;
 	input = readPaired(0, false);
 	std::cout<<input<<std::endl;
+	std::cout<<toString(parse(input))<<std::endl;
 	//Pseudo code:
 	//cout << toString(eval(parse(input))) <<endl;
 }

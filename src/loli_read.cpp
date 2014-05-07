@@ -52,7 +52,3 @@ std::string readPaired(int i, bool quote){ // i indicates the parentheses balanc
 		return tmp.append(readPaired(p, q));
 	}
 }
-
-//int main(){
-//	std::cout<<readPaired(0, false)<<std::endl;
-//}

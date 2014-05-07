@@ -18,5 +18,15 @@
 
 #include <string>
 
-#include "loli_types.h"
-#
+#include "loli.h"
+#include <iostream>
+
+loliObj* parse(std::string exp){
+	const char* s = exp.c_str();
+	while(*s){
+		std::cout<<s<<std::endl;
+		s++;
+	}
+
+	return nil;
+}

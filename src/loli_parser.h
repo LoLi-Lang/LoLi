@@ -16,3 +16,12 @@
  * =====================================================================================
  */
 
+#ifndef __LOLI_PARSER_
+#define __LOLI_PARSER_
+
+#include "loli.h"
+#include <string>
+
+extern loliObj* parse(std::string exp);
+
+#endif
