@@ -22,10 +22,8 @@
 #include <iostream>
 
 loliObj* parse(std::string exp){
-	const char* s = exp.c_str();
-	while(*s){
-		std::cout<<s<<std::endl;
-		s++;
+	for(int i = 0; i < exp.length(); i++){
+		std::cout<<exp[i]<<std::endl;
 	}
 
 	return nil;

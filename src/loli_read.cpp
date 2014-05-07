@@ -28,23 +28,23 @@ std::string readPaired(int i, bool quote){ // i indicates the parentheses balanc
 	std::getline(std::cin, tmp);
 	int p = i;
 	bool q = quote;
-	const char* s = tmp.c_str();
-	while(*s){
-		if(*s == '"'){
+	for(int j = 0; j < tmp.length(); j++){
+		if(tmp[j] == '"'){
 			q = !q;
 		}
-		if(*s == '('){
+		if(tmp[j] == '('){
 			if(!q)
 				p = p + 1;
-		}else if(*s == ')'){
+		}else if(tmp[j] == ')'){
 			if(!q)
 				p = p - 1;
 		}
 		if(p < 0){
-			std::cout<<"Error! Extra ) found that cannot pair up"<<std::endl;
-			return "";	//Temporary implementation, need to be modified after the error handling
+			std::cout<<"Warning! Extra ) found that cannot pair up, ignored and returned"<<std::endl;
+			tmp = tmp.substr(0, j);	//Temporary implementation, need to be modified after the error handling
+			p = p + 1;
+			break;
 		}
-		s++;
 	}
 	if(p == 0 && !q){
 		return tmp;
