@@ -29,6 +29,13 @@ loliObj* cons(loliObj* hd, loliObj* tl){	//HD stands for HEAD, TL stands for TAI
 	return tmp;
 }
 
+loliObj* cons(loliObj* hd){	//HD stands for HEAD, TL stands for TAIL
+	loliObj * tmp = new (UseGC) loliObj(CONS);
+	tmp->head = hd;
+	tmp->tail = nil;
+	return tmp;
+}
+
 loliObj* head(loliObj* cons){
 	if(cons->type == CONS){
 		return cons->head;

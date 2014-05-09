@@ -23,7 +23,8 @@
 
 loliObj* parse(std::string exp){
 	for(int i = 0; i < exp.length(); i++){
-		std::cout<<exp[i]<<std::endl;
+	//	std::cout<<exp[i]<<std::endl;
+		
 	}
 
 	return nil;
