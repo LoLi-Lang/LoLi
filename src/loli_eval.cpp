@@ -20,6 +20,7 @@
 #include "loli_types.h"
 #include "loli_cons.h"
 #include "loli_symbols.h"
+#include "loli_env.h"
 
 loliObj* eval(loliObj* obj, loliObj* env){
 	if(nilp(obj)){
@@ -31,6 +32,11 @@ loliObj* eval(loliObj* obj, loliObj* env){
 				return obj;
 			case CONS:
 			case SYM:
+				if(nilp(lookup(obj, env))){
+					return mksym("Symbol Unbound!");
+				}else{
+					return head(lookup(obj, env));
+				}
 			case CHAR:
 			case STRING:
 			case PROC:

@@ -22,9 +22,23 @@
 #include <iostream>
 
 loliObj* parse(std::string exp){
-	for(int i = 0; i < exp.length(); i++){
-	//	std::cout<<exp[i]<<std::endl;
-		
+//	for(int i = 0; i < exp.length(); i++){
+//		std::cout<<exp[i]<<std::endl;
+//		
+//		
+//	}
+	if(exp[0] == '('){
+		//CONS
+	}else if(exp[0] == '\''){
+		//Q-EXP
+	}else{
+		for(int i = 0; i < exp.length(); i++){
+			if(!isalpha(exp[i]) || isspace(exp[i])){
+				std::cout<<exp.substr(0, i)<<std::endl;
+				return mksym(exp.substr(0, i));
+			}
+		}
+		return mksym(exp);
 	}
 
 	return nil;

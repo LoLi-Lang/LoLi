@@ -16,3 +16,11 @@
  * =====================================================================================
  */
 
+#ifndef __LOLI_EVAL_
+#define __LOLI_EVAL_
+
+#include "loli.h"
+
+extern loliObj* eval(loliObj* obj, loliObj* env);
+
+#endif
