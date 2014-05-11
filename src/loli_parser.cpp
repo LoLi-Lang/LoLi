@@ -32,6 +32,15 @@ loliObj* parse(std::string exp){
 	}else if(exp[0] == '\''){
 		//Q-EXP
 	}else{
+		try{
+			if(stoi(exp) == stof(exp))
+			return mkint(stoi(exp));
+		}catch(...){}
+
+		try{
+			return mkflt(stof(exp));
+		}catch(...){}
+
 		for(int i = 0; i < exp.length(); i++){
 			if(isspace(exp[i])){
 				std::cout<<exp.substr(0, i)<<std::endl;
