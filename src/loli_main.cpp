@@ -31,25 +31,8 @@ void loli_init_tl(){
 }
 
 int main(int argc, char * argv[]){
-	std::cout<<nil->value<<std::endl;
-	std::cout<<t->value<<std::endl;
 	std::cout<<"LoLi PRPR!\nLoLi is a Free Software and you can do whatever you want with it under the licence GPLv3"<<std::endl;
 	loli_init_tl();
-//	std::cout<<mkflt(1.2356).value<<std::endl;
-//	loliObj* c = cons(t, nil);
-//	loliObj* b = cons(t, c);
-//	std::cout<<tail(tail(b))->value<<std::endl;
-//	std::cout<<"CREATING TEST:"<<std::endl;
-//	loliObj* test = cons(mksym("a"), cons(mkint(3), cons(mkint(0), nil)));
-//	std::cout<<"TEST HEAD: "<<head(test).value<<std::endl;
-//	std::cout<<"SUM (1 2 3): "<<proc_sum(test)->value<<std::endl;
-//	std::cout<<"SUB (\"a\" 3 0): "<<proc_sub(test)->value<<std::endl;
-//	std::cout<<"MUL (1 2 3): "<<proc_mul(test)->value<<std::endl;
-//	std::cout<<"DIV (\"a\" 3 0): "<<proc_div(test)->value<<std::endl;
-//	std::cout<<"MOD (\"a\" 3 0): "<<proc_mod(test)->value<<std::endl;
-//	std::cout<<"Length of (\"a\" 3 0) is: "<<prim_length(test)<<std::endl;
-//	loliObj* testSUM = mkproc(proc_sum);
-//	std::cout<<toString(test)<<std::endl;
 	while(true){
 		repl(top_env);
 	}
