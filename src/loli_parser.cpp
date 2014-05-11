@@ -33,7 +33,7 @@ loliObj* parse(std::string exp){
 		//Q-EXP
 	}else{
 		for(int i = 0; i < exp.length(); i++){
-			if(!isalpha(exp[i]) || isspace(exp[i])){
+			if(isspace(exp[i])){
 				std::cout<<exp.substr(0, i)<<std::endl;
 				return mksym(exp.substr(0, i));
 			}

@@ -16,13 +16,16 @@
  * =====================================================================================
  */
 
+#include <iostream>
 
 #include "loli_types.h"
 #include "loli_symbols.h"
 #include "loli_cons.h"
 #include "loli_ast.h"
+#include "loli_output.h"
 
-loliObj* top_env = cons(cons(nil, nil), nil);
+//loliObj* top_env = cons(cons(cons(nil , nil), cons(cons(t , t), nil)));
+loliObj* top_env = nil;
 
 loliObj* mkEnvProc(loliObj* sym, loliObj* type, loliObj* proc){
 	loliObj* tmp = cons(sym, cons(type, proc));
@@ -30,6 +33,10 @@ loliObj* mkEnvProc(loliObj* sym, loliObj* type, loliObj* proc){
 }
 
 loliObj* addToEnv(loliObj* env, loliObj* obj){
+//	std::cout<<"ENV: "<<toString(env)<<" OBJ: "<<toString(obj)<<std::endl;
+	if(nilp(env)){
+		return cons(obj);
+	}
 	if(head(head(env))->value < head(obj)->value){
 		return cons(head(env), addToEnv(tail(env), obj));
 	}else{
@@ -38,13 +45,14 @@ loliObj* addToEnv(loliObj* env, loliObj* obj){
 }
 
 loliObj* lookup(loliObj* sym, loliObj* env){
+//	std::cout<<"ENV: "<<toString(env)<<" OBJ: "<<toString(sym)<<std::endl;
 	if(nilp(env)){
 		return nil;
 	}else{
 		if(head(head(env))->value == sym->value){
 			return cons(head(env), lookup(sym, tail(env)));
-		}else if(head(head(env))->value > sym->value){
-			return nil;
+		}else{
+			return lookup(sym, tail(env));
 		}
 	}
 	return nil;

@@ -27,7 +27,7 @@
 
 extern loliObj* top_env;
 extern loliObj* mkEnvProc(loliObj* sym, loliObj* type, loliObj* proc);
-extern void addToEnv(loliObj* env, loliObj* obj);
+extern loliObj* addToEnv(loliObj* env, loliObj* obj);
 extern loliObj* lookup(loliObj* sym, loliObj* env);
 
 #endif

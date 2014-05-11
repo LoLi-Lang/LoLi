@@ -46,3 +46,10 @@ loliObj* mkproc(loliObj::procedure &proc){
 	tmp->proc = proc;
 	return tmp;
 }
+
+bool equals(loliObj* a, loliObj* b){
+	if((a->type == b->type) && (a->value == b->value)){
+		return true;
+	}
+	return false;
+}

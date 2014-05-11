@@ -26,8 +26,6 @@ void loli_init_tl(){
 	top_env = addToEnv(top_env, cons(t, t));
 	top_env = addToEnv(top_env, cons(nil, nil));
 	top_env = addToEnv(top_env, cons(mksym("top_env"), top_env));
-
-	std::cout<<toString(top_env)<<std::endl;
 }
 
 int main(int argc, char * argv[]){
