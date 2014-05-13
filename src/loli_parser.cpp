@@ -28,6 +28,7 @@ loliObj* parse(std::string exp){
 //		
 //	}
 	if(exp[0] == '('){
+		std::cout<<exp.substr(1, exp.length() - 2)<<std::endl;
 		//CONS
 	}else if(exp[0] == '\''){
 		//Q-EXP
