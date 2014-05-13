@@ -3,6 +3,9 @@ LoLi
 ---
 LoLi is a **new** LISP Dialect.
 
+![LoLi](http://img1.ak.crunchyroll.com/i/spire1/b385695d7d32a54d7672bda638d49a351225770690_full.jpg)
+> Image from the internet
+
 Why LoLi
 -
 ---
