@@ -43,6 +43,10 @@ void loli_init_tl(){
 	top_env = addToEnv(top_env, cons(mksym("-"), loli_sub));
 	top_env = addToEnv(top_env, cons(mksym("/"), loli_div));
 
+	loliObj* test = cons(mkint(1), cons(mkflt(2.5), cons(mkint(5), nil)));
+
+	std::cout<<toString(apply(loli_sum, test))<<"\t"<<toString(apply(loli_mul, test))<<"\n"<<toString(apply(loli_sub, test))<<"\t"<<toString(apply(loli_div, test))<<std::endl;
+
 	std::cout<<toString(top_env)<<std::endl;
 }
 

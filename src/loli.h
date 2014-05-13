@@ -30,5 +30,6 @@
 #include "loli_repl.h"
 #include "loli_read.h"
 #include "loli_parser.h"
+#include "loli_apply.h"
 
 #endif
