@@ -18,6 +18,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
 #include "loli_types.h"
 #include "loli_symbols.h"
@@ -37,7 +38,11 @@ loliObj* mkint(int number){
 
 loliObj* mkflt(double number){
 	loliObj *tmp = new (UseGC) loliObj(FLT);
-	tmp->value = std::to_string(number);
+	std::stringstream ss;
+	ss << number;
+	std::string n;
+	ss >> n;
+	tmp->value = n;
 	return tmp;
 }
 
