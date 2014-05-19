@@ -18,6 +18,13 @@
 
 #include "loli.h"
 
+#include <iostream>
+
 loliObj* apply(loliObj* proc, loliObj* obj){
+	std::cout<<std::endl<<"Arg: "<<toString(obj)<<std::endl;
+	if(proc->type != PROC){
+		std::cout<<toString(proc)<<" Not a procedure!"<<std::endl;
+		return nil;
+	}
 	return proc->proc(obj);
 }

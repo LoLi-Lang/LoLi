@@ -22,9 +22,10 @@
 #include "loli.h"
 
 void loli_init_tl(){
-	top_env = addToEnv(top_env, cons(mksym("a"), mkint(10)));
+	top_env = addToEnv(top_env, cons(mksym("a"), mkflt(10.0011011)));
 	top_env = addToEnv(top_env, cons(t, t));
 	top_env = addToEnv(top_env, cons(nil, nil));
+	top_env = addToEnv(top_env, cons(quote, quote));
 	top_env = addToEnv(top_env, cons(mksym("top_env"), top_env));
 
 	//Creating Primitive Operators
@@ -48,6 +49,7 @@ void loli_init_tl(){
 	std::cout<<toString(apply(loli_sum, test))<<"\t"<<toString(apply(loli_mul, test))<<"\n"<<toString(apply(loli_sub, test))<<"\t"<<toString(apply(loli_div, test))<<std::endl;
 
 	std::cout<<toString(top_env)<<std::endl;
+
 }
 
 int main(int argc, char * argv[]){

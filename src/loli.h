@@ -31,5 +31,6 @@
 #include "loli_read.h"
 #include "loli_parser.h"
 #include "loli_apply.h"
+#include "loli_cbmi.h"
 
 #endif

@@ -20,7 +20,11 @@
 #include "loli_types.h"
 #include "loli_cons.h"
 #include "loli_symbols.h"
+#include "loli_cbmi.h"
 #include "loli_env.h"
+#include "loli_apply.h"
+
+loliObj* lookupList(loliObj* lst, loliObj*);
 
 loliObj* eval(loliObj* obj, loliObj* env){
 	if(nilp(obj)){
@@ -31,6 +35,12 @@ loliObj* eval(loliObj* obj, loliObj* env){
 			case FLT:
 				return obj;
 			case CONS:
+				if(equals(head(obj), quote)){
+					return tail(obj);
+				}else if(equals(head(obj), lambda)){
+
+				}
+				return apply(getType(PROC, head(obj), env), lookupList(tail(obj), env));
 			case SYM:
 				if(nilp(lookup(obj, env))){
 					return mksym("Symbol Unbound!");
@@ -47,4 +57,17 @@ loliObj* eval(loliObj* obj, loliObj* env){
 	}
 
 
+}
+
+loliObj* lookupList(loliObj* lst, loliObj* env){
+	if(nilp(lst)){
+		return nil;
+	}else{
+		if(head(lst)->type != SYM){
+			return cons(head(lst), lookupList(tail(lst), env));
+		}else{
+			return cons(tail(head(lookup(head(lst), env))), lookupList(tail(lst), env));
+		}
+	}
+	return nil;
 }

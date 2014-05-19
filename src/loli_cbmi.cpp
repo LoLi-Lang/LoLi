@@ -23,11 +23,16 @@
 #include "loli_list.h"
 #include "loli_cons.h"
 
+#include "loli_output.h"
+#include <iostream>
+
 loliObj* getType(loliType type, loliObj* sym, loliObj* env){
 	loliObj* tmp = lookup(sym, env);
+//	std::cout<<toString(sym)<<" @ "<<toString(env)<<std::endl;
 	for(;!nilp(tmp);tmp = tail(tmp)){
-		if(head(tail(head(tmp)))->type == type){
-			return head(tmp);
+//		std::cout<<toString(head(tmp))<<std::endl;
+		if(tail(head(tmp))->type == type){
+			return tail(head(tmp));
 		}
 	}
 	return nil;

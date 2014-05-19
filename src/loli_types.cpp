@@ -36,12 +36,13 @@ loliObj* mkint(int number){
 	return tmp;
 }
 
-loliObj* mkflt(double number){
+loliObj* mkflt(long double number){
 	loliObj *tmp = new (UseGC) loliObj(FLT);
 	std::stringstream ss;
 	ss << number;
 	std::string n;
 	ss >> n;
+	//tmp->value = std::to_string(number);
 	tmp->value = n;
 	return tmp;
 }

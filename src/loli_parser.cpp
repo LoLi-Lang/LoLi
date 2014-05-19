@@ -21,6 +21,8 @@
 #include "loli.h"
 #include <iostream>
 
+loliObj* parseList(std::string exp);
+
 loliObj* parse(std::string exp){
 //	for(int i = 0; i < exp.length(); i++){
 //		std::cout<<exp[i]<<std::endl;
@@ -28,23 +30,25 @@ loliObj* parse(std::string exp){
 //		
 //	}
 	if(exp[0] == '('){
-		std::cout<<exp.substr(1, exp.length() - 2)<<std::endl;
+//		std::cout<<exp.substr(1, exp.length() - 2)<<std::endl;
+		return parseList(exp.substr(1, exp.length() - 2));
 		//CONS
 	}else if(exp[0] == '\''){
 		//Q-EXP
+		return cons(quote, parse(exp.substr(1, exp.length() - 1)));
 	}else{
 		try{
-			if(stoi(exp) == stof(exp))
+			if(stoi(exp) == stod(exp))
 			return mkint(stoi(exp));
 		}catch(...){}
 
 		try{
-			return mkflt(stof(exp));
+			return mkflt(stod(exp));
 		}catch(...){}
 
 		for(int i = 0; i < exp.length(); i++){
 			if(isspace(exp[i])){
-				std::cout<<exp.substr(0, i)<<std::endl;
+//				std::cout<<exp.substr(0, i)<<std::endl;
 				return mksym(exp.substr(0, i));
 			}
 		}
@@ -52,4 +56,18 @@ loliObj* parse(std::string exp){
 	}
 
 	return nil;
+}
+
+loliObj* parseList(std::string exp){
+//	std::cout<<exp<<std::endl;
+	if(exp[0] == EOF){
+		return nil;
+	}
+	for(int i = 0; i < exp.length(); i++){
+		if(isspace(exp[i])){
+//			std::cout<<exp.substr(0, i)<<std::endl;
+			return cons(parse(exp.substr(0, i)), parseList(exp.substr(i+1)));
+		}
+	}
+	return cons(parse(exp), nil);
 }

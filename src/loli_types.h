@@ -48,7 +48,8 @@ struct loliObj {
 
 extern loliObj* mksym(std::string symName);
 extern loliObj* mkint(int number);
-extern loliObj* mkflt(double number);
+extern loliObj* mkflt(long double number);
 extern loliObj* mkproc(loliObj::procedure &proc);
+extern bool equals(loliObj* a, loliObj* b);
 
 #endif
