@@ -24,6 +24,7 @@
 #include "loli_types.h"
 #include "loli_symbols.h"
 #include "loli_cons.h"
+#include "loli_output.h"
 
 loliObj* proc_sum(loliObj* lst){
 	double tmp = 0;
@@ -100,7 +101,13 @@ loliObj* proc_div(loliObj* lst){
 }
 
 loliObj* proc_add1(loliObj* num){
-	double tmp = std::stod(head(num)->value) + 1;
+	double tmp;
+	try{
+		tmp = std::stod(head(num)->value) - 1;
+	}catch(...){
+		std::cout<<toString(num)<<" is an invalid argument!"<<std::endl;
+		return nil;
+	}
 	if((int)tmp == tmp){
 		return mkint((int)tmp);
 	}
@@ -108,7 +115,13 @@ loliObj* proc_add1(loliObj* num){
 }
 
 loliObj* proc_sub1(loliObj* num){
-	double tmp = std::stod(head(num)->value) - 1;
+	double tmp;
+	try{
+		tmp = std::stod(head(num)->value) - 1;
+	}catch(...){
+		std::cout<<toString(num)<<" is an invalid argument!"<<std::endl;
+		return nil;
+	}
 	if((int)tmp == tmp){
 		return mkint((int)tmp);
 	}
