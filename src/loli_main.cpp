@@ -83,5 +83,5 @@ int main(int argc, char * argv[]){
 }
 
 void showHelp(){
-	std::cout<<"LoLi is a free software, you can find the licence from GNU's website\nUsage: loli [option] ...\nOptions: \n\t--eval\tevaluate an expression\n\t--help\tdisplay this help\n\t--replt (or nothing)\tenter the repl"<<std::endl;
+	std::cout<<"LoLi is a free software, you can find the licence from GNU's website\nUsage: loli [option] ...\nOptions: \n\t--eval\tevaluate an expression\n\t--help\tdisplay this help\n\t--repl (blank)\tenter the repl"<<std::endl;
 }
