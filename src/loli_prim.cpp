@@ -195,3 +195,7 @@ loliObj* proc_lesser(loliObj* lst){
 	}
 	return t;
 }
+
+loliObj* proc_exit(loliObj* dum){
+	exit(0);
+}

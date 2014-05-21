@@ -38,6 +38,7 @@ void loli_init_tl(){
 	loliObj* loli_mod = mkproc(proc_mod);
 	loliObj* loli_greater = mkproc(proc_greater);
 	loliObj* loli_lesser = mkproc(proc_lesser);
+	loliObj* loli_exit = mkproc(proc_exit);
 	
 	top_env = addToEnv(top_env, cons(mksym("+"), loli_sum));
 	top_env = addToEnv(top_env, cons(mksym("*"), loli_mul));
@@ -48,6 +49,7 @@ void loli_init_tl(){
 	top_env = addToEnv(top_env, cons(mksym("mod"), loli_mod));
 	top_env = addToEnv(top_env, cons(mksym(">"), loli_greater));
 	top_env = addToEnv(top_env, cons(mksym("<"), loli_lesser));
+	top_env = addToEnv(top_env, cons(mksym("exit"), loli_exit));
 
 	loliObj* test = cons(mkint(1), cons(mkflt(2.5), cons(mkint(5), nil)));
 

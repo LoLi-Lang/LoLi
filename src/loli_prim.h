@@ -40,4 +40,6 @@ extern loliObj* proc_mod(loliObj* lst);
 extern loliObj* proc_greater(loliObj* lst);
 extern loliObj* proc_lesser(loliObj* lst);
 
+extern loliObj* proc_exit(loliObj* dum);
+
 #endif
