@@ -18,7 +18,7 @@ I intended to implement a Lisp dialect that combines the features of both ***Lis
 
 >(get-func 'foo)
 
->=> #\<USER DEFINED FUNCTION\> ;;(def foo (x) (+ 1 x))
+>=> #\<PROCEDURE\> ;;(def foo (x) (+ 1 x))
 
 >(get-sym 'foo)
 
