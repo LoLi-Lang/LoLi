@@ -28,7 +28,7 @@ I intended to implement a Lisp dialect that combines the features of both ***Lis
 
 >=> 2
 
-and other features like the interpreter itself can eval an expression without getting into the top-level:
+and other features like the interpreter itself can eval an expression without getting into the REPL:
 
 >& ./loli --eval “(+ 1 2)”
 
