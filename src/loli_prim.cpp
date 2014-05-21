@@ -100,7 +100,7 @@ loliObj* proc_div(loliObj* lst){
 }
 
 loliObj* proc_add1(loliObj* num){
-	double tmp = std::stod(num->value) + 1;
+	double tmp = std::stod(head(num)->value) + 1;
 	if((int)tmp == tmp){
 		return mkint((int)tmp);
 	}
@@ -108,7 +108,7 @@ loliObj* proc_add1(loliObj* num){
 }
 
 loliObj* proc_sub1(loliObj* num){
-	double tmp = std::stod(num->value) - 1;
+	double tmp = std::stod(head(num)->value) - 1;
 	if((int)tmp == tmp){
 		return mkint((int)tmp);
 	}
