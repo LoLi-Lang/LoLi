@@ -22,6 +22,8 @@
 
 #include "loli.h"
 
+#define VERSION "developing alpha"
+
 void showHelp();
 
 void loli_init_tl(){
@@ -71,6 +73,9 @@ int main(int argc, char * argv[]){
 		}else if(strcmp(argv[1] , "--help") == 0){
 			showHelp();
 			exit(0);
+		}else if(strcmp(argv[1] , "--version") == 0){
+			std::cout<<"LoLi version: "<<VERSION<<std::endl;
+			exit(0);
 		}else if(strcmp(argv[1] , "--repl") == 0){
 			//DO NOTHING
 		}
@@ -83,5 +88,5 @@ int main(int argc, char * argv[]){
 }
 
 void showHelp(){
-	std::cout<<"LoLi is a free software, you can find the licence from GNU's website\nUsage: loli [option] ...\nOptions: \n\t--eval\tevaluate an expression\n\t--help\tdisplay this help\n\t--repl (blank)\tenter the repl\n\nContact the developer:\tMail to shangzhanlin@gmail.com"<<std::endl;
+	std::cout<<"LoLi is a free software, you can find the licence from GNU's website\nUsage: loli [option] ...\nOptions: \n\t--eval\tevaluate an expression\n\t--help\tdisplay this help\n\t--version\tShow the version\n\t--repl (blank)\tenter the repl\n\nContact the developer:\tMail to shangzhanlin@gmail.com"<<std::endl;
 }
