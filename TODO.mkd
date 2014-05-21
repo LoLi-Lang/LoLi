@@ -4,7 +4,11 @@
 
 3. Start to build the new Read-Parse module
 
+>Done.
+
 4. Improve the EVAL module (With the context based meaning inferring system)
+
+>Done.
 
 5. Implement the context based meaning inferring system
 
