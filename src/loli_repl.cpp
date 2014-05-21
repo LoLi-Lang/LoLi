@@ -31,8 +31,5 @@ void repl(loliObj* env){
 	std::cout << "LoLi > ";
 	std::string input;
 	input = readPaired(0, false);
-//	std::cout<<input<<std::endl;
 	std::cout<<toString(eval(parse(input), env))<<std::endl;
-	//Pseudo code:
-	//cout << toString(eval(parse(input))) <<endl;
 }

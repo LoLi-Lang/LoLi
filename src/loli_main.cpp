@@ -18,8 +18,11 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
 
 #include "loli.h"
+
+void showHelp();
 
 void loli_init_tl(){
 	top_env = addToEnv(top_env, cons(mksym("a"), mkflt(10.0011011)));
@@ -53,17 +56,32 @@ void loli_init_tl(){
 
 	loliObj* test = cons(mkint(1), cons(mkflt(2.5), cons(mkint(5), nil)));
 
-	std::cout<<toString(apply(loli_sum, test))<<"\t"<<toString(apply(loli_mul, test))<<"\n"<<toString(apply(loli_sub, test))<<"\t"<<toString(apply(loli_div, test))<<std::endl;
+//	std::cout<<toString(apply(loli_sum, test))<<"\t"<<toString(apply(loli_mul, test))<<"\n"<<toString(apply(loli_sub, test))<<"\t"<<toString(apply(loli_div, test))<<std::endl;
 
-	std::cout<<toString(top_env)<<std::endl;
+//	std::cout<<toString(top_env)<<std::endl;
 
 }
 
 int main(int argc, char * argv[]){
-	std::cout<<"LoLi PRPR!\nLoLi is a Free Software and you can do whatever you want with it under the licence GPLv3"<<std::endl;
 	loli_init_tl();
+	if(argc >= 2){
+		if(strcmp(argv[1] , "--eval") == 0){
+			std::cout<<toString(eval(parse(argv[2]), top_env))<<std::endl;
+			exit(0);
+		}else if(strcmp(argv[1] , "--help") == 0){
+			showHelp();
+			exit(0);
+		}else if(strcmp(argv[1] , "--repl") == 0){
+			//DO NOTHING
+		}
+	}
+	std::cout<<"LoLi PRPR!\nLoLi is a Free Software and you can do whatever you want with it under the licence GPLv3"<<std::endl;
 	while(true){
 		repl(top_env);
 	}
 	exit(0);
+}
+
+void showHelp(){
+	std::cout<<"LoLi is a free software, you can find the licence from GNU's website\nUsage: loli [option] ...\nOptions: \n\t--eval\tevaluate an expression\n\t--help\tdisplay this help\n\t--replt (or nothing)\tenter the repl"<<std::endl;
 }

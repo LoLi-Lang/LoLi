@@ -32,5 +32,7 @@
 #include "loli_parser.h"
 #include "loli_apply.h"
 #include "loli_cbmi.h"
+#include "loli_eval.h"
+#include "loli_parser.h"
 
 #endif
