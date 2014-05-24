@@ -21,13 +21,16 @@
 #include "loli_cons.h"
 #include "loli_symbols.h"
 
-int prim_length(loliObj* lst){
-	int tmp = 0;
+int int_length(loliObj* lst){
 	if(nilp(lst)){
 		return 0;
 	}else{
-		return 1 + prim_length(tail(lst));
+		return 1 + int_length(tail(lst));
 	}
+}
+
+loliObj* prim_length(loliObj* lst){
+	return mkint(int_length(lst));
 }
 
 //Append[(a (b . nil))] -> (a .... (b .... . nil))

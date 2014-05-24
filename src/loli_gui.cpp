@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  loli_list.h
+ *       Filename:  loli_gui.cpp
  *
- *    Description:  The primitive list operations of LoLi
+ *    Description:  GUI part of LoLi
  *
  *        Version:  1.0
- *        Created:  04/08/2014 11:17:14 PM
+ *        Created:  05/21/2014 11:49:27 AM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,15 +16,13 @@
  * =====================================================================================
  */
 
+#include <gtkmm.h>
 
-#ifndef __LOLI_LIST_
-#define __LOLI_LIST_
+int guitest(int argc, char *argv[]){
+	Glib::RefPtr<Gtk::Application> test =
+		Gtk::Application::create(argc, argv, "org.zshang.loli.test");
+	Gtk::Window win;
+	win.set_default_size(200, 200);
 
-#include "loli_types.h"
-#include "loli_cons.h"
-#include "loli_symbols.h"
-
-extern loliObj* prim_length(loliObj* lst);
-extern loliObj* prim_append(loliObj* lst);
-
-#endif
+	return test->run(win);
+}

@@ -29,13 +29,13 @@ std::string toString(loliObj* obj){
 		case SYM:
 			return obj->value;
 		case CONS:
-			if(nilp(head(obj))){
-				return "NIL";
+		//	if(nilp(head(obj))){
+		//		return "NIL";
 //			}else if(nilp(tail(obj))){
 //				return "(" + toString(head(obj)) + ")";
-			}else{
+		//	}else{
 				return "(" + toString(head(obj)) + " . " + toString(tail(obj)) + ")";
-			}
+		//	}
 		case CHAR:
 		case STRING:
 			return obj->value;
@@ -44,4 +44,5 @@ std::string toString(loliObj* obj){
 		case LAMBDA:
 			return "<LAMBDA>";
 	}
+	return "";
 }

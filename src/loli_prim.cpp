@@ -197,5 +197,6 @@ loliObj* proc_lesser(loliObj* lst){
 }
 
 loliObj* proc_exit(loliObj* dum){
+	//Dummy input, do nothing
 	exit(0);
 }

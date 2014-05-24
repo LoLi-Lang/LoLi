@@ -28,7 +28,7 @@ std::string readPaired(int i, bool quote){ // i indicates the parentheses balanc
 	std::getline(std::cin, tmp);
 	int p = i;
 	bool q = quote;
-	for(int j = 0; j < tmp.length(); j++){
+	for(ulong j = 0; j < tmp.length(); j++){
 		if(tmp[j] == '"'){
 			q = !q;
 		}

@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  loli_list.h
+ *       Filename:  loli_cli.cpp
  *
- *    Description:  The primitive list operations of LoLi
+ *    Description:  Text Based UI of LoLi
  *
  *        Version:  1.0
- *        Created:  04/08/2014 11:17:14 PM
+ *        Created:  05/21/2014 11:49:55 AM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,15 +16,6 @@
  * =====================================================================================
  */
 
-
-#ifndef __LOLI_LIST_
-#define __LOLI_LIST_
-
-#include "loli_types.h"
-#include "loli_cons.h"
-#include "loli_symbols.h"
-
-extern loliObj* prim_length(loliObj* lst);
-extern loliObj* prim_append(loliObj* lst);
-
-#endif
+/* 
+ * TODO
+ * Use NCurse to build the terminal ui */

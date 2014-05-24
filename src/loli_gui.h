@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  loli_list.h
+ *       Filename:  loli_gui.h
  *
- *    Description:  The primitive list operations of LoLi
+ *    Description:  Gui header of LoLi
  *
  *        Version:  1.0
- *        Created:  04/08/2014 11:17:14 PM
+ *        Created:  05/23/2014 10:36:33 AM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,15 +16,9 @@
  * =====================================================================================
  */
 
+#ifndef __LOLI_GUI_
+#define __LOLI_GUI_
 
-#ifndef __LOLI_LIST_
-#define __LOLI_LIST_
-
-#include "loli_types.h"
-#include "loli_cons.h"
-#include "loli_symbols.h"
-
-extern loliObj* prim_length(loliObj* lst);
-extern loliObj* prim_append(loliObj* lst);
+extern int guitest(int argc, char* argv[]);
 
 #endif

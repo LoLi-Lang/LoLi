@@ -34,5 +34,6 @@
 #include "loli_cbmi.h"
 #include "loli_eval.h"
 #include "loli_parser.h"
+#include "loli_gui.h"
 
 #endif

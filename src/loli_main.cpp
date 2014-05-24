@@ -27,7 +27,7 @@
 void showHelp();
 
 void loli_init_tl(){
-	top_env = addToEnv(top_env, cons(mksym("a"), mkflt(10.0011011)));
+//	top_env = addToEnv(top_env, cons(mksym("a"), mkflt(10.0011011)));
 	top_env = addToEnv(top_env, cons(t, t));
 	top_env = addToEnv(top_env, cons(nil, nil));
 	top_env = addToEnv(top_env, cons(quote, quote));
@@ -56,6 +56,8 @@ void loli_init_tl(){
 	top_env = addToEnv(top_env, cons(mksym("<"), loli_lesser));
 	top_env = addToEnv(top_env, cons(mksym("exit"), loli_exit));
 
+	top_env = addToEnv(top_env, cons(mksym("TOP-ENV"), top_env));
+
 	loliObj* test = cons(mkint(1), cons(mkflt(2.5), cons(mkint(5), nil)));
 
 //	std::cout<<toString(apply(loli_sum, test))<<"\t"<<toString(apply(loli_mul, test))<<"\n"<<toString(apply(loli_sub, test))<<"\t"<<toString(apply(loli_div, test))<<std::endl;
@@ -80,6 +82,7 @@ int main(int argc, char * argv[]){
 			//DO NOTHING
 		}
 	}
+//	guitest(argc, argv);
 	std::cout<<"LoLi PRPR!\nLoLi is a Free Software and you can do whatever you want with it under the licence GPLv3"<<std::endl;
 	while(true){
 		repl(top_env);

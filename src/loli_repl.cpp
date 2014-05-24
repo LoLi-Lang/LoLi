@@ -19,6 +19,7 @@
 
 #include <string>
 #include <iostream>
+#include <cstdio>
 
 #include "loli_eval.h"
 #include "loli_output.h"
@@ -31,5 +32,8 @@ void repl(loliObj* env){
 	std::cout << "LoLi > ";
 	std::string input;
 	input = readPaired(0, false);
+	if(input[0] == '\0'){
+		exit(0);
+	}
 	std::cout<<toString(eval(parse(input), env))<<std::endl;
 }
