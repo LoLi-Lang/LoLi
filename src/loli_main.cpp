@@ -83,7 +83,7 @@ int main(int argc, char * argv[]){
 		}
 	}
 //	guitest(argc, argv);
-	std::cout<<"LoLi PRPR!\nLoLi is a Free Software and you can do whatever you want with it under the licence GPLv3"<<std::endl;
+	std::cout<<"LoLi PRPR!\nLoLi is a Free Software and you can do whatever you want with it under the licence GPLv3 or any later version"<<std::endl;
 	while(true){
 		repl(top_env);
 	}
