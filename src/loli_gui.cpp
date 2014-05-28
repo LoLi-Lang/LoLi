@@ -16,13 +16,15 @@
  * =====================================================================================
  */
 
-#include <gtkmm.h>
+#include <gtk/gtk.h>
 
 int guitest(int argc, char *argv[]){
-	Glib::RefPtr<Gtk::Application> test =
-		Gtk::Application::create(argc, argv, "org.zshang.loli.test");
-	Gtk::Window win;
-	win.set_default_size(200, 200);
-
-	return test->run(win);
+	GtkWidget *window;
+	gtk_init(&argc, &argv);
+	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
+	g_signal_connect(GTK_WIDGET(window), "destroy", G_CALLBACK(gtk_main_quit), NULL);
+	gtk_widget_show(window);
+	gtk_main();
+	return(0);
 }

@@ -15,7 +15,7 @@ GUI = loli_gui.cpp
 GUI_H = loli_gui.h
 
 currentg: $(HEADERS) $(GCHEADER) $(GUI_H)
-	$(CC) $(CFLAGSG) $(GCINCLUDE) $(GC) -o currentg $(MAIN) $(GUI) `pkg-config --cflags --libs gtkmm-3.0`
+	$(CC) $(CFLAGSG) $(GCINCLUDE) $(GC) -o currentg $(MAIN) $(GUI) `pkg-config --cflags --libs gtk+-3.0`
 
 currentc: $(HEADERS) $(GCHEADER) $(GUI_H)
-	$(CLANG) $(CFLAGSC) $(GCINCLUDE) $(GC) -o currentc $(MAIN) $(GUI) `pkg-config --cflags --libs gtkmm-3.0`
+	$(CLANG) $(CFLAGSC) $(GCINCLUDE) $(GC) -o currentc $(MAIN) $(GUI) `pkg-config --cflags --libs gtk+-3.0`
