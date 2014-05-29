@@ -28,3 +28,7 @@ int guitest(int argc, char *argv[]){
 	gtk_main();
 	return(0);
 }
+
+int realgui(int argc, char *argv[]){
+
+}
