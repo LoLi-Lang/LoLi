@@ -29,8 +29,8 @@ loliObj* parse(std::string exp){
 //		
 //		
 //	}
-	if(exp[0] == EOF){
-		exit(0);
+	if(exp[0] == '\0'){
+		return nil;
 	}
 	if(exp[0] == '('){
 //		std::cout<<exp.substr(1, exp.length() - 2)<<std::endl;
