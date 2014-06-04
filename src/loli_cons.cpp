@@ -18,8 +18,7 @@
 
 #include <iostream>
 
-#include "loli_types.h"
-#include "loli_symbols.h"
+#include "loli.h"
 #include "loli_gc.h"
 
 loliObj* cons(loliObj* hd, loliObj* tl){	//HD stands for HEAD, TL stands for TAIL
@@ -29,10 +28,10 @@ loliObj* cons(loliObj* hd, loliObj* tl){	//HD stands for HEAD, TL stands for TAI
 	return tmp;
 }
 
-loliObj* cons(loliObj* hd){	//HD stands for HEAD, TL stands for TAIL
+loliObj* prim_cons(loliObj* exp){	//HD stands for HEAD, TL stands for TAIL
 	loliObj * tmp = new (UseGC) loliObj(CONS);
-	tmp->head = hd;
-	tmp->tail = nil;
+	tmp->head = head(exp);
+	tmp->tail = head(tail(exp));
 	return tmp;
 }
 

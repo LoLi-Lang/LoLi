@@ -20,10 +20,6 @@
 
 #include "loli.h"
 
-bool c_def(loliObj* exp, loliObj* env){ //(def name exp)
-	return NULL;
-}
-
 loliObj* prim_def(loliObj* exp){
 	std::cout<<"Exp: "<<toString(exp)<<" Env: "<<std::endl;
 	top_env = addToEnv(top_env, exp);

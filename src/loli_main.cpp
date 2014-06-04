@@ -21,8 +21,9 @@
 #include <cstring>
 
 #include "loli.h"
+#include "loli_file.h"
 
-#define VERSION "developing alpha"
+#define VERSION "developing alpha 2"
 
 void showHelp();
 
@@ -44,7 +45,7 @@ void loli_init_tl(){
 	loliObj* loli_greater = mkproc(proc_greater);
 	loliObj* loli_lesser = mkproc(proc_lesser);
 	loliObj* loli_exit = mkproc(proc_exit);
-	loliObj* loli_def = mkproc(prim_def);
+	loliObj* loli_cons = mkproc(prim_cons);
 	
 	top_env = addToEnv(top_env, cons(mksym("+"), loli_sum));
 	top_env = addToEnv(top_env, cons(mksym("*"), loli_mul));
@@ -56,6 +57,7 @@ void loli_init_tl(){
 	top_env = addToEnv(top_env, cons(mksym(">"), loli_greater));
 	top_env = addToEnv(top_env, cons(mksym("<"), loli_lesser));
 	top_env = addToEnv(top_env, cons(mksym("exit"), loli_exit));
+	top_env = addToEnv(top_env, cons(mksym("cons"), loli_cons));
 
 	top_env = addToEnv(top_env, cons(mksym("TOP-ENV"), top_env));
 
@@ -79,6 +81,16 @@ int main(int argc, char * argv[]){
 		}else if(strcmp(argv[1] , "--version") == 0){
 			std::cout<<"LoLi version: "<<VERSION<<std::endl;
 			exit(0);
+		}else if(strcmp(argv[1] , "--file") == 0){
+			if(argc == 2){
+				std::cout<<"No File Name!"<<std::endl;
+				exit(0);
+			}else if(argc == 3){
+				if(!readFile(argv[2], top_env)){
+					exit(0);
+				}
+				exit(0);
+			}
 		}else if(strcmp(argv[1] , "--repl") == 0){
 			//DO NOTHING
 		}
@@ -92,5 +104,5 @@ int main(int argc, char * argv[]){
 }
 
 void showHelp(){
-	std::cout<<"LoLi is a free software, you can find the licence from GNU's website\nUsage: loli [option] ...\nOptions: \n\t--eval\tevaluate an expression\n\t--help\tdisplay this help\n\t--version\tShow the version\n\t--repl (blank)\tenter the repl\n\nContact the developer:\tMail to shangzhanlin@gmail.com"<<std::endl;
+	std::cout<<"LoLi is a free software, you can find the licence from GNU's website\nUsage: loli [option] ...\nOptions: \n\t--eval\tevaluate an expression\n\t--file [FILE]\tevaluate a file\n\t--help\tdisplay this help\n\t--version\tShow the version\n\t--repl (blank)\tenter the repl\n\nContact the developer:\tMail to shangzhanlin@gmail.com"<<std::endl;
 }

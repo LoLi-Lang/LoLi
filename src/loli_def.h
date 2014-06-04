@@ -21,7 +21,6 @@
 
 #include "loli.h"
 
-extern bool c_def(loliObj* exp, loliObj* env);
 extern loliObj* prim_def(loliObj* exp);
 
 #endif

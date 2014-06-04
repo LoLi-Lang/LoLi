@@ -21,7 +21,9 @@
 #define __LOLI_READ_
 
 #include <string>
+#include <fstream>
 
 extern std::string readPaired(int i, bool quote);
+extern std::string readPaired(int i, bool quote, std::ifstream &stream);
 
 #endif

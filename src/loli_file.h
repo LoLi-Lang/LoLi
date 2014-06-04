@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  loli_cons.h
+ *       Filename:  loli_file.h
  *
- *    Description:  Functions of operating cons
+ *    Description:  File Reader of LoLi
  *
  *        Version:  1.0
- *        Created:  04/05/2014 02:15:01 AM
+ *        Created:  06/04/2014 08:04:52 PM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,14 +16,16 @@
  * =====================================================================================
  */
 
-#ifndef __LOLI_CONS_
-#define __LOLI_CONS_
+#ifndef __LOLI_FILE_
+#define __LOLI_FILE_
 
-#include "loli_types.h"
 
-extern loliObj* cons(loliObj* hd, loliObj* tl);
-extern loliObj* prim_cons(loliObj* exp);
-extern loliObj* head(loliObj* cons);
-extern loliObj* tail(loliObj* cons);
+#include <iostream>
+#include <fstream>
+#include <string>
+
+#include "loli.h"
+
+extern bool readFile(std::string fileName, loliObj* env);
 
 #endif

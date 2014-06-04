@@ -35,7 +35,7 @@ loliObj* mkEnvProc(loliObj* sym, loliObj* type, loliObj* proc){
 loliObj* addToEnv(loliObj* env, loliObj* obj){
 //	std::cout<<"ENV: "<<toString(env)<<" OBJ: "<<toString(obj)<<std::endl;
 	if(nilp(env)){
-		return cons(obj);
+		return cons(obj, nil);
 	}
 	if(head(head(env))->value < head(obj)->value){
 		return cons(head(env), addToEnv(tail(env), obj));
