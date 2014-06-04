@@ -20,11 +20,21 @@
 
 #include <iostream>
 
-loliObj* apply(loliObj* proc, loliObj* obj){
-	std::cout<<std::endl<<"Arg: "<<toString(obj)<<std::endl;
-	if(proc->type != PROC){
-		std::cout<<toString(proc)<<" Not a procedure!"<<std::endl;
-		return nil;
+loliObj* apply(loliObj* proc, loliObj* obj, loliObj* env){
+//	std::cout<<"Proc: "<<toString(proc)<<std::endl<<"Arg: "<<toString(obj)<<std::endl;
+	if(proc->type == PROC){
+		return proc->proc(obj);
 	}
-	return proc->proc(obj);
+	if(proc->type == LAMBDA){
+		loliObj* tmpe = env;
+		for(loliObj* args = proc->env;!nilp(head(args));args = tail(args)){
+			tmpe = cons(cons(head(args), head(obj)), tmpe);
+//			std::cout<<"Args: "<<toString(head(args))<<" Val: "<<toString(head(obj))<<" Tmpe: "<<toString(tmpe)<<std::endl;
+			obj = tail(obj);
+		}
+//		std::cout<<"Exp: "<<toString(proc->tail)<<std::endl;
+		return eval(proc->tail, tmpe);
+	}
+	std::cout<<toString(proc)<<" Not a procedure!"<<std::endl;
+	return nil;
 }

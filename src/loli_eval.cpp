@@ -38,9 +38,13 @@ loliObj* eval(loliObj* obj, loliObj* env){
 				if(equals(head(obj), quote)){
 					return tail(obj);
 				}else if(equals(head(obj), lambda)){
-
+					return mklambda(obj);
+				}else if(head(obj)->type == LAMBDA){
+					return apply(head(obj), lookupList(tail(obj), env), env);
+				}else if(head(obj)->type == CONS){
+					return eval(cons(eval(head(obj), env), tail(obj)), env);
 				}
-				return apply(getType(PROC, head(obj), env), lookupList(tail(obj), env));
+				return apply(getType(PROC, head(obj), env), lookupList(tail(obj), env), env);
 			case SYM:
 				if(nilp(lookup(obj, env))){
 					return mksym("Symbol Unbound!");
@@ -50,13 +54,12 @@ loliObj* eval(loliObj* obj, loliObj* env){
 			case CHAR:
 			case STRING:
 			case PROC:
+			case LAMBDA:
 				return obj;
 			default:
 				return nil;
 		}
 	}
-
-
 }
 
 loliObj* lookupList(loliObj* lst, loliObj* env){

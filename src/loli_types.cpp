@@ -42,8 +42,8 @@ loliObj* mkflt(long double number){
 	ss << number;
 	std::string n;
 	ss >> n;
-	//tmp->value = std::to_string(number);
 	tmp->value = n;
+	//tmp->value = std::to_string(number);
 	return tmp;
 }
 

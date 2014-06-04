@@ -42,7 +42,7 @@ std::string toString(loliObj* obj){
 		case PROC:
 			return "<PROCEDURE>";
 		case LAMBDA:
-			return "<LAMBDA>";
+			return "<LAMBDA " + toString(obj->env) + ">";
 	}
 	return "";
 }

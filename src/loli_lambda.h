@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  loli_apply.h
+ *       Filename:  loli_lambda.h
  *
- *    Description:  Apply Of LoLi
+ *    Description:  Lambda of LoLi
  *
  *        Version:  1.0
- *        Created:  05/13/2014 06:35:42 PM
+ *        Created:  06/02/2014 09:52:37 PM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,11 +16,11 @@
  * =====================================================================================
  */
 
-#ifndef __LOLI_APPLY_
-#define __LOLI_APPLY_
+#ifndef __LOLI_LAMBDA_
+#define __LOLI_LAMBDA_
 
 #include "loli.h"
 
-extern loliObj* apply(loliObj* proc, loliObj* obj, loliObj* env);
+extern loliObj* mklambda(loliObj* exp);
 
 #endif

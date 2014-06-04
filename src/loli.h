@@ -35,5 +35,6 @@
 #include "loli_eval.h"
 #include "loli_parser.h"
 #include "loli_gui.h"
+#include "loli_lambda.h"
 
 #endif
