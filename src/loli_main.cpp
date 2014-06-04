@@ -44,6 +44,7 @@ void loli_init_tl(){
 	loliObj* loli_greater = mkproc(proc_greater);
 	loliObj* loli_lesser = mkproc(proc_lesser);
 	loliObj* loli_exit = mkproc(proc_exit);
+	loliObj* loli_def = mkproc(prim_def);
 	
 	top_env = addToEnv(top_env, cons(mksym("+"), loli_sum));
 	top_env = addToEnv(top_env, cons(mksym("*"), loli_mul));

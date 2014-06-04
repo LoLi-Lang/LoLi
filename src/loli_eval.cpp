@@ -24,12 +24,13 @@
 #include "loli_env.h"
 #include "loli_apply.h"
 
-loliObj* lookupList(loliObj* lst, loliObj*);
+loliObj* lookupList(loliObj* lst, loliObj* env);
 
 loliObj* eval(loliObj* obj, loliObj* env){
 	if(nilp(obj)){
 		return nil;
 	}else{
+		obj->env = env;
 		switch(obj->type){
 			case INT:
 			case FLT:
@@ -43,6 +44,9 @@ loliObj* eval(loliObj* obj, loliObj* env){
 					return apply(head(obj), lookupList(tail(obj), env), env);
 				}else if(head(obj)->type == CONS){
 					return eval(cons(eval(head(obj), env), tail(obj)), env);
+				}else if(equals(head(obj), ldef)){
+					env = addToEnv(env, tail(obj));
+					return head(tail(obj));
 				}
 				return apply(getType(PROC, head(obj), env), lookupList(tail(obj), env), env);
 			case SYM:
