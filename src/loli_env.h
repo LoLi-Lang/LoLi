@@ -24,8 +24,9 @@
 #include "loli_symbols.h"
 #include "loli_cons.h"
 #include "loli_ast.h"
+#include "loli.h"
 
-extern loliObj* top_env;
+//extern loliObj* top_env;
 extern loliObj* mkEnvProc(loliObj* sym, loliObj* type, loliObj* proc);
 extern loliObj* addToEnv(loliObj* env, loliObj* obj);
 extern loliObj* lookup(loliObj* sym, loliObj* env);

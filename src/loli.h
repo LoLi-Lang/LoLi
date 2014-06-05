@@ -38,4 +38,6 @@
 #include "loli_lambda.h"
 #include "loli_def.h"
 
+static loliObj* top_env = nil;
+
 #endif

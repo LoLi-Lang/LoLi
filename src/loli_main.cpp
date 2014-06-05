@@ -32,7 +32,7 @@ void loli_init_tl(){
 	top_env = addToEnv(top_env, cons(t, t));
 	top_env = addToEnv(top_env, cons(nil, nil));
 	top_env = addToEnv(top_env, cons(quote, quote));
-	top_env = addToEnv(top_env, cons(mksym("top_env"), top_env));
+	//top_env = addToEnv(top_env, cons(mksym("top_env"), top_env));
 
 	//Creating Primitive Operators
 	loliObj* loli_sum = mkproc(proc_sum);
@@ -61,7 +61,7 @@ void loli_init_tl(){
 
 	top_env = addToEnv(top_env, cons(mksym("TOP-ENV"), top_env));
 
-	loliObj* test = cons(mkint(1), cons(mkflt(2.5), cons(mkint(5), nil)));
+//	loliObj* test = cons(mkint(1), cons(mkflt(2.5), cons(mkint(5), nil)));
 
 //	std::cout<<toString(apply(loli_sum, test))<<"\t"<<toString(apply(loli_mul, test))<<"\n"<<toString(apply(loli_sub, test))<<"\t"<<toString(apply(loli_div, test))<<std::endl;
 

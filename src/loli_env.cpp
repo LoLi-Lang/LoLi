@@ -18,6 +18,7 @@
 
 #include <iostream>
 
+#include "loli.h"
 #include "loli_types.h"
 #include "loli_symbols.h"
 #include "loli_cons.h"
@@ -25,7 +26,7 @@
 #include "loli_output.h"
 
 //loliObj* top_env = cons(cons(cons(nil , nil), cons(cons(t , t), nil)));
-loliObj* top_env = nil;
+//loliObj* top_env = nil;
 
 loliObj* mkEnvProc(loliObj* sym, loliObj* type, loliObj* proc){
 	loliObj* tmp = cons(sym, cons(type, proc));
