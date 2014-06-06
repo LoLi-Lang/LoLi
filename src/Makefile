@@ -19,3 +19,7 @@ currentg: $(HEADERS) $(GCHEADER) $(GUI_H)
 
 currentc: $(HEADERS) $(GCHEADER) $(GUI_H)
 	$(CLANG) $(CFLAGSC) $(GCINCLUDE) $(GC) -o currentc $(MAIN) $(GUI) `pkg-config --cflags --libs gtk+-3.0`
+
+.PHONY: clean
+clean:
+	rm *~
