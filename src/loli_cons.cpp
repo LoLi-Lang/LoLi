@@ -18,8 +18,8 @@
 
 #include <iostream>
 
-#include "loli.h"
-#include "loli_gc.h"
+#include "header/loli.h"
+#include "header/loli_gc.h"
 
 loliObj* cons(loliObj* hd, loliObj* tl){	//HD stands for HEAD, TL stands for TAIL
 	loliObj * tmp = new (UseGC) loliObj(CONS);

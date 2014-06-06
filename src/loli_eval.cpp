@@ -16,13 +16,7 @@
  * =====================================================================================
  */
 
-
-#include "loli_types.h"
-#include "loli_cons.h"
-#include "loli_symbols.h"
-#include "loli_cbmi.h"
-#include "loli_env.h"
-#include "loli_apply.h"
+#include "header/loli.h"
 
 loliObj* lookupList(loliObj* lst, loliObj* env);
 

@@ -15,13 +15,8 @@
  * =====================================================================================
  */
 
-
-#include "loli_types.h"
-#include "loli_symbols.h"
-#include "loli_cons.h"
-#include "loli_list.h"
-#include "loli_ast.h"
-#include "loli_gc.h"
+#include "header/loli.h"
+#include "header/loli_gc.h"
 
 /* 
  * LoLi-AST Rule:

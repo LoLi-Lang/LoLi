@@ -21,12 +21,7 @@
 #include <iostream>
 #include <cstdio>
 
-#include "loli_eval.h"
-#include "loli_output.h"
-#include "loli_parser.h"
-#include "loli_types.h"
-#include "loli_env.h"
-#include "loli_read.h"
+#include "header/loli.h"
 
 void repl(loliObj* env){
 	std::cout << "LoLi > ";

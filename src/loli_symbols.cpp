@@ -16,7 +16,7 @@
  * =====================================================================================
  */
 
-#include "loli_types.h"
+#include "header/loli.h"
 
 loliObj *nil = mksym("nil");
 loliObj *t = mksym("t");

@@ -17,9 +17,9 @@
  */
 
 #include <string>
-
-#include "loli.h"
 #include <iostream>
+
+#include "header/loli.h"
 
 loliObj* parseList(std::string exp);
 

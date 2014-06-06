@@ -17,9 +17,7 @@
  */
 #include <iostream>
 
-#include "loli_types.h"
-#include "loli_cons.h"
-#include "loli_symbols.h"
+#include "header/loli.h"
 
 int int_length(loliObj* lst){
 	if(nilp(lst)){

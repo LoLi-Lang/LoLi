@@ -19,8 +19,8 @@
 #ifndef __LOLI_GC_
 #define __LOLI_GC_
 
-#include "gc/include/gc.h"
-#include "gc/include/gc_cpp.h"
-#include "gc/include/gc_allocator.h"
+#include "../gc/include/gc.h"
+#include "../gc/include/gc_cpp.h"
+#include "../gc/include/gc_allocator.h"
 
 #endif

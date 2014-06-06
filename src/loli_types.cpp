@@ -20,9 +20,8 @@
 #include <string>
 #include <sstream>
 
-#include "loli_types.h"
-#include "loli_symbols.h"
-#include "loli_gc.h"
+#include "header/loli.h"
+#include "header/loli_gc.h"
 
 loliObj* mksym(std::string symName){
 	loliObj *tmp = new (UseGC) loliObj(SYM);

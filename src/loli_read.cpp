@@ -20,9 +20,7 @@
 #include <string>
 #include <fstream>
 
-#include "loli_types.h"
-#include "loli_symbols.h"
-#include "loli_cons.h"
+#include "header/loli.h"
 
 std::string readPaired(int i, bool quote){ // i indicates the parentheses balance couting, quote indicated wheather between " or not
 	std::string tmp;

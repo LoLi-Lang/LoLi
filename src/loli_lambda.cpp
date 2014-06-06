@@ -18,8 +18,8 @@
 
 #include <iostream>
 
-#include "loli.h"
-#include "loli_gc.h"
+#include "header/loli.h"
+#include "header/loli_gc.h"
 
 loliObj* mklambda(loliObj* exp){
 	exp = tail(exp);

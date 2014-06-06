@@ -18,9 +18,7 @@
 
 #include <string>
 
-#include "loli_types.h"
-#include "loli_symbols.h"
-#include "loli_cons.h"
+#include "header/loli.h"
 
 std::string toString(loliObj* obj){
 	switch(obj->type){

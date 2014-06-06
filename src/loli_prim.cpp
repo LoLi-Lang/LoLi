@@ -21,10 +21,7 @@
 #include <iostream>
 #include <cmath>
 
-#include "loli_types.h"
-#include "loli_symbols.h"
-#include "loli_cons.h"
-#include "loli_output.h"
+#include "header/loli.h"
 
 loliObj* proc_sum(loliObj* lst){
 	double tmp = 0;

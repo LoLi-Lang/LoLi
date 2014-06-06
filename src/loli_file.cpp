@@ -20,7 +20,7 @@
 #include <fstream>
 #include <string>
 
-#include "loli.h"
+#include "header/loli.h"
 
 bool readFile(std::string fileName, loliObj* env){
 	std::ifstream file(fileName);

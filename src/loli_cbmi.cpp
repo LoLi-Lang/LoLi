@@ -16,14 +16,8 @@
  * =====================================================================================
  */
 
+#include "header/loli.h"
 
-#include "loli_env.h"
-#include "loli_types.h"
-#include "loli_symbols.h"
-#include "loli_list.h"
-#include "loli_cons.h"
-
-#include "loli_output.h"
 #include <iostream>
 
 loliObj* getType(loliType type, loliObj* sym, loliObj* env){

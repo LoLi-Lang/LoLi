@@ -20,8 +20,7 @@
 #include <string>
 #include <cstring>
 
-#include "loli.h"
-#include "loli_file.h"
+#include "header/loli.h"
 
 #define VERSION "developing alpha 2"
 

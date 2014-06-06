@@ -18,7 +18,7 @@
 
 #include <iostream>
 
-#include "loli.h"
+#include "header/loli.h"
 
 loliObj* prim_def(loliObj* exp){
 	std::cout<<"Exp: "<<toString(exp)<<" Env: "<<std::endl;

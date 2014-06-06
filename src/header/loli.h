@@ -37,6 +37,7 @@
 #include "loli_gui.h"
 #include "loli_lambda.h"
 #include "loli_def.h"
+#include "loli_file.h"
 
 static loliObj* top_env = nil;
 
