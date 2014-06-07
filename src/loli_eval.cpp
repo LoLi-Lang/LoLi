@@ -39,11 +39,15 @@ loliObj* eval(loliObj* obj, loliObj* env){
 				}else if(head(obj)->type == CONS){
 					return eval(cons(eval(head(obj), env), tail(obj)), env);
 				}else if(equals(head(obj), ldef)){
-					auto tmp = addToEnv(env, cons(head(tail(obj)), head(tail(tail(obj))))); 
+					auto tmp = addToEnv(env, cons(head(tail(obj)), eval(head(tail(tail(obj))), env))); 
 					*env = *tmp;
 					return head(tail(obj));
 				}
-				return apply(getType(PROC, head(obj), env), lookupList(tail(obj), env), env);
+				if(!nilp(getType(PROC, head(obj), env))){
+					return apply(getType(PROC, head(obj), env), lookupList(tail(obj), env), env);
+				}else{
+					return apply(getType(LAMBDA, head(obj), env), lookupList(tail(obj), env), env);
+				}
 			case SYM:
 				if(nilp(lookup(obj, env))){
 					return mksym("Symbol Unbound!");
