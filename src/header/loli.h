@@ -39,6 +39,7 @@
 #include "loli_def.h"
 #include "loli_file.h"
 #include "loli_set.h"
+#include "loli_cond.h"
 
 static loliObj* top_env = cons(nil, nil);
 

@@ -28,6 +28,7 @@ extern loliObj *set;
 extern loliObj *quote;
 extern loliObj *anon;
 extern loliObj *ldef;
+extern loliObj *lif;
 
  
 extern bool nilp(loliObj* o);

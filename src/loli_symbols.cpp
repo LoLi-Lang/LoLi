@@ -25,6 +25,7 @@ loliObj* set = mksym("set!");
 loliObj* quote = mksym("quote");
 loliObj* anon = mksym("_");
 loliObj* ldef = mksym("def");
+loliObj* lif = mksym("if");
 
 bool nilp(loliObj* o){
 	if(o->type == SYM && o->value == "nil"){

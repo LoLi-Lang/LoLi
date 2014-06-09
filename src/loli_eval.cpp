@@ -47,6 +47,8 @@ loliObj* eval(loliObj* obj, loliObj* env){
 					}else{
 						return mksym("Var already exist!");
 					}
+				}else if(equals(head(obj), lif)){
+					return prim_if(obj, env);
 				}
 				if(!nilp(getType(PROC, head(obj), env))){
 					return apply(getType(PROC, head(obj), env), lookupList(tail(obj), env), env);
