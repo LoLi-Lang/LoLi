@@ -45,6 +45,10 @@ void loli_init_tl(){
 	loliObj* loli_lesser = mkproc(proc_lesser);
 	loliObj* loli_exit = mkproc(proc_exit);
 	loliObj* loli_cons = mkproc(prim_cons);
+	loliObj* loli_atom = mkproc(proc_atom);
+	loliObj* loli_head = mkproc(prim_head);
+	loliObj* loli_tail = mkproc(prim_tail);
+	loliObj* loli_eq = mkproc(prim_equals);
 	
 	top_env = addToEnv(top_env, cons(mksym("+"), loli_sum));
 	top_env = addToEnv(top_env, cons(mksym("*"), loli_mul));
@@ -53,10 +57,14 @@ void loli_init_tl(){
 	top_env = addToEnv(top_env, cons(mksym("add1"), loli_add1));
 	top_env = addToEnv(top_env, cons(mksym("sub1"), loli_sub1));
 	top_env = addToEnv(top_env, cons(mksym("mod"), loli_mod));
-	top_env = addToEnv(top_env, cons(mksym(">"), loli_greater));
-	top_env = addToEnv(top_env, cons(mksym("<"), loli_lesser));
+	top_env = addToEnv(top_env, cons(mksym(">?"), loli_greater));
+	top_env = addToEnv(top_env, cons(mksym("<?"), loli_lesser));
 	top_env = addToEnv(top_env, cons(mksym("exit"), loli_exit));
 	top_env = addToEnv(top_env, cons(mksym("cons"), loli_cons));
+	top_env = addToEnv(top_env, cons(mksym("atom?"), loli_atom));
+	top_env = addToEnv(top_env, cons(mksym("head"), loli_head));
+	top_env = addToEnv(top_env, cons(mksym("tail"), loli_tail));
+	top_env = addToEnv(top_env, cons(mksym("eq?"), loli_eq));
 
 	top_env = addToEnv(top_env, cons(mksym("TOP-ENV"), top_env));
 

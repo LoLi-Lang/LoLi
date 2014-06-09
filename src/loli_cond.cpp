@@ -19,7 +19,7 @@
 #include "header/loli.h"
 
 loliObj* c_if(loliObj* exp, loliObj* a, loliObj* b, loliObj* env){
-	if(!nilp(exp)){
+	if(!nilp(eval(exp, env))){
 		return eval(a, env);
 	}else{
 		return eval(b, env);
@@ -27,7 +27,7 @@ loliObj* c_if(loliObj* exp, loliObj* a, loliObj* b, loliObj* env){
 }
 
 loliObj* c_if(loliObj* exp, loliObj* a, loliObj* env){
-	if(!nilp(exp)){
+	if(!nilp(eval(exp, env))){
 		return eval(a, env);
 	}
 }

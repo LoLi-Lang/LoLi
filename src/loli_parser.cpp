@@ -36,7 +36,7 @@ loliObj* parse(std::string exp){
 		//CONS
 	}else if(exp[0] == '\''){
 		//Q-EXP
-		return cons(quote, parse(exp.substr(1, exp.length() - 1)));
+		return cons(quote, cons(parse(exp.substr(1, exp.length() - 1)), nil));
 	}else{
 		try{
 			if(stoi(exp) == stod(exp))

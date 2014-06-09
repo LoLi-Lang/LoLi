@@ -51,5 +51,6 @@ extern loliObj* mkint(int number);
 extern loliObj* mkflt(long double number);
 extern loliObj* mkproc(loliObj::procedure &proc);
 extern bool equals(loliObj* a, loliObj* b);
+extern loliObj* prim_equals(loliObj* obj);
 
 #endif

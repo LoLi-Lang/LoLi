@@ -42,4 +42,6 @@ extern loliObj* proc_lesser(loliObj* lst);
 
 extern loliObj* proc_exit(loliObj* dum);
 
+extern loliObj* proc_atom(loliObj* obj);
+
 #endif

@@ -197,3 +197,11 @@ loliObj* proc_exit(loliObj* dum){
 	//Dummy input, do nothing
 	exit(0);
 }
+
+loliObj* proc_atom(loliObj* obj){
+	if(head(obj)->type == CONS){
+		return nil;
+	}else{
+		return t;
+	}
+}

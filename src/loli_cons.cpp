@@ -50,3 +50,11 @@ loliObj* tail(loliObj* cons){
 		return nil;
 	}
 }
+
+loliObj* prim_head(loliObj* cons){
+	return head(head(cons));
+}
+
+loliObj* prim_tail(loliObj* cons){
+	return tail(head(cons));
+}
