@@ -1,1 +1,6 @@
+(def defun (\ (name arg exp) (def name (\ arg exp))))
+
+defun
+(defun test (x) (+ x 1))
+(test 1)
 (+ 1 2)

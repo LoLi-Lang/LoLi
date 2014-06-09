@@ -30,9 +30,11 @@ bool readFile(std::string fileName, loliObj* env){
 	}
 	while(file){
 		std::string input = readPaired(0, false, file);
-		if(input[0] == '\0'){
-			std::cout<<"\nEOF"<<std::endl;
-			return true;
+		while(input[0] == '\0'){
+			input = readPaired(0, false, file);
+			if(!file){
+				break;
+			}
 		}
 		std::cout<<toString(eval(parse(input), env))<<std::endl;
 	}
