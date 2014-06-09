@@ -11,7 +11,7 @@ Here is the language design of LoLi:
 	NIL			same as NIL in Common Lisp
 	set!			same as SET! in Scheme
 	def			like define in Scheme or defvar in Common Lisp ( (defvar foo #'(lambda ...)) while defining a lambda expression)
-	\ 			lambda (\ (args) (exp))
+	\ 			lambda
 	let 			same as LET in Common Lisp
 	quote("\'")		same as QUOTE in Common Lisp/Scheme
 

@@ -24,7 +24,7 @@ loliObj* eval(loliObj* obj, loliObj* env){
 	if(nilp(obj)){
 		return nil;
 	}else{
-		obj->env = env;
+		//obj->env = env;
 		switch(obj->type){
 			case INT:
 			case FLT:
@@ -34,6 +34,8 @@ loliObj* eval(loliObj* obj, loliObj* env){
 					return tail(obj);
 				}else if(equals(head(obj), lambda)){
 					return mklambda(obj);
+				}else if(equals(head(obj), set)){
+					return prim_set(obj, env);
 				}else if(head(obj)->type == LAMBDA){
 					return apply(head(obj), lookupList(tail(obj), env), env);
 				}else if(head(obj)->type == CONS){
