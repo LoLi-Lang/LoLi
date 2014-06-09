@@ -21,12 +21,11 @@
 #include <iostream>
 
 loliObj* prim_set(loliObj* exp, loliObj* env){ //(set! obj val)
+	exp = tail(exp);
 	if(nilp(getType(head(tail(exp))->type, head(exp), env))){
-		auto tmp = addToEnv(env, cons(head(tail(exp)), eval(head(tail(tail(exp))), env))); 
-		*env = *tmp;
-		return head(tail(exp));
+		return mksym("Symbol not defined!");
 	}else{
-		*getType(head(tail(exp))->type, head(exp), env) = *exp;
+		*getType(head(tail(exp))->type, head(exp), env) = *eval(head(tail(exp)), env);
 		return exp;
 	}
 }

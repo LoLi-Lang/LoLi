@@ -41,9 +41,12 @@ loliObj* eval(loliObj* obj, loliObj* env){
 				}else if(head(obj)->type == CONS){
 					return eval(cons(eval(head(obj), env), tail(obj)), env);
 				}else if(equals(head(obj), ldef)){
-					auto tmp = addToEnv(env, cons(head(tail(obj)), eval(head(tail(tail(obj))), env))); 
-					*env = *tmp;
-					return head(tail(obj));
+					if(nilp(getType(head(tail(obj))->type, head(obj), env))){
+						*env = *addToEnv(env, cons(head(tail(obj)), eval(head(tail(tail(obj))), env))); 
+						return head(tail(obj));
+					}else{
+						return mksym("Var already exist!");
+					}
 				}
 				if(!nilp(getType(PROC, head(obj), env))){
 					return apply(getType(PROC, head(obj), env), lookupList(tail(obj), env), env);
