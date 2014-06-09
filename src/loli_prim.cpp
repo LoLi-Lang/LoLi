@@ -100,7 +100,7 @@ loliObj* proc_div(loliObj* lst){
 loliObj* proc_add1(loliObj* num){
 	double tmp;
 	try{
-		tmp = std::stod(head(num)->value) - 1;
+		tmp = std::stod(head(num)->value) + 1;
 	}catch(...){
 		std::cout<<toString(num)<<" is an invalid argument!"<<std::endl;
 		return nil;
