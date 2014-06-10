@@ -28,7 +28,7 @@ loliObj* cons(loliObj* hd, loliObj* tl){	//HD stands for HEAD, TL stands for TAI
 	return tmp;
 }
 
-loliObj* prim_cons(loliObj* exp){	//HD stands for HEAD, TL stands for TAIL
+loliObj* prim_cons(loliObj* exp, loliObj* env){	//HD stands for HEAD, TL stands for TAIL
 	loliObj * tmp = new (UseGC) loliObj(CONS);
 	tmp->head = head(exp);
 	tmp->tail = head(tail(exp));
@@ -51,10 +51,10 @@ loliObj* tail(loliObj* cons){
 	}
 }
 
-loliObj* prim_head(loliObj* cons){
+loliObj* prim_head(loliObj* cons, loliObj* env){
 	return head(head(cons));
 }
 
-loliObj* prim_tail(loliObj* cons){
+loliObj* prim_tail(loliObj* cons, loliObj* env){
 	return tail(head(cons));
 }

@@ -33,7 +33,7 @@ enum loliType {
 };
 
 struct loliObj {
-	typedef loliObj* (procedure)(loliObj *);
+	typedef loliObj* (procedure)(loliObj *, loliObj *);
 	loliType	type;
 	std::string 	value;
 	loliObj *	head;
@@ -51,6 +51,6 @@ extern loliObj* mkint(int number);
 extern loliObj* mkflt(long double number);
 extern loliObj* mkproc(loliObj::procedure &proc);
 extern bool equals(loliObj* a, loliObj* b);
-extern loliObj* prim_equals(loliObj* obj);
+extern loliObj* prim_equals(loliObj* obj, loliObj* env);
 
 #endif

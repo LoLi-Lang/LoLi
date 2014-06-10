@@ -23,7 +23,7 @@
 
 #include "header/loli.h"
 
-loliObj* proc_sum(loliObj* lst){
+loliObj* proc_sum(loliObj* lst, loliObj* env){
 	double tmp = 0;
 	for(loliObj* e = lst;!nilp(e);e = tail(e)){
 		if(head(e)->type == INT || (head(e)->type == FLT)){
@@ -36,7 +36,7 @@ loliObj* proc_sum(loliObj* lst){
 	return mkflt(tmp);
 }
 
-loliObj* proc_mul(loliObj* lst){
+loliObj* proc_mul(loliObj* lst, loliObj* env){
 	double tmp = 1;
 	for(loliObj* e = lst;!nilp(e);e = tail(e)){
 		if(head(e)->type == INT || (head(e)->type == FLT)){
@@ -49,7 +49,7 @@ loliObj* proc_mul(loliObj* lst){
 	return mkflt(tmp);
 }
 
-loliObj* proc_sub(loliObj* lst){
+loliObj* proc_sub(loliObj* lst, loliObj* env){
 	while(true){
 		if(nilp(lst)){
 			return mkint(0);
@@ -71,7 +71,7 @@ loliObj* proc_sub(loliObj* lst){
 	return mkflt(tmp);
 }
 
-loliObj* proc_div(loliObj* lst){
+loliObj* proc_div(loliObj* lst, loliObj* env){
 	while(true){
 		if(nilp(lst)){
 			return mkint(0);
@@ -97,7 +97,7 @@ loliObj* proc_div(loliObj* lst){
 	return mkflt(tmp);
 }
 
-loliObj* proc_add1(loliObj* num){
+loliObj* proc_add1(loliObj* num, loliObj* env){
 	double tmp;
 	try{
 		tmp = std::stod(head(num)->value) + 1;
@@ -111,7 +111,7 @@ loliObj* proc_add1(loliObj* num){
 	return mkflt(tmp);
 }
 
-loliObj* proc_sub1(loliObj* num){
+loliObj* proc_sub1(loliObj* num, loliObj* env){
 	double tmp;
 	try{
 		tmp = std::stod(head(num)->value) - 1;
@@ -125,7 +125,7 @@ loliObj* proc_sub1(loliObj* num){
 	return mkflt(tmp);
 }
 
-loliObj* proc_mod(loliObj* lst){
+loliObj* proc_mod(loliObj* lst, loliObj* env){
 	while(true){
 		if(nilp(lst)){
 			return mkint(0);
@@ -151,7 +151,7 @@ loliObj* proc_mod(loliObj* lst){
 	return mkflt(tmp);
 }
 
-loliObj* proc_greater(loliObj* lst){
+loliObj* proc_greater(loliObj* lst, loliObj* env){
 	while(true){
 		if(nilp(lst)){
 			return mkint(0);
@@ -172,7 +172,7 @@ loliObj* proc_greater(loliObj* lst){
 	return t;
 }
 
-loliObj* proc_lesser(loliObj* lst){
+loliObj* proc_lesser(loliObj* lst, loliObj* env){
 	while(true){
 		if(nilp(lst)){
 			return mkint(0);
@@ -193,12 +193,12 @@ loliObj* proc_lesser(loliObj* lst){
 	return t;
 }
 
-loliObj* proc_exit(loliObj* dum){
+loliObj* proc_exit(loliObj* dum, loliObj* env){
 	//Dummy input, do nothing
 	exit(0);
 }
 
-loliObj* proc_atom(loliObj* obj){
+loliObj* proc_atom(loliObj* obj, loliObj* env){
 	if(head(obj)->type == CONS){
 		return nil;
 	}else{

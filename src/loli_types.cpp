@@ -59,7 +59,7 @@ bool equals(loliObj* a, loliObj* b){
 	return false;
 }
 
-loliObj* prim_equals(loliObj* obj){
+loliObj* prim_equals(loliObj* obj, loliObj* env){
 	if(equals(head(obj), head(tail(obj)))){
 		return t;
 	}else{

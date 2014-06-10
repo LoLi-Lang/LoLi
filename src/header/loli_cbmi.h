@@ -24,4 +24,11 @@
 
 extern loliObj* getType(loliType type, loliObj* obj, loliObj* env);
 
+extern loliObj* get_cons(loliObj* sym, loliObj* env);
+extern loliObj* get_int(loliObj* sym, loliObj* env);
+extern loliObj* get_flt(loliObj* sym, loliObj* env);
+extern loliObj* get_sym(loliObj* sym, loliObj* env);
+extern loliObj* get_proc(loliObj* sym, loliObj* env);
+extern loliObj* get_lambda(loliObj* sym, loliObj* env);
+
 #endif

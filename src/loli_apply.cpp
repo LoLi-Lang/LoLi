@@ -24,7 +24,7 @@ loliObj* apply(loliObj* proc, loliObj* obj, loliObj* env){
 //	std::cout<<"Proc: "<<toString(proc)<<std::endl<<"Arg: "<<toString(obj)<<std::endl;
 	if(proc->type == PROC){
 		obj->env = env;
-		return proc->proc(obj);
+		return proc->proc(obj, env);
 	}
 	if(proc->type == LAMBDA){
 		loliObj* tmpe = env;

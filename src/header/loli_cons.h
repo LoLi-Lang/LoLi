@@ -22,10 +22,10 @@
 #include "loli_types.h"
 
 extern loliObj* cons(loliObj* hd, loliObj* tl);
-extern loliObj* prim_cons(loliObj* exp);
+extern loliObj* prim_cons(loliObj* exp, loliObj* env);
 extern loliObj* head(loliObj* cons);
 extern loliObj* tail(loliObj* cons);
-extern loliObj* prim_head(loliObj* cons);
-extern loliObj* prim_tail(loliObj* cons);
+extern loliObj* prim_head(loliObj* cons, loliObj* env);
+extern loliObj* prim_tail(loliObj* cons, loliObj* env);
 
 #endif

@@ -24,24 +24,24 @@
 #include "loli_cons.h"
 
 //[NUM] -> NUM
-extern loliObj* proc_sum(loliObj* lst);
-extern loliObj* proc_mul(loliObj* lst);
-extern loliObj* proc_sub(loliObj* lst);
-extern loliObj* proc_div(loliObj* lst);
+extern loliObj* proc_sum(loliObj* lst, loliObj* env);
+extern loliObj* proc_mul(loliObj* lst, loliObj* env);
+extern loliObj* proc_sub(loliObj* lst, loliObj* env);
+extern loliObj* proc_div(loliObj* lst, loliObj* env);
 
 //NUM -> NUM
-extern loliObj* proc_add1(loliObj* num);
-extern loliObj* proc_sub1(loliObj* num);
+extern loliObj* proc_add1(loliObj* num, loliObj* env);
+extern loliObj* proc_sub1(loliObj* num, loliObj* env);
 
 //[NUM] -> NUM
-extern loliObj* proc_mod(loliObj* lst);
+extern loliObj* proc_mod(loliObj* lst, loliObj* env);
 
 //[NUM] -> SYM
-extern loliObj* proc_greater(loliObj* lst);
-extern loliObj* proc_lesser(loliObj* lst);
+extern loliObj* proc_greater(loliObj* lst, loliObj* env);
+extern loliObj* proc_lesser(loliObj* lst, loliObj* env);
 
-extern loliObj* proc_exit(loliObj* dum);
+extern loliObj* proc_exit(loliObj* dum, loliObj* env);
 
-extern loliObj* proc_atom(loliObj* obj);
+extern loliObj* proc_atom(loliObj* obj, loliObj* env);
 
 #endif

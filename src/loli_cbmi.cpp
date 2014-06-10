@@ -31,3 +31,27 @@ loliObj* getType(loliType type, loliObj* sym, loliObj* env){
 	}
 	return nil;
 }
+
+loliObj* get_cons(loliObj* sym, loliObj* env){
+	return getType(CONS, head(sym), env);
+}
+
+loliObj* get_int(loliObj* sym, loliObj* env){
+	return getType(INT, head(sym), env);
+}
+
+loliObj* get_flt(loliObj* sym, loliObj* env){
+	return getType(FLT, head(sym), env);
+}
+
+loliObj* get_sym(loliObj* sym, loliObj* env){
+	return getType(SYM, head(sym), env);
+}
+
+loliObj* get_proc(loliObj* sym, loliObj* env){
+	return getType(PROC, head(sym), env);
+}
+
+loliObj* get_lambda(loliObj* sym, loliObj* env){
+	return getType(LAMBDA, head(sym), env);
+}

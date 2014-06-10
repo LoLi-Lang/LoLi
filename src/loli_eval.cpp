@@ -42,7 +42,7 @@ loliObj* eval(loliObj* obj, loliObj* env){
 					return eval(cons(eval(head(obj), env), tail(obj)), env);
 				}else if(equals(head(obj), ldef)){
 					if(nilp(getType(head(tail(obj))->type, head(obj), env))){
-						*env = *addToEnv(env, cons(head(tail(obj)), eval(head(tail(tail(obj))), env))); 
+						*env = *addToEnv(env, cons(head(tail(obj)), head(tail(tail(obj))))); 
 						return head(tail(obj));
 					}else{
 						return mksym("Var already exist!");
