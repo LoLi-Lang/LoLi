@@ -59,7 +59,7 @@ loliObj* eval(loliObj* obj, loliObj* env){
 				if(nilp(lookup(obj, env))){
 					return mksym("Symbol Unbound!");
 				}else{
-					return tail(head(lookup(obj, env)));
+					return eval(tail(head(lookup(obj, env))), env);
 				}
 			case CHAR:
 			case STRING:
