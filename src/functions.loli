@@ -1,0 +1,6 @@
+(def .. (\ (start end)
+	(if (eq? start end)
+		(cons end nil)
+		(cons start (.. (add1 start) end)))))
+
+(.. 1 5)

@@ -43,10 +43,10 @@ loliObj* eval(loliObj* obj, loliObj* env){
 					return eval(cons(eval(head(obj), env), tail(obj)), env);
 				}else if(equals(head(obj), ldef)){
 					if(nilp(getType(head(tail(obj))->type, head(obj), env))){
-						*env = *addToEnv(env, cons(head(tail(obj)), head(tail(tail(obj))))); 
+						*env = *addToEnv(env, cons(head(tail(obj)), eval(head(tail(tail(obj))), env))); 
 						return head(tail(obj));
 					}else{
-						return mksym("Var already exist!");
+						return mksym("Variable already exist!");
 					}
 				}else if(equals(head(obj), lif)){
 					return prim_if(obj, env);
@@ -54,14 +54,14 @@ loliObj* eval(loliObj* obj, loliObj* env){
 				if(!nilp(getType(PROC, head(obj), env))){
 					return apply(getType(PROC, head(obj), env), lookupList(tail(obj), env), env);
 				}else{
-					return apply(eval(getType(LAMBDA, head(obj), env), env), lookupList(tail(obj), env), env);
+					return apply(getType(LAMBDA, head(obj), env), lookupList(tail(obj), env), env);
 				}
 			case SYM:
 				if(nilp(lookup(obj, env))){
 					return mksym("Symbol Unbound!");
 				}else{
-					return eval(tail(head(lookup(obj, env))), env);
-			//		return tail(head(lookup(obj, env)));
+			//		return eval(tail(head(lookup(obj, env))), env);
+					return tail(head(lookup(obj, env)));
 				}
 			case CHAR:
 			case STRING:
