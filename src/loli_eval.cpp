@@ -21,6 +21,7 @@
 loliObj* lookupList(loliObj* lst, loliObj* env);
 
 loliObj* eval(loliObj* obj, loliObj* env){
+//	std::cout<<toString(obj)<<std::endl;
 	if(nilp(obj)){
 		return nil;
 	}else{
@@ -53,13 +54,14 @@ loliObj* eval(loliObj* obj, loliObj* env){
 				if(!nilp(getType(PROC, head(obj), env))){
 					return apply(getType(PROC, head(obj), env), lookupList(tail(obj), env), env);
 				}else{
-					return apply(getType(LAMBDA, head(obj), env), lookupList(tail(obj), env), env);
+					return apply(eval(getType(LAMBDA, head(obj), env), env), lookupList(tail(obj), env), env);
 				}
 			case SYM:
 				if(nilp(lookup(obj, env))){
 					return mksym("Symbol Unbound!");
 				}else{
 					return eval(tail(head(lookup(obj, env))), env);
+			//		return tail(head(lookup(obj, env)));
 				}
 			case CHAR:
 			case STRING:
