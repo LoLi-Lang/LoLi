@@ -52,6 +52,7 @@ loliObj* tail(loliObj* cons){
 }
 
 loliObj* prim_head(loliObj* cons, loliObj* env){
+	std::cout<<toString(cons)<<std::endl;
 	return head(head(cons));
 }
 
