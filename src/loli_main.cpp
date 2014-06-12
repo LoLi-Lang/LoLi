@@ -107,7 +107,7 @@ int main(int argc, char * argv[]){
 				if(!readFile(argv[2], top_env)){
 					exit(0);
 				}
-				exit(0);
+				//exit(0);
 			}
 		}else if(strcmp(argv[1] , "--repl") == 0){
 			//DO NOTHING
