@@ -26,6 +26,5 @@
 
 extern loliObj* prim_length(loliObj* lst);
 extern loliObj* prim_append(loliObj* lst);
-extern loliObj* prim_list(loliObj* lst, loliObj* env);
 
 #endif

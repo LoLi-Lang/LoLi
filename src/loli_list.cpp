@@ -42,3 +42,7 @@ loliObj* prim_append(loliObj* lst){
 	}
 	return cons(head(head(lst)), cons(tail(head(lst)), tail(lst)));
 }
+
+loliObj* prim_list(loliObj* lst, loliObj* env){
+	return lst;
+}

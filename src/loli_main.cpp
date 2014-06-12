@@ -55,6 +55,7 @@ void loli_init_tl(){
 	loliObj* loli_get_sym= mkproc(get_sym);
 	loliObj* loli_get_proc = mkproc(get_proc);
 	loliObj* loli_get_lambda= mkproc(get_lambda);
+	loliObj* loli_list = mkproc(prim_list);
 	
 	top_env = addToEnv(top_env, cons(mksym("+"), loli_sum));
 	top_env = addToEnv(top_env, cons(mksym("*"), loli_mul));
@@ -77,6 +78,7 @@ void loli_init_tl(){
 	top_env = addToEnv(top_env, cons(mksym("get-sym"), loli_get_sym));
 	top_env = addToEnv(top_env, cons(mksym("get-proc"), loli_get_proc));
 	top_env = addToEnv(top_env, cons(mksym("get-lambda"), loli_get_lambda));
+	top_env = addToEnv(top_env, cons(mksym("list"), loli_list));
 
 	top_env = addToEnv(top_env, cons(mksym("TOP-ENV"), top_env));
 //	loliObj* test = cons(mkint(1), cons(mkflt(2.5), cons(mkint(5), nil)));
