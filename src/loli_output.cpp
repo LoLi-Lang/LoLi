@@ -27,13 +27,16 @@ std::string toString(loliObj* obj){
 		case SYM:
 			return obj->value;
 		case CONS:
-		//	if(nilp(head(obj))){
-		//		return "NIL";
-//			}else if(nilp(tail(obj))){
-//				return "(" + toString(head(obj)) + ")";
-		//	}else{
+			//	if(nilp(head(obj))){
+			//		return "NIL";
+			//			}else if(nilp(tail(obj))){
+			//				return "(" + toString(head(obj)) + ")";
+			//	}else{
+			if(head(obj) == quote){
+				return "'" + toString(head(tail(obj)));
+			}else{
 				return "(" + toString(head(obj)) + " . " + toString(tail(obj)) + ")";
-		//	}
+			}
 		case CHAR:
 		case STRING:
 			return obj->value;
@@ -43,4 +46,4 @@ std::string toString(loliObj* obj){
 			return "<LAMBDA " + toString(obj->env) + ">";
 	}
 	return "";
-}
+	}

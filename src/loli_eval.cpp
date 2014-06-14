@@ -32,7 +32,7 @@ loliObj* eval(loliObj* obj, loliObj* env){
 				return obj;
 			case CONS:
 				if(equals(head(obj), quote)){
-					return head(tail(obj));
+					return obj;
 				}else if(equals(head(obj), lambda)){
 					return mklambda(obj);
 				}else if(equals(head(obj), set)){
