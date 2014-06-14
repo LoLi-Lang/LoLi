@@ -52,10 +52,17 @@ loliObj* tail(loliObj* cons){
 }
 
 loliObj* prim_head(loliObj* cons, loliObj* env){
-	std::cout<<toString(cons)<<std::endl;
+	if(cons->type != CONS){
+		std::cout<<"Error! Need a CONS obj!"<<std::endl;
+		return nil;
+	}
 	return head(head(cons));
 }
 
 loliObj* prim_tail(loliObj* cons, loliObj* env){
+	if(cons->type != CONS){
+		std::cout<<"Error! Need a CONS obj!"<<std::endl;
+		return nil;
+	}
 	return tail(head(cons));
 }
