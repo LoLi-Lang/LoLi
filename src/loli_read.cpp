@@ -28,6 +28,10 @@ std::string readPaired(int i, bool quote){ // i indicates the parentheses balanc
 	int p = i;
 	bool q = quote;
 	for(ulong j = 0; j < tmp.length(); j++){
+		if(tmp[j] == ';'){
+			tmp = tmp.substr(0, j);	
+			break;
+		}
 		if(tmp[j] == '"'){
 			q = !q;
 		}
@@ -58,6 +62,10 @@ std::string readPaired(int i, bool quote, std::ifstream &stream){ // i indicates
 	int p = i;
 	bool q = quote;
 	for(ulong j = 0; j < tmp.length(); j++){
+		if(tmp[j] == ';'){
+			tmp = tmp.substr(0, j);	
+			break;
+		}
 		if(tmp[j] == '"'){
 			q = !q;
 		}
