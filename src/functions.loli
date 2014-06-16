@@ -3,4 +3,12 @@
 		(cons end nil)
 		(cons start (.. (add1 start) end)))))
 
-(.. 1 5)
+(def nil? (\ (obj)
+	(if (eq? nil obj)
+		t
+		nil)))
+
+(def append (\ (lsta lstb)
+	(if (nil? lsta)
+		lstb
+		(cons (head lsta) (append (tail lsta) lstb)))))
