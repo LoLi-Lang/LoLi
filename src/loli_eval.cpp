@@ -78,11 +78,11 @@ loliObj* lookupList(loliObj* lst, loliObj* env){
 	if(nilp(lst)){
 		return nil;
 	}else{
-		if(head(lst)->type != SYM){
+//		if(head(lst)->type != SYM){
 			return cons(eval(head(lst), env), lookupList(tail(lst), env));
-		}else{
-			return cons(eval(tail(head(lookup(head(lst), env))), env), lookupList(tail(lst), env));
-		}
+//		}else{
+//			return cons(eval(tail(head(lookup(head(lst), env))), env), lookupList(tail(lst), env));
+//		}
 	}
 	return nil;
 }
