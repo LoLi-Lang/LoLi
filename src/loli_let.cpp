@@ -18,6 +18,8 @@
 
 #include "header/loli.h"
 
+#include <iostream>
+
 loliObj* prim_let(loliObj* exp, loliObj* env){
 	/*
 	 * (let ((SYM VAL)
@@ -25,6 +27,8 @@ loliObj* prim_let(loliObj* exp, loliObj* env){
 	 * 	 ...)
 	 * 	 (EXP))
 	 */
+	exp = tail(exp);
+//	std::cout<<toString(exp)<<std::endl;
 	loliObj* tmpenv = env;
 	auto tmpdef = head(exp);
 	auto tmpexp = head(tail(exp));
