@@ -2,6 +2,8 @@
 
 2. Implement the parser that parse SEXP to AST
 
+>The LoLi CONS itself is AST
+
 3. Start to build the new Read-Parse module
 
 >Done.
@@ -13,6 +15,8 @@
 5. Implement the context based meaning inferring system
 
 6. Implement read from file
+
+>Done.
 
 7. Build the CLI userinterface using NCurses
 
