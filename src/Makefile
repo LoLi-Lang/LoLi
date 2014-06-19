@@ -8,7 +8,9 @@ GCINCLUDE = -I/home/zshang/Program/LoLi/git/src/gc/include
 
 GTK_INCLUDE = gtkmm-3.0
 
-MAIN = loli_types.cpp loli_symbols.cpp loli_cons.cpp loli_prim.cpp loli_list.cpp loli_ast.cpp loli_output.cpp loli_repl.cpp loli_read.cpp loli_parser.cpp loli_env.cpp loli_eval.cpp loli_apply.cpp loli_cbmi.cpp loli_main.cpp loli_lambda.cpp loli_def.cpp loli_file.cpp loli_set.cpp loli_cond.cpp loli_let.cpp
+MAIN = loli_types.cpp loli_symbols.cpp loli_cons.cpp loli_prim.cpp loli_list.cpp loli_output.cpp loli_repl.cpp loli_read.cpp loli_parser.cpp loli_env.cpp loli_eval.cpp loli_apply.cpp loli_cbmi.cpp loli_main.cpp loli_lambda.cpp loli_def.cpp loli_file.cpp loli_set.cpp loli_cond.cpp loli_let.cpp loli_ast.cpp
+
+STACK = loli_types.cpp loli_symbols.cpp loli_cons.cpp loli_prim.cpp loli_list.cpp loli_output.cpp loli_repl.cpp loli_read.cpp loli_parser.cpp loli_env.cpp loli_eval.cpp loli_apply.cpp loli_cbmi.cpp loli_stack.cpp loli_lambda.cpp loli_def.cpp loli_file.cpp loli_set.cpp loli_cond.cpp loli_let.cpp loli_ast.cpp stack_test.cpp
 
 GUI = loli_gui.cpp
 GUI_H = header/loli_gui.h
@@ -18,6 +20,9 @@ currentg:
 
 currentc:
 	$(CLANG) $(CFLAGSC) $(GCINCLUDE) $(GC) -o currentc $(MAIN) $(GUI) `pkg-config --cflags --libs gtk+-3.0`
+
+stack_test: header/loli_stack.h
+	$(CLANG) $(CFLAGSC) $(GCINCLUDE) $(GC) -o stack_test $(STACK) $(GUI) `pkg-config --cflags --libs gtk+-3.0`
 
 .PHONY: clean
 clean:

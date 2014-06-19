@@ -18,6 +18,8 @@
 #include "header/loli.h"
 #include "header/loli_gc.h"
 
+#include <string>
+
 /* 
  * LoLi-AST Rule:
  * Parent Node must be Verb (Function / Lambda Expression)
@@ -31,12 +33,30 @@
  *      (V (V N) (V N N))
  */
 
+loliNode* nilNode = new (UseGC)loliNode(nil);
 
-bool isEnd(loliObj* tree){
-	if(nilp(tree->tail)){
-		return true;
+loliNode* toTree(loliObj* exp, loliNode* parent){
+	if(nilp(exp)){
+		loliNode* tmpn = nilNode;
+		tmpn->type = LEAF;
+		tmpn->parent = parent;
+		tmpn->child = nilNode;
+		return tmpn;
 	}
-	return false;
+	loliNode* tmp = new (UseGC) loliNode(head(exp));
+	tmp->type = NODE;
+	tmp->parent = parent;
+	tmp->child = toTree(tail(exp), tmp);
+	return tmp;
 }
 
+loliNode* toTree(loliObj* exp){
+	return toTree(exp, nilNode);
+}
 
+std::string nodeToString(loliNode* tree){
+	if(tree->type == LEAF){
+		return "LEAF";
+	}
+	return "node: " + toString(tree->obj) + " child:\n" + nodeToString(tree->child);
+}

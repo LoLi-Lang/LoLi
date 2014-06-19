@@ -41,6 +41,10 @@ struct loliObj {
 	loliObj * 	env;
 	procedure * 	proc;
 
+	loliObj(){
+
+	}
+
 	loliObj(loliType tp){
 		type = tp;
 	}
