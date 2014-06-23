@@ -53,6 +53,19 @@ void push(loliObj* obj){
 		std::cout<<"Error: Stack Overflow!"<<std::endl;
 		return;
 	}
-	std::cout<<"Push: "<<toString(obj)<<" Address: " << obj <<std::endl;
 	loli_stack[obj_in_stack++] = *obj;
+}
+
+void flushStack(){
+	obj_in_stack = 0;
+}
+
+void reverseStack(){
+	loliObj tmp[STACKS];
+	for(int i = obj_in_stack; i > 0; i--){
+		tmp[obj_in_stack - i] = loli_stack[i - 1];
+	}
+	for(int i = 0; i < obj_in_stack; i++){
+		loli_stack[i] = tmp[i];
+	}
 }

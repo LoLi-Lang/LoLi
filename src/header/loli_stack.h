@@ -34,4 +34,8 @@ extern void printStack();
 extern loliObj* pop();
 extern void push(loliObj* obj);
 
+extern void flushStack();
+
+extern void reverseStack();
+
 #endif

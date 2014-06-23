@@ -40,6 +40,10 @@ struct loliObj {
 	loliObj * 	tail;
 	loliObj * 	env;
 	procedure * 	proc;
+	
+	//For type base cbmi
+	loliType 	inType;
+	loliType 	outType;
 
 	loliObj(){
 

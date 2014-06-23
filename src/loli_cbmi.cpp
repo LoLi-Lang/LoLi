@@ -55,3 +55,15 @@ loliObj* get_proc(loliObj* sym, loliObj* env){
 loliObj* get_lambda(loliObj* sym, loliObj* env){
 	return getType(LAMBDA, head(sym), env);
 }
+
+loliObj* consToValued(loliObj* cons, loliObj* env){
+	loliObj* headOpr;
+	if(!nilp(getType(PROC, head(cons), env))){
+		headOpr = getType(PROC, head(cons), env);
+	}else if(!nilp(getType(LAMBDA, head(cons), env))){
+		headOpr = getType(LAMBDA, head(cons), env);
+	}else{
+		std::cout<<"Error: no matching function / lambda expression found!"<<std::endl;
+	}
+	//get a procedure for the first of list
+}

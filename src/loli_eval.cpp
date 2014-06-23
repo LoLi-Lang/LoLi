@@ -21,8 +21,17 @@
 loliObj* lookupList(loliObj* lst, loliObj* env);
 
 loliObj* eval(loliObj* obj, loliObj* env){
-	std::cout<<nodeToString(toTree(obj))<<std::endl;
+//	std::cout<<nodeToString(toTree(obj))<<std::endl;
 	std::cout<<"EVAL: "<<toString(obj)<<std::endl;
+//	for(loliObj* tmp = obj; !nilp(tmp); tmp = tail(tmp)){
+//		if(tmp->type!=CONS){
+//			push(tmp);
+//		}else{
+//			push(head(tmp));
+//		}
+//	}
+//	reverseStack();
+//	printStack();
 	if(nilp(obj)){
 		return nil;
 	}else{

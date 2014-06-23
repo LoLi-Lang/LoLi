@@ -36,26 +36,31 @@ loliObj* parse(std::string exp){
 		//CONS
 	}else if(exp[0] == '\''){
 		//Q-EXP
+	//	push(cons(quote, cons(parse(exp.substr(1, exp.length() - 1)), nil)));
 		return cons(quote, cons(parse(exp.substr(1, exp.length() - 1)), nil));
 	}else{
 		try{
 			if(stoi(exp) == stod(exp))
+	//			push(mkint(stoi(exp)));
 				return mkint(stoi(exp));
 		}catch(...){}
 
 		try{
+	//		push(mkflt(stod(exp)));
 			return mkflt(stod(exp));
 		}catch(...){}
 
 		for(ulong i = 0; i < exp.length(); i++){
 			if(isspace(exp[i])){
 				//				std::cout<<exp.substr(0, i)<<std::endl;
+	//			push(mksym(exp.substr(0, i)));
 				return mksym(exp.substr(0, i));
 			}
 		}
+	//	push(mksym(exp));
 		return mksym(exp);
 	}
-
+	//push(nil);
 	return nil;
 }
 
@@ -96,6 +101,9 @@ loliObj* parseList(std::string exp){
 			std::string tmp = pairUp(exp.substr(i));
 			return cons(parse(tmp), parseList(exp.substr(i + tmp.length())));
 		}
+	}
+	if(nilp(parse(exp))){
+		return nil;
 	}
 	return cons(parse(exp), nil);
 }

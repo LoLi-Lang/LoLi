@@ -31,4 +31,6 @@ void repl(loliObj* env){
 		return;
 	}
 	std::cout<<toString(eval(parse(input), env))<<std::endl;
+//	printStack();
+//	flushStack();
 }
