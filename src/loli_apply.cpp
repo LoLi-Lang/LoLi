@@ -40,7 +40,7 @@ loliObj* apply(loliObj* proc, loliObj* obj, loliObj* env){
 	return nil;
 }
 
-loliObj* applyList(loliObj* lst, loliObj* env){
+loliObj* applyList(loliObj* lst, loliObj* env, loliType ot){
 	//Apply from a symbol list (unevaled list)
 	if(nilp(get_lambda(head(lst))) || nilp(get_proc(head(lst)))){
 		std::cout<<"Error: the first element of list is not a Procedure!"<<std::endl;
@@ -49,4 +49,33 @@ loliObj* applyList(loliObj* lst, loliObj* env){
 	if(equals(head(lst), quote)){
 		return lst;
 	}
+	auto procLst = cons(get_lambda(head(lst)), cons(get_proc(head(lst)), nil));
+	loliObj* proc;
+	if(ot != _){
+		if((head(procLst)->outType == ot) && (head(tail(procLst))->outType == ot) && \
+				(head(procLst)->inType == head(tail(procLst))->inType)){
+			std::cout<<"Error: type conflict! More than one procedure exist!"<<std::endl;
+			return nil;
+		}
+		if((head(procLst)->outType != ot) && (head(tail(procLst))->outType != ot)){
+			std::cout<<"Error: no procedure matches the type requirement!"<<std::endl;
+			return nil;
+		}
+		head(procLst)->outType == ot ? proc = head(procLst) : proc = head(tail(procLst));
+	}
+	bool tt = true;
+	!nilp(head(procLst)) ? proc = head(procLst) : proc = head(tail(procLst));
+	for(auto arg = tail(lst); tail(arg)->type == CONS; arg = tail(arg)){
+		if(head(arg)->type != CONS){
+			tt = tt && head(arg)->type == proc->inType;
+		}else{
+			tt = tt && !nilp(arg, env, tt->inType);
+		}
+	}
+	if(!tt){
+		std::cout<<"Error: some arguments don't match the requirement of the procedure!"<<std::endl;
+		std::cout<<"Detail: "<<proc->inType<<" needed, but not all of argmuments match"<<std::endl;
+		return nil;
+	}
+
 }
