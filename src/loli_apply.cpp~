@@ -46,7 +46,4 @@ loliObj* applyList(loliObj* lst, loliObj* env){
 		std::cout<<"Error: the first element of list is not a Procedure!"<<std::endl;
 		return nil;
 	}
-	if(equals(head(lst), quote)){
-		return lst;
-	}
 }
