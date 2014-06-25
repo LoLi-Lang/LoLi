@@ -10,7 +10,7 @@ Why LoLi 2
 ---
 Since there are some design faults in LoLi, I decided to start from blank again.
 
-Difference
+Difference between LoLi
 -
 ---
 There will be a stack and AST in LoLi 2 as mentioned above, also, the LoLi compiler will be designed and developed for this version.
