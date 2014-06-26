@@ -19,99 +19,9 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "../header/loli_gc.h"
-
-enum loliType {
-	INT,
-	FLT,
-	SYM,
-	CONS,
-	LAMBDA,
-	PROC,
-	STR,
-	CHAR
-};
-
-struct loliObj {
-	
-	typedef loliObj* (loliProc)(loliObj*);
-	typedef loliObj* (loliProc)(loliObj*, loliObj*);
-	typedef loliObj* (loliProc)(loliObj*, loliObj*, loliObj*);
-
-	loliType 	type;
-
-	union {
-		struct {
-			long long value;
-		}INT; 
-		struct {
-			long double value;
-		}FLT;
-
-		struct {
-			std::string name;
-		}SYM;
-
-		struct {
-			loliObj* head;
-			loliObj* tail;
-		}CONS;
-
-		struct {
-			loliObj* arg;
-			loliObj* types;
-			loliObj* env;
-			loliObj* exp;
-		}LAMBDA;
-		
-		struct {
-			loliProc* proc;
-		}PROC;
-
-		struct {
-			std::string value;
-		}STR;
-
-		struct {
-			char value;
-		}CHAR;
-
-	}value;
-
-	loliObj(){}
-
-	loliObj(loliType type){
-		this.type = type;
-	}
-
-	std::string toString(){
-		switch(this.type){
-			case INT:
-				return std::to_string(this.INT.value);
-			case FLT:
-				return std::to_string(this.FLT.value);
-			case SYM:
-				return this.SYM.name;
-			case CONS:
-				std::string tmp = "(" + this.CONS.head.toString();
-				if(this.CONS.tail.type != CONS){
-					return tmp + " . " + this.CONS.tail.toString() + ")";
-				}else{
-					return tmp + " " + this.CONS.tail.toString() + ")";
-				}
-			case LAMBDA:
-				return "<LAMBDA EXP>";
-			case PROC:
-				return "<PROCEDURE>";
-			case STR:
-				return this.STR.value;
-			case CHAR:
-				return "#\\" + this.CHAR.value;
-			default:
-				return "";
-		}
-	}
-};
+#include "include/loli_obj.h"
 
 loliObj* to_int(long long n){
 	loliObj* tmp = new (UseGC) loliObj(INT);
@@ -138,7 +48,7 @@ loliObj* c_cons(loliObj* hd, loliObj* tl){
 	return tmp;
 }
 
-loliObj* c_proc(loliProc* pr){
+loliObj* c_proc(loliObj::loliProc* pr){
 	loliObj* tmp = new (UseGC) loliObj(PROC);
 	tmp->PROC.proc = pr;
 	return tmp;
@@ -167,3 +77,55 @@ loliObj* c_lambda(loliObj* arg, loliObj* types, loliObj* env, loliObj* exp){
 
 loliObj* nil = to_sym("nil");
 loliObj* t = to_sym("t");
+
+std::string toString(loliObj* obj){
+	switch(obj->type){
+		case INT:
+			{
+				return std::to_string(obj->INT.value);
+			}
+		case FLT:
+			{
+				return std::to_string(obj->FLT.value);
+			}
+		case SYM:
+			{
+				return obj->SYM.name;
+			}
+		case CONS:
+			{
+				std::string tmp = "(" + toString(obj->CONS.head);
+				if(obj->CONS.tail->type != CONS){
+					return tmp + " . " + toString(obj->CONS.tail) + ")";
+				}else{
+					return tmp + " " + toString(obj->CONS.tail) + ")";
+				}
+				return ""; //Blank
+			}
+		case LAMBDA:
+			{
+				return "<LAMBDA EXP " + toString(obj->LAMBDA.arg) + ">";
+			}
+		case PROC:
+			{
+				return "<PROCEDURE>";
+			}
+		case STR:
+			{
+				return obj->STR.value;
+			}
+		case CHAR:
+			{
+				std::stringstream ss;
+				ss << "#\\" << obj->CHAR.value;
+				std::string c;
+				ss >> c;
+				return c;
+			}
+		default:
+			{
+				return "";
+			}
+	}
+	return "";
+}

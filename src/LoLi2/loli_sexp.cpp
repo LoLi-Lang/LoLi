@@ -19,24 +19,6 @@
 #include <string>
 #include <iostream>
 
-struct sexp {
-	std::string 	value;
-	sexp*		next;
-
-	sexp(){}
-
-	sexp(std::string value){
-		this.value = value;
-		this.next = NULL;
-	}
-	
-	std::string toString(){
-		if(next != NULL){
-			return value + " |-> " + next.toString();
-		}else{
-			return value;
-		}
-	}
-}
+#include "include/loli_sexp.h"
 
 sexp* END = new sexp("");

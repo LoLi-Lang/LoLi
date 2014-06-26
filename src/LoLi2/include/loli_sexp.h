@@ -19,7 +19,25 @@
 #ifndef __LOLI_SEXP_
 #define __LOLI_SEXP_
 
-extern struct sexp;
+struct sexp {
+	std::string 	value;
+	sexp*		next;
+
+	sexp(){}
+
+	sexp(std::string value){
+		this->value = value;
+		this->next = NULL;
+	}
+	
+	std::string toString(){
+		if(next != NULL){
+			return value + " |-> " + next->toString();
+		}else{
+			return value;
+		}
+	}
+};
 
 extern sexp* END;
 

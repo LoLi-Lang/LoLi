@@ -46,4 +46,4 @@ std::string toString(loliObj* obj){
 			return "<LAMBDA " + toString(obj->env) + ">";
 	}
 	return "";
-}
+	}
