@@ -155,3 +155,15 @@ loliObj* to_char(char ch){
 	tmp->CHAR.value = ch;
 	return tmp;
 }
+
+loliObj* c_lambda(loliObj* arg, loliObj* types, loliObj* env, loliObj* exp){
+	loliObj* tmp = new (UseGC) loliObj(LAMBDA);
+	tmp->LAMBDA.arg = arg;
+	tmp->LAMBDA.types = types;
+	tmp->LAMBDA.env = env;
+	tmp->LAMBDA.exp = exp;
+	return tmp;
+}
+
+loliObj* nil = to_sym("nil");
+loliObj* t = to_sym("t");
