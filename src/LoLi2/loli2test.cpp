@@ -30,4 +30,5 @@ int main(){
 	cout<<"Testing FLOAT: " << toString(to_flt(123.456789))<< endl;
 	cout<<"Testing SYM: " << toString(to_sym("SYM"))<< endl;
 	cout<<"Testing CONS: " << toString(c_cons(t, nil)) <<endl;
+	cout<<"Testing CONS: " << toString(c_cons(t, c_cons(t, nil))) <<endl;
 }
