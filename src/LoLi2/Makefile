@@ -8,15 +8,18 @@ GCINCLUDE = -I/home/zshang/Program/LoLi/git/src/gc/include
 
 HEADERS = \
 	  include/loli_obj.h\
+	  include/loli_util.h\
 	  include/loli_sexp.h
 
 MAIN = \
      loli_obj.cpp\
-     loli_sexp.cpp
+     loli_sexp.cpp\
+     loli_util.cpp
 
 TEST = \
        loli_obj.cpp\
        loli_sexp.cpp\
+       loli_util.cpp\
        loli2test.cpp
 
 currentg: 

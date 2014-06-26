@@ -21,6 +21,7 @@
 
 #include "include/loli_obj.h"
 #include "include/loli_sexp.h"
+#include "include/loli_util.h"
 
 using namespace std;
 
@@ -30,5 +31,6 @@ int main(){
 	cout<<"Testing FLOAT: " << toString(to_flt(123.456789))<< endl;
 	cout<<"Testing SYM: " << toString(to_sym("SYM"))<< endl;
 	cout<<"Testing CONS: " << toString(c_cons(t, nil)) <<endl;
+	loli_err("Test Err");
 	cout<<"Testing CONS: " << toString(c_cons(t, c_cons(t, nil))) <<endl;
 }
