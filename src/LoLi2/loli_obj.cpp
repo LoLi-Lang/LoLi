@@ -43,8 +43,7 @@ struct loliObj {
 	union {
 		struct {
 			long long value;
-		}INT;
-
+		}INT; 
 		struct {
 			long double value;
 		}FLT;
@@ -84,10 +83,75 @@ struct loliObj {
 	loliObj(loliType type){
 		this.type = type;
 	}
+
+	std::string toString(){
+		switch(this.type){
+			case INT:
+				return std::to_string(this.INT.value);
+			case FLT:
+				return std::to_string(this.FLT.value);
+			case SYM:
+				return this.SYM.name;
+			case CONS:
+				std::string tmp = "(" + this.CONS.head.toString();
+				if(this.CONS.tail.type != CONS){
+					return tmp + " . " + this.CONS.tail.toString() + ")";
+				}else{
+					return tmp + " " + this.CONS.tail.toString() + ")";
+				}
+			case LAMBDA:
+				return "<LAMBDA EXP>";
+			case PROC:
+				return "<PROCEDURE>";
+			case STR:
+				return this.STR.value;
+			case CHAR:
+				return "#\\" + this.CHAR.value;
+			default:
+				return "";
+		}
+	}
 };
 
 loliObj* to_int(long long n){
-	loliObj* tmp = new (UseGC) loliObj*(INT);
-	tmp->integer.value = n;
+	loliObj* tmp = new (UseGC) loliObj(INT);
+	tmp->INT.value = n;
+	return tmp;
+}
+
+loliObj* to_flt(long double n){
+	loliObj* tmp = new (UseGC) loliObj(FLT);
+	tmp->FLT.value = n;
+	return tmp;
+}
+
+loliObj* to_sym(std::string n){
+	loliObj* tmp = new (UseGC) loliObj(SYM);
+	tmp->SYM.name = n;
+	return tmp;
+}
+
+loliObj* c_cons(loliObj* hd, loliObj* tl){
+	loliObj* tmp = new (UseGC) loliObj(CONS);
+	tmp->CONS.head = hd;
+	tmp->CONS.tail = tl;
+	return tmp;
+}
+
+loliObj* c_proc(loliProc* pr){
+	loliObj* tmp = new (UseGC) loliObj(PROC);
+	tmp->PROC.proc = pr;
+	return tmp;
+}
+
+loliObj* to_string(std::string str){
+	loliObj* tmp = new (UseGC) loliObj(STR);
+	tmp->STR.value = str;
+	return tmp;
+}
+
+loliObj* to_char(char ch){
+	loliObj* tmp = new (UseGC) loliObj(CHAR);
+	tmp->CHAR.value = ch;
 	return tmp;
 }
