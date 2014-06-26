@@ -23,6 +23,7 @@
 #include "include/loli_sexp.h"
 #include "include/loli_util.h"
 #include "include/loli_stack.h"
+#include "include/loli_reader.h"
 
 using namespace std;
 
@@ -39,4 +40,5 @@ int main(){
 	global_stack.push_obj(to_sym("test"));
 	global_stack.push_obj(c_cons(t, nil));
 	cout<<"Test Stack: \n" << stack_to_string(global_stack);
+	cout<<"Test Reader: " << read_pair() <<endl;
 }
