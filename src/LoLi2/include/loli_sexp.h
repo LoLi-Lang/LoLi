@@ -19,26 +19,32 @@
 #ifndef __LOLI_SEXP_
 #define __LOLI_SEXP_
 
+#include <string>
+
+#include "loli_obj.h"
+
 struct sexp {
-	std::string 	value;
+	loliObj* 	value;
 	sexp*		next;
 
 	sexp(){}
 
 	sexp(std::string value){
-		this->value = value;
+		this->value = to_sym(value);
 		this->next = NULL;
 	}
 	
 	std::string toString(){
 		if(next != NULL){
-			return value + " |-> " + next->toString();
+			return ::toString(value) + " |-> " + next->toString();
 		}else{
-			return value;
+			return ::toString(value);
 		}
 	}
 };
 
 extern sexp* END;
+
+extern sexp* to_sexp(std::string str);
 
 #endif

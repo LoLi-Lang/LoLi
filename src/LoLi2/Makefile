@@ -11,6 +11,7 @@ HEADERS = \
 	  include/loli_util.h\
 	  include/loli_stack.h\
 	  include/loli_reader.h\
+	  include/loli_ast.h\
 	  include/loli_sexp.h
 
 MAIN = \
@@ -18,6 +19,7 @@ MAIN = \
      loli_sexp.cpp\
      loli_stack.cpp\
      loli_reader.cpp\
+     loli_ast.cpp\
      loli_util.cpp
 
 TEST = \
@@ -26,6 +28,7 @@ TEST = \
        loli_util.cpp\
        loli_stack.cpp\
        loli_reader.cpp\
+       loli_ast.cpp\
        loli2test.cpp
 
 currentg: 

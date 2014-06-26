@@ -23,7 +23,7 @@
 #include "../header/loli_gc.h"
 #include "include/loli_obj.h"
 
-loliObj* to_int(long long n){
+loliObj* to_int(long int n){
 	loliObj* tmp = new (UseGC) loliObj(INT);
 	tmp->INT.value = n;
 	return tmp;
@@ -73,6 +73,14 @@ loliObj* c_lambda(loliObj* arg, loliObj* types, loliObj* env, loliObj* exp){
 	tmp->LAMBDA.env = env;
 	tmp->LAMBDA.exp = exp;
 	return tmp;
+}
+
+loliObj* head(loliObj* o){
+	return o->CONS.head;
+}
+
+loliObj* tail(loliObj* o){
+	return o->CONS.tail;
 }
 
 loliObj* nil = to_sym("nil");
@@ -129,3 +137,5 @@ std::string toString(loliObj* obj){
 	}
 	return "";
 }
+
+loliObj* quote = to_sym("quote");

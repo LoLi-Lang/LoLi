@@ -24,6 +24,7 @@
 #include "include/loli_util.h"
 #include "include/loli_stack.h"
 #include "include/loli_reader.h"
+#include "include/loli_ast.h"
 
 using namespace std;
 
@@ -41,4 +42,6 @@ int main(){
 	global_stack.push_obj(c_cons(t, nil));
 	cout<<"Test Stack: \n" << stack_to_string(global_stack);
 	cout<<"Test Reader: " << read_pair() <<endl;
+	auto testNode = obj_to_tree(c_cons(t, c_cons(t, nil)));
+	cout<<toString(testNode)<<endl;
 }

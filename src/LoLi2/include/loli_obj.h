@@ -39,7 +39,7 @@ struct loliObj {
 	loliType 	type;
 
 	struct {
-		long long value;
+		long int value;
 	}INT; 
 
 	struct {
@@ -84,7 +84,7 @@ struct loliObj {
 
 
 //Constructors
-extern loliObj* to_int(long long n);
+extern loliObj* to_int(long int n);
 extern loliObj* to_flt(long double n);
 extern loliObj* to_sym(std::string n);
 extern loliObj* c_cons(loliObj* hd, loliObj* tl);
@@ -93,9 +93,14 @@ extern loliObj* to_string(std::string str);
 extern loliObj* to_char(char ch);
 extern loliObj* c_lambda(loliObj* arg, loliObj* types, loliObj* env, loliObj* exp);
 
+extern loliObj* head(loliObj* o);
+extern loliObj* tail(loliObj* o);
+
 extern loliObj* nil;
 extern loliObj* t;
 
 extern std::string toString(loliObj* obj);
+
+extern loliObj* quote;
 
 #endif
