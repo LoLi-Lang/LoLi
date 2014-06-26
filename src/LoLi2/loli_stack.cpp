@@ -16,7 +16,18 @@
  * =====================================================================================
  */
 
+#include <string>
 
 #include "include/loli_obj.h"
+#include "include/loli_stack.h"
+#include "include/loli_util.h"
 
 loliStack global_stack;
+
+std::string stack_to_string(loliStack stack){
+	std::string tmp = "";
+	for(int i = 0 ; i < stack.obj_in_stack; i++){
+		tmp = tmp + "Stack [" + std::to_string(i) + "]: " + toString(&stack.stack[i]) + "\n";
+	}
+	return tmp;
+}

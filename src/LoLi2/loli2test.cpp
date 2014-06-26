@@ -22,6 +22,7 @@
 #include "include/loli_obj.h"
 #include "include/loli_sexp.h"
 #include "include/loli_util.h"
+#include "include/loli_stack.h"
 
 using namespace std;
 
@@ -33,4 +34,9 @@ int main(){
 	cout<<"Testing CONS: " << toString(c_cons(t, nil)) <<endl;
 	loli_err("Test Err");
 	cout<<"Testing CONS: " << toString(c_cons(t, c_cons(t, nil))) <<endl;
+	global_stack.push_obj(to_int(10000));
+	global_stack.push_obj(to_flt(123.456));
+	global_stack.push_obj(to_sym("test"));
+	global_stack.push_obj(c_cons(t, nil));
+	cout<<"Test Stack: \n" << stack_to_string(global_stack);
 }

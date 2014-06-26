@@ -78,6 +78,8 @@ struct loliObj {
 		this->type = type;
 	}
 
+	loliObj(){}
+
 };
 
 

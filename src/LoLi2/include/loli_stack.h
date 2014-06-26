@@ -20,6 +20,7 @@
 #define __LOLI_STACK_
 
 #include "loli_obj.h"
+#include "loli_util.h"
 
 #define STACK_SIZE 100
 
@@ -29,9 +30,6 @@ struct loliStack{
 
 	loliStack(){
 		obj_in_stack = 0;
-		for(int i = 0; i < STACK_SIZE; i++){
-			stack[i] = NULL;
-		}
 	}
 
 	bool isEmpty(){
@@ -42,21 +40,24 @@ struct loliStack{
 		return obj_in_stack == STACK_SIZE;
 	}
 
-	void push_obj(loliObj o){
-		if(this->isFull()){
+	void push_obj(loliObj* o){
+		if(isFull()){
 			loli_err("Stack Overflow");
 			return;
 		}
-		stack[++obj_in_stack] = o;
+		stack[obj_in_stack++] = *o;
 	}
 	
-	loliObj pop_obj(){
-		if(this->isEmpty()){
+	loliObj* pop_obj(){
+		if(isEmpty()){
 			loli_err("Stack Underflow");
-			return nil;
+			return NULL;
 		}
-		return stack[obj_in_stack--];
+		return &stack[obj_in_stack--];
 	}
-}
+};
 
 extern loliStack global_stack;
+extern std::string stack_to_string(loliStack stack);
+
+#endif
