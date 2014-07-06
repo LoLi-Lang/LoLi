@@ -18,6 +18,7 @@
 
 
 #include <iostream>
+#include <string>
 
 #include "include/loli_obj.h"
 #include "include/loli_sexp.h"
@@ -41,7 +42,9 @@ int main(){
 	global_stack.push_obj(to_sym("test"));
 	global_stack.push_obj(c_cons(t, nil));
 	cout<<"Test Stack: \n" << stack_to_string(global_stack);
-	cout<<"Test Reader: " << read_pair() <<endl;
-	auto testNode = obj_to_tree(c_cons(t, c_cons(t, nil)));
-	cout<<toString(testNode)<<endl;
+	while(true){
+		cout<<"Get Input: ";
+		string tmp = read_pair();
+		cout<<"Test SExp: " << to_sexp(tmp)->toString()<<endl;
+	}
 }

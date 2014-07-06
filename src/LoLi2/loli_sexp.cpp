@@ -20,11 +20,17 @@
 #include <iostream>
 
 #include "include/loli_sexp.h"
+#include "include/loli_obj.h"
+#include "include/loli_util.h"
 #include "../header/loli_gc.h"
 
-sexp* END = new sexp("");
+sexp* END = new sexp("END");
 
 loliObj* judge(std::string str){
+	std::cout<<"\n\tJudge: " << str<< std::endl;
+	while(isspace(str[0])){
+		str = str.substr(1);
+	}
 	//Determine a str
 	if(str == ""){
 		return nil;
@@ -36,7 +42,8 @@ loliObj* judge(std::string str){
 				q = !q;
 			}
 			if(isspace(str[i]) && !q){
-				return c_cons(judge(str.substr(1, i)), judge("(" + str.substr(i)));
+				//return c_cons(judge(str.substr(1, i)), judge("(" + str.substr(i)));
+				return c_cons(judge(str.substr(1, i)), c_cons(judge(str.substr(i)), nil));
 			}
 			if(str[i] == ')' && !q){
 				return judge(str.substr(1, i-1));
@@ -62,57 +69,43 @@ loliObj* judge(std::string str){
 }
 
 sexp* to_sexp(std::string str){
-	//From a paired string to S-Exp
-	sexp* tmp = new (UseGC) sexp();
 	while(isspace(str[0])){
 		str = str.substr(1);
 	}
+	std::cout<<"\n\tTo SExp: "<<str<<std::endl;
 	if(str[0] == '\0'){
 		return END;
 	}
-
-	if(str[0] != '(' && str[0] != '"'){
-		for(ulong i = 0; i < str.length(); i++){
-			if(isspace(str[i])){
-				tmp->value = judge(str.substr(0, i));
-				tmp->next = END;
-				return tmp;
-			}
-		}
-		tmp->value = judge(str);
-		tmp->next = END;
-		return tmp;
-	}
-
-	if(str[0] == '"'){
-		for(ulong i = 1; i < str.length(); i++){
-			if(str[i] == '"'){
-				tmp->value = judge(str.substr(0, i));
-				tmp->next = END;
-				return tmp;
-			}
-		}
-		tmp->value = judge(str);
-		tmp->next = END;
-		return tmp;
-	}
-
 	if(str[0] == '('){
-		bool q = false;
-		for(ulong i = 0; i < str.length(); i++){
-			if(str[i] == '"'){
-				q = !q;
-			}
-			if(str[i] == ')' && !q){
-				tmp->value = judge(str.substr(0, i));
-				if(i != str.length()){
-					tmp->next = to_sexp("(" + str.substr(i));
-				}else{
-					tmp->next = END;
-				}
+		str = str.substr(1);
+		while(isspace(str[0])){
+			str = str.substr(1);
+		}
+		str = "(" + str;
+		if(str[1] == ')' || str[1] == '\0'){
+			std::cout<<"NIL"<<std::endl;
+			return END;
+		}
+		std::cout<<"\n\tCons: "<<str<<std::endl;
+		sexp* tmp;
+		for(ulong i = 1; i < str.length(); i++){
+			std::cout<<"\t\t"<<str[i]<<std::endl;
+			if(is_spchar(str[i])){
+				tmp = new (UseGC) sexp(str.substr(1, i - 1));
+				std::cout<<"\n\tTMP: \"" << str.substr(1, i - 1)<<"\""<<std::endl;
+				tmp->next = to_sexp("(" + str.substr(i + 1));
 				return tmp;
 			}
 		}
+	}else if(str[0] == '\''){
+		//QUOTE
+	}else{
+		std::cout<<"Symbol or Number"<<std::endl;
+		for(ulong i = 0; i < str.length(); i++){
+			if(is_spchar(str[i])){
+				return new (UseGC) sexp(str.substr(0, i));
+			}
+		}
+		return new sexp(str);
 	}
-	return NULL;
 }

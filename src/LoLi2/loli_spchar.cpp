@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  loli_util.h
+ *       Filename:  loli_spchar.cpp
  *
- *    Description:  Utilities of LoLi
+ *    Description:  Special Char of LoLi
  *
  *        Version:  1.0
- *        Created:  06/26/2014 06:52:14 PM
+ *        Created:  07/06/2014 04:38:57 PM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,13 +16,16 @@
  * =====================================================================================
  */
 
-#ifndef __LOLI_UTIL_
-#define __LOLI_UTIL_
 
 #include <string>
 
-extern void loli_err(std::string err);
+#include <iostream>
 
-extern bool is_spchar(char c);
-
-#endif
+bool is_spchar(char c){
+	std::cout<<c<<std::endl;
+	return ( (c == '(') || \
+		 (c == ')') || \
+		 (c == '\'') || \
+		 (c == '\"') || \
+		 isspace(c) );
+}

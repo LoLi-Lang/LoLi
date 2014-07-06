@@ -45,6 +45,7 @@ struct sexp {
 
 extern sexp* END;
 
+extern loliObj* judge(std::string str);
 extern sexp* to_sexp(std::string str);
 
 #endif

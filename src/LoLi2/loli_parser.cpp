@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  loli_util.h
+ *       Filename:  loli_parser.cpp
  *
- *    Description:  Utilities of LoLi
+ *    Description:  Parser of LoLi
  *
  *        Version:  1.0
- *        Created:  06/26/2014 06:52:14 PM
+ *        Created:  07/04/2014 03:07:21 PM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,13 +16,8 @@
  * =====================================================================================
  */
 
-#ifndef __LOLI_UTIL_
-#define __LOLI_UTIL_
+#include "include/loli_obj.h"
+#include "include/loli_util.h"
+#include "include/loli_sexp.h"
 
-#include <string>
 
-extern void loli_err(std::string err);
-
-extern bool is_spchar(char c);
-
-#endif

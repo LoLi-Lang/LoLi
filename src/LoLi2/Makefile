@@ -20,6 +20,7 @@ MAIN = \
      loli_stack.cpp\
      loli_reader.cpp\
      loli_ast.cpp\
+     loli_spchar.cpp\
      loli_util.cpp
 
 TEST = \
@@ -29,6 +30,7 @@ TEST = \
        loli_stack.cpp\
        loli_reader.cpp\
        loli_ast.cpp\
+       loli_spchar.cpp\
        loli2test.cpp
 
 currentg: 
