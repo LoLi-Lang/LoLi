@@ -60,3 +60,8 @@ JOIN US (ME) PLEASE
 -
 ---
 If you are not satisfied with current Lisp dialects, or if you have some great ideas want to make them into a programming language, then just fork and send me a pull request, any help is appreciated.
+
+Reason Why The Developing Speed is So Slow
+-
+---
+There is an Anime series called "Love Live", go for a look, it is sooooooo good.
