@@ -25,6 +25,8 @@
 #include "../header/loli_gc.h"
 
 sexp* END = new sexp("END");
+sexp* QUOTE = new sexp("QUOTE");
+sexp* EOC = new sexp("EOC");
 
 loliObj* judge(std::string str){
 //	std::cout<<"\n\tJudge: " << str<< std::endl;
@@ -91,14 +93,26 @@ sexp* to_sexp(std::string str){
 		for(ulong i = 1; i < str.length(); i++){
 //			std::cout<<"\t\t"<<str[i]<<std::endl;
 			if(is_spchar(str[i])){
-				tmp = new (UseGC) sexp(str.substr(1, i - 1));
-//				std::cout<<"\n\tTMP: \"" << str.substr(1, i - 1)<<"\""<<std::endl;
+				std::string t = str.substr(1, i - 1);
+				if(t[0] == '\0'){
+					tmp = new (UseGC) sexp("NEXT");
+				}else if(str[i] == ')'){
+					tmp = new (UseGC) sexp(t);
+					sexp* tt = new (UseGC) sexp("EOC");
+					tt->next = to_sexp("(" + str.substr(i + 1));
+					tmp->next = tt;	
+					return tmp;
+				}else{
+					tmp = new (UseGC) sexp(t);
+				}
 				tmp->next = to_sexp("(" + str.substr(i + 1));
 				return tmp;
 			}
 		}
 	}else if(str[0] == '\''){
-		//QUOTE
+		sexp* tmp = new (UseGC) sexp("QUOTE");
+		tmp->next = to_sexp(str.substr(1));
+		return tmp;
 	}else{
 //		std::cout<<"Symbol or Number"<<std::endl;
 		for(ulong i = 0; i < str.length(); i++){

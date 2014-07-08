@@ -20,6 +20,7 @@
 #define __LOLI_SEXP_
 
 #include <string>
+#include <iostream>
 
 #include "loli_obj.h"
 
@@ -30,6 +31,7 @@ struct sexp {
 	sexp(){}
 
 	sexp(std::string value){
+//		std::cout<<"Creating new sexp obj: \"" <<value<<"\""<<std::endl;
 		this->value = to_sym(value);
 		this->next = NULL;
 	}
