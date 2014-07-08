@@ -64,4 +64,4 @@ If you are not satisfied with current Lisp dialects, or if you have some great i
 Reason Why The Developing Speed is So Slow
 -
 ---
-There is an Anime series called "Love Live", go for a look, it is sooooooo good.
+There is an Anime series called "××Love Live××", go for a look, it is sooooooo good.
