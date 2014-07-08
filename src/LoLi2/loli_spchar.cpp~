@@ -22,7 +22,7 @@
 #include <iostream>
 
 bool is_spchar(char c){
-//	std::cout<<c<<std::endl;
+	std::cout<<c<<std::endl;
 	return ( (c == '(') || \
 		 (c == ')') || \
 		 (c == '\'') || \

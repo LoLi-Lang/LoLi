@@ -27,7 +27,7 @@
 sexp* END = new sexp("END");
 
 loliObj* judge(std::string str){
-	std::cout<<"\n\tJudge: " << str<< std::endl;
+//	std::cout<<"\n\tJudge: " << str<< std::endl;
 	while(isspace(str[0])){
 		str = str.substr(1);
 	}
@@ -72,7 +72,7 @@ sexp* to_sexp(std::string str){
 	while(isspace(str[0])){
 		str = str.substr(1);
 	}
-	std::cout<<"\n\tTo SExp: "<<str<<std::endl;
+//	std::cout<<"\n\tTo SExp: "<<str<<std::endl;
 	if(str[0] == '\0'){
 		return END;
 	}
@@ -86,13 +86,13 @@ sexp* to_sexp(std::string str){
 			std::cout<<"NIL"<<std::endl;
 			return END;
 		}
-		std::cout<<"\n\tCons: "<<str<<std::endl;
+//		std::cout<<"\n\tCons: "<<str<<std::endl;
 		sexp* tmp;
 		for(ulong i = 1; i < str.length(); i++){
-			std::cout<<"\t\t"<<str[i]<<std::endl;
+//			std::cout<<"\t\t"<<str[i]<<std::endl;
 			if(is_spchar(str[i])){
 				tmp = new (UseGC) sexp(str.substr(1, i - 1));
-				std::cout<<"\n\tTMP: \"" << str.substr(1, i - 1)<<"\""<<std::endl;
+//				std::cout<<"\n\tTMP: \"" << str.substr(1, i - 1)<<"\""<<std::endl;
 				tmp->next = to_sexp("(" + str.substr(i + 1));
 				return tmp;
 			}
@@ -100,7 +100,7 @@ sexp* to_sexp(std::string str){
 	}else if(str[0] == '\''){
 		//QUOTE
 	}else{
-		std::cout<<"Symbol or Number"<<std::endl;
+//		std::cout<<"Symbol or Number"<<std::endl;
 		for(ulong i = 0; i < str.length(); i++){
 			if(is_spchar(str[i])){
 				return new (UseGC) sexp(str.substr(0, i));
