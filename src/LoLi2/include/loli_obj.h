@@ -34,6 +34,8 @@ enum loliType {
 
 struct loliObj {
 	
+	bool 		inUse; //Reserved for GC
+
 	typedef loliObj* (loliProc)(loliObj*);
 
 	loliType 	type;
