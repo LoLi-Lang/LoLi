@@ -1,7 +1,7 @@
 CC = g++
 CLANG = clang++
-CFLAGSG = -std=c++11 -Wall -Og -Wextra -g
-CFLAGSC = -std=c++11 -Wall -O0 -Wextra -g
+CFLAGSG = -std=c++11 -stdlib=libstdc++ -Wall -Og -Wextra -g
+CFLAGSC = -std=c++11 -stdlib=libstdc++ -Wall -O0 -Wextra -g
 
 GC = -L/home/zshang/Program/LoLi/git/src/gc/build -lgc
 GCINCLUDE = -I/home/zshang/Program/LoLi/git/src/gc/include

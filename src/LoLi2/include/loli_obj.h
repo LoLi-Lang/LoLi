@@ -91,7 +91,7 @@ extern loliObj* to_flt(long double n);
 extern loliObj* to_sym(std::string n);
 extern loliObj* c_cons(loliObj* hd, loliObj* tl);
 extern loliObj* c_proc(loliObj::loliProc* pr);
-extern loliObj* to_string(std::string str);
+extern loliObj* to_lstring(std::string str);
 extern loliObj* to_char(char ch);
 extern loliObj* c_lambda(loliObj* arg, loliObj* types, loliObj* env, loliObj* exp);
 
@@ -102,6 +102,7 @@ extern loliObj* nil;
 extern loliObj* t;
 
 extern std::string toString(loliObj* obj);
+extern std::string toString(loliType ty);
 
 extern loliObj* quote;
 

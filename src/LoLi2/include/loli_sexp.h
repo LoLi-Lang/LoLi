@@ -25,27 +25,27 @@
 #include "loli_obj.h"
 
 struct sexp {
-	loliObj* 	value;
+	std::string 	value;
 	sexp*		next;
 
 	sexp(){}
 
 	sexp(std::string value){
-//		std::cout<<"Creating new sexp obj: \"" <<value<<"\""<<std::endl;
-		this->value = to_sym(value);
+		this->value = value;
 		this->next = NULL;
 	}
 	
 	std::string toString(){
 		if(next != NULL){
-			return ::toString(value) + " |-> " + next->toString();
+			return value + " |-> " + next->toString();
 		}else{
-			return ::toString(value);
+			return value;
 		}
 	}
 };
 
 extern sexp* END;
+extern sexp* SNIL;
 
 extern loliObj* judge(std::string str);
 extern sexp* to_sexp(std::string str);

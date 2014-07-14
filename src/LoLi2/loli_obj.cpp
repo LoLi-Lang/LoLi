@@ -54,7 +54,7 @@ loliObj* c_proc(loliObj::loliProc* pr){
 	return tmp;
 }
 
-loliObj* to_string(std::string str){
+loliObj* to_lstring(std::string str){
 	loliObj* tmp = new (UseGC) loliObj(STR);
 	tmp->STR.value = str;
 	return tmp;
@@ -139,3 +139,24 @@ std::string toString(loliObj* obj){
 }
 
 loliObj* quote = to_sym("quote");
+
+std::string toString(loliType ty){
+	switch(ty){
+		case INT:
+			return "Integer";
+		case FLT:
+			return "Float";
+		case SYM:
+			return "Symbol";
+		case CONS:
+			return "Cons";
+		case LAMBDA:
+			return "Lambda";
+		case PROC:
+			return "Procedure";
+		case STR:
+			return "String";
+		case CHAR:
+			return "Character";
+	}
+}

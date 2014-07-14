@@ -45,6 +45,6 @@ int main(){
 	while(true){
 		cout<<"Get Input: ";
 		string tmp = read_pair();
-		cout<<"Test SExp: " << to_sexp(tmp)->toString()<<endl;
+		cout<<"Test SExp: \n" << to_sexp(tmp)->toString()<<endl;
 	}
 }
