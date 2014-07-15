@@ -12,3 +12,8 @@
 	(if (null? lsta)
 		lstb
 		(cons (head lsta) (append (tail lsta) lstb)))))
+
+(def pow (\ (base pow)
+	(if (eq? pow 0)
+		1
+		(* base (pow base (- pow 1))))))
