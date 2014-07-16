@@ -67,7 +67,6 @@ sexp* to_sexp(std::string str){
 	if(str[0] == '('){
 		sexp* tmp = new (UseGC) sexp("CONS");
 		tmp->next = parse_cons(str.substr(1, str.length() - 2));
-		std::cout<<tmp->toString()<<std::endl;
 		return tmp;
 	}
 	//Return SNIL when get a blank input
@@ -119,8 +118,9 @@ sexp* parse_cons(std::string str){
 			sexp* tmp;
 			std::string t = pairUp(str.substr(i));
 			tmp = to_sexp(t);
-			std::cout<<tmp->toString()<<std::endl;
-			tmp->next = (parse_cons(str.substr(i + t.length())));
+			std::cout<<"TMP: "<<tmp->toString()<<std::endl;
+			//tmp = append(tmp, parse_cons(str.substr(i + t.length())));
+		//	tmp->next = parse_cons(str.substr(i + t.length()));
 			return tmp;
 		}
 	}

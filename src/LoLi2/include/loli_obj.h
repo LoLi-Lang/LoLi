@@ -21,6 +21,7 @@
 
 #include <string>
 
+
 enum loliType {
 	INT,
 	FLT,
@@ -59,7 +60,7 @@ struct loliObj {
 
 	struct {
 		loliObj* arg;
-		loliObj* types;
+		loliObj* rtype;
 		loliObj* env;
 		loliObj* exp;
 	}LAMBDA;
@@ -82,8 +83,35 @@ struct loliObj {
 
 	loliObj(){}
 
-};
+	bool equals(loliObj* o){
+		if(o->type != this->type){
+			return false;
+		}else{
+			switch(type){
+				case loliType::INT:
+					return o->INT.value == this->INT.value;
+				case loliType::FLT:
+					return o->FLT.value == this->FLT.value;
+				case loliType::SYM:
+					return o->SYM.name == this->SYM.name;
+				case loliType::CHAR:
+					return o->CHAR.value == this->CHAR.value;
+				case loliType::STR:
+					return o->STR.value == this->STR.value;
+				case loliType::PROC:
+					return o->PROC.proc == this->PROC.proc;
+				case loliType::CONS:
+					return o->CONS.head == this->CONS.head && o->CONS.tail == this->CONS.tail;
+				case loliType::LAMBDA:
+					return o->LAMBDA.arg == this->LAMBDA.arg &&\
+					       o->LAMBDA.rtype == this->LAMBDA.rtype &&\
+					       o->LAMBDA.env == this->LAMBDA.env &&\
+					       o->LAMBDA.exp == this->LAMBDA.exp;
 
+			}
+		}
+	}
+};
 
 //Constructors
 extern loliObj* to_int(long int n);
@@ -100,10 +128,12 @@ extern loliObj* tail(loliObj* o);
 
 extern loliObj* nil;
 extern loliObj* t;
+extern loliObj* quote;
 
 extern std::string toString(loliObj* obj);
 extern std::string toString(loliType ty);
 
-extern loliObj* quote;
+extern int length(loliObj* obj);
+extern bool nilp(loliObj* obj);
 
 #endif

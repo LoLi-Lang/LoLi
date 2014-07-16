@@ -69,7 +69,7 @@ loliObj* to_char(char ch){
 loliObj* c_lambda(loliObj* arg, loliObj* types, loliObj* env, loliObj* exp){
 	loliObj* tmp = new (UseGC) loliObj(LAMBDA);
 	tmp->LAMBDA.arg = arg;
-	tmp->LAMBDA.types = types;
+	tmp->LAMBDA.rtype = types;
 	tmp->LAMBDA.env = env;
 	tmp->LAMBDA.exp = exp;
 	return tmp;
@@ -85,6 +85,7 @@ loliObj* tail(loliObj* o){
 
 loliObj* nil = to_sym("nil");
 loliObj* t = to_sym("t");
+loliObj* quote = to_sym("quote");
 
 std::string toString(loliObj* obj){
 	switch(obj->type){
@@ -130,15 +131,8 @@ std::string toString(loliObj* obj){
 				ss >> c;
 				return c;
 			}
-		default:
-			{
-				return "";
-			}
 	}
-	return "";
 }
-
-loliObj* quote = to_sym("quote");
 
 std::string toString(loliType ty){
 	switch(ty){
@@ -159,4 +153,27 @@ std::string toString(loliType ty){
 		case CHAR:
 			return "Character";
 	}
+}
+
+int length(loliObj* obj){
+	if(nilp(obj)){
+		return 0;
+	}
+	switch(obj->type){
+		case loliType::INT:
+		case loliType::FLT:
+		case loliType::SYM:
+		case loliType::CHAR:
+		case loliType::PROC:
+		case loliType::LAMBDA:
+			return 1;
+		case loliType::CONS:
+			return 1 + length(obj->CONS.tail);
+		case loliType::STR:
+			return obj->STR.value.length();
+	}
+}
+
+bool nilp(loliObj* obj){
+	return obj->equals(nil);
 }

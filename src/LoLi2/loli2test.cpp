@@ -42,6 +42,8 @@ int main(){
 	global_stack.push_obj(to_sym("test"));
 	global_stack.push_obj(c_cons(t, nil));
 	cout<<"Test Stack: \n" << stack_to_string(global_stack);
+	loliObj* test = c_cons(to_sym("a"), c_cons(to_sym("b"), c_cons(to_sym("c"), c_cons(to_sym("d"), nil))));
+	cout<<"Length of "<< toString(test)<<": "<< length(test)<<endl;
 	while(true){
 		cout<<"Get Input: ";
 		string tmp = read_pair();
