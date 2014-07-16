@@ -10,12 +10,10 @@ HEADERS = \
 	  include/loli_obj.h\
 	  include/loli_util.h\
 	  include/loli_stack.h\
-	  include/loli_reader.h\
-	  include/loli_sexp.h
+	  include/loli_reader.h
 
 MAIN = \
      loli_obj.cpp\
-     loli_sexp.cpp\
      loli_stack.cpp\
      loli_reader.cpp\
      loli_spchar.cpp\
@@ -24,7 +22,6 @@ MAIN = \
 
 TEST = \
        loli_obj.cpp\
-       loli_sexp.cpp\
        loli_util.cpp\
        loli_stack.cpp\
        loli_reader.cpp\
