@@ -30,7 +30,8 @@ enum loliType {
 	LAMBDA,
 	PROC,
 	STR,
-	CHAR
+	CHAR,
+	_
 };
 
 struct loliObj {
@@ -67,6 +68,7 @@ struct loliObj {
 
 	struct {
 		loliProc* proc;
+		loliObj* rtype;
 	}PROC;
 
 	struct {
@@ -99,7 +101,8 @@ struct loliObj {
 				case loliType::STR:
 					return o->STR.value == this->STR.value;
 				case loliType::PROC:
-					return o->PROC.proc == this->PROC.proc;
+					return o->PROC.proc == this->PROC.proc &&\
+					       o->PROC.rtype == this->PROC.rtype;
 				case loliType::CONS:
 					return o->CONS.head == this->CONS.head && o->CONS.tail == this->CONS.tail;
 				case loliType::LAMBDA:
@@ -107,6 +110,8 @@ struct loliObj {
 					       o->LAMBDA.rtype == this->LAMBDA.rtype &&\
 					       o->LAMBDA.env == this->LAMBDA.env &&\
 					       o->LAMBDA.exp == this->LAMBDA.exp;
+				case loliType::_:
+					return this==o;
 
 			}
 		}

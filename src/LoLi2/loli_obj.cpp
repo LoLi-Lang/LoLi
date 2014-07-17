@@ -48,9 +48,10 @@ loliObj* c_cons(loliObj* hd, loliObj* tl){
 	return tmp;
 }
 
-loliObj* c_proc(loliObj::loliProc* pr){
+loliObj* c_proc(loliObj::loliProc* pr, loliObj* type){
 	loliObj* tmp = new (UseGC) loliObj(PROC);
 	tmp->PROC.proc = pr;
+	tmp->PROC.rtype = type;
 	return tmp;
 }
 
@@ -131,6 +132,8 @@ std::string toString(loliObj* obj){
 				ss >> c;
 				return c;
 			}
+		case _:
+			return "loliObj";
 	}
 }
 
@@ -152,6 +155,8 @@ std::string toString(loliType ty){
 			return "String";
 		case CHAR:
 			return "Character";
+		case _:
+			return "loliObj";
 	}
 }
 
@@ -166,6 +171,7 @@ int length(loliObj* obj){
 		case loliType::CHAR:
 		case loliType::PROC:
 		case loliType::LAMBDA:
+		case loliType::_:
 			return 1;
 		case loliType::CONS:
 			return 1 + length(obj->CONS.tail);
