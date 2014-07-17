@@ -22,7 +22,7 @@
 #include "loli_obj.h"
 #include "loli_util.h"
 
-#define STACK_SIZE 100
+#define STACK_SIZE 8192
 
 struct loliStack{
 	loliObj stack[STACK_SIZE];
@@ -45,7 +45,7 @@ struct loliStack{
 			loli_err("Stack Overflow");
 			return;
 		}
-		stack[obj_in_stack++] = *o;
+		stack[++obj_in_stack] = *o;
 	}
 	
 	loliObj* pop_obj(){

@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  loli_util.h
+ *       Filename:  loli_lexer.cpp
  *
- *    Description:  Utilities of LoLi
+ *    Description:  Lexer of LoLi
  *
  *        Version:  1.0
- *        Created:  06/26/2014 06:52:14 PM
+ *        Created:  07/17/2014 11:19:20 AM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,13 +16,14 @@
  * =====================================================================================
  */
 
-#ifndef __LOLI_UTIL_
-#define __LOLI_UTIL_
+#include "include/loli_obj.h"
+#include "include/loli_parser.h"
 
-#include <string>
+loliObj* lexer(loliObj* exp){
+	if(exp->type != CONS){
 
-extern void loli_err(std::string err);
-extern std::string pairUp(std::string str);
-extern bool is_spchar(char c);
+	}else{
 
-#endif
+	}
+	return nil;
+}
