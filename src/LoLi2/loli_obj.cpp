@@ -76,6 +76,12 @@ loliObj* c_lambda(loliObj* arg, loliObj* types, loliObj* env, loliObj* exp){
 	return tmp;
 }
 
+loliObj* to_bool(bool b){
+	loliObj* tmp = new (UseGC) loliObj(BOOL);
+	tmp->BOOL.value = b;
+	return tmp;
+}
+
 loliObj* head(loliObj* o){
 	return o->CONS.head;
 }
@@ -87,6 +93,9 @@ loliObj* tail(loliObj* o){
 loliObj* nil = to_sym("nil");
 loliObj* t = to_sym("t");
 loliObj* quote = to_sym("quote");
+
+loliObj* boolt = to_bool(true);
+loliObj* boolf = to_bool(false);
 
 std::string toString(loliObj* obj){
 	switch(obj->type){
@@ -132,6 +141,8 @@ std::string toString(loliObj* obj){
 				ss >> c;
 				return c;
 			}
+		case BOOL:
+			return obj->BOOL.value ? "TRUE" : "FALSE";
 		case _:
 			return "loliObj";
 	}
@@ -155,6 +166,8 @@ std::string toString(loliType ty){
 			return "String";
 		case CHAR:
 			return "Character";
+		case BOOL:
+			return "Boolean";
 		case _:
 			return "loliObj";
 	}
@@ -172,6 +185,7 @@ int length(loliObj* obj){
 		case loliType::PROC:
 		case loliType::LAMBDA:
 		case loliType::_:
+		case loliType::BOOL:
 			return 1;
 		case loliType::CONS:
 			return 1 + length(obj->CONS.tail);

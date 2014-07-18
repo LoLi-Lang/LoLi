@@ -19,18 +19,27 @@
 #ifndef __LOLI_TYPE_
 #define __LOLI_TYPE_
 
+#define is_int(obj) obj->type == INT
+#define is_flt(obj) obj->type == FLT
+#define is_sym(obj) obj->type == SYM
+#define is_proc(obj) obj->type == PROC
+#define is_cons(obj) obj->type == CONS
+#define is_lambda(obj) obj->type == LAMBDA
+#define	is_char(obj) obj->type == CHAR
+#define	is_str(obj) obj->type == CHAR
+#define	is_bool(obj) obj->type == BOOL 
+
 #include "loli_obj.h"
 
-extern loliObj* linteger;
-extern loliObj* lfloat;
-extern loliObj* lnumber;
-extern loliObj* lsym;
-extern loliObj* lcons;
-extern loliObj* lproc;
-extern loliObj* lstr;
-extern loliObj* lchar;
-extern loliObj* lobj;
-
-extern bool isType(loliObj* sym, loliType type);
+extern loliObj* c_is_int(loliObj* obj);
+extern loliObj* c_is_flt(loliObj* obj);
+extern loliObj* c_is_sym(loliObj* obj);
+extern loliObj* c_is_proc(loliObj* obj);
+extern loliObj* c_is_lambda(loliObj* obj);
+extern loliObj* c_is_char(loliObj* obj);
+extern loliObj* c_is_str(loliObj* obj);
+extern loliObj* c_is_cons(loliObj* obj);
+extern loliObj* c_is_num(loliObj* obj);
+extern loliObj* c_is_bool(loliObj* obj);
 
 #endif

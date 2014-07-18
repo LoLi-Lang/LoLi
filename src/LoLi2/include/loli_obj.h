@@ -31,6 +31,7 @@ enum loliType {
 	PROC,
 	STR,
 	CHAR,
+	BOOL,
 	_
 };
 
@@ -41,6 +42,8 @@ struct loliObj {
 	typedef loliObj* (loliProc)(loliObj*);
 
 	loliType 	type;
+	
+	loliObj* 	env;
 
 	struct {
 		long int value;
@@ -79,6 +82,10 @@ struct loliObj {
 		char value;
 	}CHAR;
 
+	struct {
+		bool value;
+	}BOOL;
+
 	loliObj(loliType type){
 		this->type = type;
 	}
@@ -89,6 +96,7 @@ struct loliObj {
 		if(o->type != this->type){
 			return false;
 		}else{
+			bool e = this->env == o->env;
 			switch(type){
 				case loliType::INT:
 					return o->INT.value == this->INT.value;
@@ -109,7 +117,9 @@ struct loliObj {
 					return o->LAMBDA.arg == this->LAMBDA.arg &&\
 					       o->LAMBDA.rtype == this->LAMBDA.rtype &&\
 					       o->LAMBDA.env == this->LAMBDA.env &&\
-					       o->LAMBDA.exp == this->LAMBDA.exp;
+					       o->LAMBDA.exp == this->LAMBDA.exp && e;
+				case loliType::BOOL:
+					return this->BOOL.value == o->BOOL.value;
 				case loliType::_:
 					return this==o;
 
@@ -134,6 +144,9 @@ extern loliObj* tail(loliObj* o);
 extern loliObj* nil;
 extern loliObj* t;
 extern loliObj* quote;
+
+extern loliObj* boolt;
+extern loliObj* boolf;
 
 extern std::string toString(loliObj* obj);
 extern std::string toString(loliType ty);

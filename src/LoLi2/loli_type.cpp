@@ -17,42 +17,48 @@
  */
 
 #include "include/loli_obj.h"
+#include "include/loli_type.h"
 
-loliObj* linteger = to_sym("int");
-loliObj* lfloat = to_sym("flt");
-loliObj* lnumber = to_sym("num");
-loliObj* lsym = to_sym("sym");
-loliObj* lcons = to_sym("cons");
-loliObj* lproc = to_sym("proc");
-loliObj* lstr = to_sym("str");
-loliObj* lchar = to_sym("char");
-loliObj* lobj = to_sym("_");
-
-bool isType(loliObj* sym, loliType type){
-	if(sym->equals(lobj)){
-		return true;
-	}
-	switch(type){
-		case INT:
-			return sym->equals(linteger) || sym->equals(lnumber);
-		case FLT:
-			return sym->equals(lfloat) || sym->equals(lnumber);
-		case SYM:
-			return sym->equals(lsym);
-		case PROC:
-		case LAMBDA:
-			return sym->equals(lproc);
-		case CONS:
-			return sym->equals(lcons);
-		case CHAR:
-			return sym->equals(lchar);
-		case STR:
-			return sym->equals(lstr);
-		case _:
-			return true;
-	}
+loliObj* c_is_int(loliObj* obj){
+	return is_int(obj) ? boolt : boolf;
 }
 
-loliObj* c_get_type(loliObj* obj){
-	return to_sym(toString(head(obj)->type));
+loliObj* c_is_flt(loliObj* obj){
+	return is_flt(obj) ? boolt : boolf;
+}
+
+loliObj* c_is_num(loliObj* obj){
+	return is_flt(obj) || is_int(obj) ? boolt : boolf;
+}
+
+loliObj* c_is_sym(loliObj* obj){
+	return is_sym(obj) ? boolt : boolf;
+}
+
+loliObj* c_is_proc(loliObj* obj){
+	return is_proc(obj) ? boolt : boolf;
+}
+
+loliObj* c_is_cons(loliObj* obj){
+	return is_cons(obj) ? boolt : boolf;
+}
+
+loliObj* c_is_lambda(loliObj* obj){
+	return is_lambda(obj) ? boolt : boolf;
+}
+
+loliObj* c_is_char(loliObj* obj){
+	return is_char(obj) ? boolt : boolf;
+}
+
+loliObj* c_is_str(loliObj* obj){
+	return is_str(obj) ? boolt : boolf;
+}
+
+loliObj* c_is_bool(loliObj* obj){
+	return is_bool(obj) ? boolt : boolf;
+}
+
+loliObj* c_is_obj(loliObj* obj){
+	return boolt;
 }
