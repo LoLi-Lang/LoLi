@@ -24,9 +24,20 @@
 #include "include/loli_obj.h"
 #include "include/loli_util.h"
 
+std::string loli_getline(){ //HANDLE CTRL+D
+	std::string tmp;
+	while(true){
+		getline(std::cin, tmp);
+		if(std::cin.eof()){
+			std::exit(1);
+		}
+		return tmp;
+	}
+}
+
 std::string read_pair(int i, bool quote){
 	std::string tmp;
-	std::getline(std::cin, tmp);
+	tmp = loli_getline();
 	int p = i;
 	bool q = quote;
 	for(ulong j = 0; j < tmp.length(); j++){
