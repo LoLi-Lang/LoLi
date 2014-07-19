@@ -17,7 +17,6 @@ MAIN = \
      loli_obj.cpp\
      loli_stack.cpp\
      loli_reader.cpp\
-     loli_spchar.cpp\
      loli_parser.cpp\
      loli_util.cpp\
      loli_main.cpp
@@ -27,7 +26,6 @@ TEST = \
        loli_util.cpp\
        loli_stack.cpp\
        loli_reader.cpp\
-       loli_spchar.cpp\
        loli_parser.cpp\
        loli2test.cpp
 
