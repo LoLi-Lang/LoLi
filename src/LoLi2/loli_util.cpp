@@ -43,3 +43,12 @@ std::string pairUp(std::string str){
 	}
 	return str;
 }
+
+bool is_spchar(char c){
+//	std::cout<<c<<std::endl;
+	return ( (c == '(') || \
+		 (c == ')') || \
+		 (c == '\'') || \
+		 (c == '\"') || \
+		 isspace(c) );
+}
