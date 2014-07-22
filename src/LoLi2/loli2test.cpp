@@ -25,6 +25,8 @@
 #include "include/loli_stack.h"
 #include "include/loli_reader.h"
 #include "include/loli_parser.h"
+#include "include/loli_eval.h"
+#include "include/loli_env.h"
 
 using namespace std;
 
@@ -41,6 +43,9 @@ int main(){
 	while(true){
 		cout<<"Get Input: ";
 		string tmp = read_pair();
-		cout<<"Test SExp: \n" << toString(parse_string(tmp))<<endl;
+		cout<<"Input: "<<tmp<<endl;
+		loliObj* i = parse_string(tmp, top_env);
+		cout<<toString(i)<<endl;
+		cout<<"Test Eval: \n" << toString(c_eval(i))<<endl;
 	}
 }

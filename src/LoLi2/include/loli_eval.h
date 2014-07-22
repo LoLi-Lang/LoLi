@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  loli_util.h
+ *       Filename:  loli_eval.h
  *
- *    Description:  Utilities of LoLi
+ *    Description:  Eval of LoLi
  *
  *        Version:  1.0
- *        Created:  06/26/2014 06:52:14 PM
+ *        Created:  07/22/2014 03:25:29 AM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,14 +16,12 @@
  * =====================================================================================
  */
 
-#ifndef __LOLI_UTIL_
-#define __LOLI_UTIL_
+#ifndef __LOLI_EVAL_
+#define __LOLI_EVAL_
 
-#include <string>
 #include "loli_obj.h"
 
-extern void loli_err(std::string err);
-extern std::string pairUp(std::string str);
-extern bool is_spchar(char c);
+extern loliObj* c_eval(loliObj* exp);
+extern loliObj* eval_list(loliObj* lst);
 
 #endif

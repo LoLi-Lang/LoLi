@@ -16,8 +16,8 @@
  * =====================================================================================
  */
 
-#include "loli_obj.cpp"
-#include "loli_util.cpp"
+#include "include/loli_obj.h"
+#include "include/loli_util.h"
 
 loliObj* top_env = nil;
 

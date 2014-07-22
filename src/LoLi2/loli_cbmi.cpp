@@ -21,46 +21,30 @@
 #include "include/loli_type.h"
 #include "include/loli_util.h"
 
-loliObj* assign_value(loliObj* exp, loliObj* type);
-
-loliObj* assign_value(loliObj* exp){
-	//Assign value to S-Exp
-	if(nilp(exp) || exp == NULL){
+loliObj* build_sexp(loliObj* orig){
+	if(nilp(orig)){
 		return nil;
 	}
-	if(exp->type == SYM){
-		if(exp->env == NULL || nilp(exp->env)){
-			return lookup_top_env(exp);
+	if(is_sym(orig)){
+		loliObj* tmp;
+		if(orig->env != NULL || !nilp(orig->env)){
+			tmp = lookup_env(orig, orig->env);
 		}else{
-			return lookup_env(exp, exp->env);
+			tmp = lookup_top_env(orig);
 		}
-	}else if(is_int(exp) || is_flt(exp)){
-		return exp;
-	}else if(exp->type == CONS){
-		loliObj* h = head(exp);
-		if(h->type == SYM){
-			loli_err(toString(h) + " is a symbol!");
-			return nil;
+		if(nilp(tmp)){
+			loli_err("Symbol " + toString(orig) + " is unbound!");
 		}
-		loliObj* env = h->env;
-		if(env == NULL || nilp(env)){
-			env = top_env;
-		}
-		loliObj* v = get_type(LAMBDA, h, env);
-		if(nilp(v)){
-			v = get_type(PROC, h, env);
-			if(nilp(v)){
-				loli_err("No function bound to " + toString(head(h)));
-				return nil;
-			}
-		}
+		return tmp;
 	}
-	return exp;
+	if(is_int(orig) || is_flt(orig)){
+		return orig;
+	}
+	if(is_cons(orig)){
+		
+	}
+	return orig;
 }
 
-loliObj* assign_value(loliObj* exp, loliObj* type){
-	if(nilp(exp)){
-		return nil;
-	}
-	return exp;
-}
+
+

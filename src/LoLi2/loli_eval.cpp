@@ -20,7 +20,7 @@
 #include "include/loli_env.h"
 #include "include/loli_util.h"
 
-loliObj* eval_list(loliObj* list);
+loliObj* eval_list(loliObj* lst);
 
 loliObj* c_eval(loliObj* exp){
 	loliObj* env = exp->env;
@@ -32,9 +32,11 @@ loliObj* c_eval(loliObj* exp){
 		case FLT:
 		case CHAR:
 		case STR:
-		case _:
 		case LAMBDA:
+		case BOOL:
+		case TYPE:
 		case PROC:
+		case KEY:
 			return exp;
 		case SYM:
 			if(nilp(env) || env == NULL){

@@ -9,6 +9,8 @@ GCINCLUDE = -I/home/zshang/Program/LoLi/git/src/gc/include
 HEADERS = \
 	  include/loli_obj.h\
 	  include/loli_util.h\
+	  include/loli_eval.h\
+	  include/loli_env.h\
 	  include/loli_stack.h\
 	  include/loli_parser.h\
 	  include/loli_reader.h
@@ -24,8 +26,10 @@ MAIN = \
 TEST = \
        loli_obj.cpp\
        loli_util.cpp\
-       loli_stack.cpp\
        loli_reader.cpp\
+       loli_eval.cpp\
+       loli_env.cpp\
+       loli_stack.cpp\
        loli_parser.cpp\
        loli2test.cpp
 

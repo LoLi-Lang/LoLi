@@ -22,7 +22,7 @@
 #include <string>
 #include "loli_obj.h"
 
-extern loliObj* parse_string(std::string str);
-extern loliObj* parse_list(std::string str);
+extern loliObj* parse_string(std::string str, loliObj* env);
+extern loliObj* parse_list(std::string str, loliObj* env);
 
 #endif

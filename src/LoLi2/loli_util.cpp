@@ -18,6 +18,7 @@
 
 #include <iostream>
 #include <string>
+#include "include/loli_obj.h"
 
 void loli_err(std::string err){
 	std::cerr<<err<<std::endl;
