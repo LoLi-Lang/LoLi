@@ -71,6 +71,3 @@ Here is the language design of LoLi:
 	-Key concept for the CBMI:
 		Verb : Objects that takes other Objects, for example: Function (PROC) and Lambda (LAMBDA)
 		Noun : Objects that only have value, for example: Symbol (SYM), Number (INT / FLT), etc.
-	
-	-Rules of AST:
-		See the comments in the loli_ast.h
