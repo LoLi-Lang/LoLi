@@ -59,6 +59,35 @@ loliObj* c_is_bool(loliObj* obj){
 	return is_bool(obj) ? boolt : boolf;
 }
 
+loliObj* c_is_key(loliObj* obj){
+	return is_key(obj) ? boolt : boolf;
+}
+
 loliObj* c_is_obj(loliObj* obj){
 	return boolt;
+}
+
+bool isType(loliObj* obj, loliType type){
+	switch(type){
+		case INT:
+			return is_int(obj);
+		case FLT:
+			return is_flt(obj);
+		case SYM:
+			return is_sym(obj);
+		case CONS:
+			return is_cons(obj);
+		case CHAR:
+			return is_char(obj);
+		case PROC:
+			return is_proc(obj);
+		case LAMBDA:
+			return is_lambda(obj);
+		case STR:
+			return is_str(obj);
+		case BOOL:
+			return is_bool(obj);
+		case KEY:
+			return is_key(obj);
+	}
 }

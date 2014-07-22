@@ -28,6 +28,7 @@
 #define	is_char(obj) obj->type == CHAR
 #define	is_str(obj) obj->type == CHAR
 #define	is_bool(obj) obj->type == BOOL 
+#define	is_key(obj) obj->type == KEY 
 
 #include "loli_obj.h"
 
@@ -41,5 +42,6 @@ extern loliObj* c_is_str(loliObj* obj);
 extern loliObj* c_is_cons(loliObj* obj);
 extern loliObj* c_is_num(loliObj* obj);
 extern loliObj* c_is_bool(loliObj* obj);
+extern loliObj* c_is_obj(loliObj* obj);
 
 #endif

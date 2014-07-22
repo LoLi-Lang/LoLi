@@ -31,8 +31,8 @@ enum loliType {
 	PROC,
 	STR,
 	CHAR,
-	BOOL,
-	_
+	KEY,
+	BOOL
 };
 
 struct loliObj {
@@ -64,6 +64,7 @@ struct loliObj {
 
 	struct {
 		loliObj* arg;
+		loliObj* itype;
 		loliObj* rtype;
 		loliObj* env;
 		loliObj* exp;
@@ -71,6 +72,7 @@ struct loliObj {
 
 	struct {
 		loliProc* proc;
+		loliObj* itype;
 		loliObj* rtype;
 	}PROC;
 
@@ -85,6 +87,10 @@ struct loliObj {
 	struct {
 		bool value;
 	}BOOL;
+
+	struct {
+		std::string value;
+	}KEY;
 
 	loliObj(loliType type){
 		this->type = type;
@@ -110,18 +116,18 @@ struct loliObj {
 					return o->STR.value == this->STR.value;
 				case loliType::PROC:
 					return o->PROC.proc == this->PROC.proc &&\
-					       o->PROC.rtype == this->PROC.rtype;
+					       o->PROC.itype == this->PROC.itype;
 				case loliType::CONS:
 					return o->CONS.head == this->CONS.head && o->CONS.tail == this->CONS.tail;
 				case loliType::LAMBDA:
 					return o->LAMBDA.arg == this->LAMBDA.arg &&\
-					       o->LAMBDA.rtype == this->LAMBDA.rtype &&\
+					       o->LAMBDA.itype == this->LAMBDA.itype &&\
 					       o->LAMBDA.env == this->LAMBDA.env &&\
 					       o->LAMBDA.exp == this->LAMBDA.exp && e;
 				case loliType::BOOL:
 					return this->BOOL.value == o->BOOL.value;
-				case loliType::_:
-					return this==o;
+				case loliType::KEY:
+					return this->KEY.value == o->KEY.value;
 
 			}
 		}
@@ -132,6 +138,7 @@ struct loliObj {
 extern loliObj* to_int(long int n);
 extern loliObj* to_flt(long double n);
 extern loliObj* to_sym(std::string n);
+extern loliObj* to_key(std::string n);
 extern loliObj* c_cons(loliObj* hd, loliObj* tl);
 extern loliObj* c_proc(loliObj::loliProc* pr);
 extern loliObj* to_lstring(std::string str);

@@ -42,6 +42,19 @@ loliObj* parse_string(std::string str){
 		}
 		return to_lstring(str.substr(1, str.length() - 2));
 	}
+	if(str[0] == ':'){
+		for(ulong i = 1; i < str.length(); i++){
+			if(is_spchar(str[i])){
+				if(i != 1){
+					return to_key(str.substr(1, i));
+				}else{
+					loli_err("Empty Keyword!");
+					return nil;
+				}
+			}
+		}
+		return to_key(str.substr(1));
+	}
 	if(str[0] == '('){
 		return parse_list(str.substr(1, str.length() - 2));
 	}
