@@ -21,9 +21,11 @@
 #include "include/loli_util.h"
 
 loliObj* eval_list(loliObj* lst);
+loliObj* eval_list(loliObj* lst, loliObj* env);
 
-loliObj* c_eval(loliObj* exp){
-	loliObj* env = exp->env;
+loliObj* c_eval(loliObj* exp);
+
+loliObj* c_eval(loliObj* exp, loliObj* env){
 	if(nilp(exp)){
 		return nil;
 	}
@@ -34,7 +36,6 @@ loliObj* c_eval(loliObj* exp){
 		case STR:
 		case LAMBDA:
 		case BOOL:
-		case TYPE:
 		case PROC:
 		case KEY:
 			return exp;
@@ -74,10 +75,10 @@ loliObj* c_eval(loliObj* exp){
 									return nil;
 								}else{
 									if(c_eval(cond)->equals(boolt)){
-										return c_eval(wt);
+										return c_eval(wt, env);
 									}else{
 										if(!nilp(wf) || wf != NULL){
-											return c_eval(wf);}
+											return c_eval(wf, env);}
 										else{
 											return nil;
 										}
@@ -89,10 +90,10 @@ loliObj* c_eval(loliObj* exp){
 									return nil;
 								}else{
 									if(c_eval(cond)->equals(boolt)){
-										return c_eval(wt);
+										return c_eval(wt, env);
 									}else{
 										if(!nilp(wf) || wf != NULL){
-											return c_eval(wf);}
+											return c_eval(wf, env);}
 										else{
 											return nil;
 										}
@@ -104,10 +105,10 @@ loliObj* c_eval(loliObj* exp){
 						}
 					case BOOL:
 						if(cond->equals(boolt)){
-							return c_eval(wt);
+							return c_eval(wt, env);
 						}else{
 							if(!nilp(wf) || wf != NULL){
-								return c_eval(wf);}
+								return c_eval(wf, env);}
 							else{
 								return nil;
 							}
@@ -117,13 +118,20 @@ loliObj* c_eval(loliObj* exp){
 						return nil;
 				}
 			}
-			return eval_list(exp);
+			return eval_list(exp, env);
 	}
 }
 
+loliObj* c_eval(loliObj* exp){
+	return c_eval(exp, exp->env);
+}
+
 loliObj* eval_list(loliObj* lst){
+	return eval_list(lst, lst->env);
+}
+
+loliObj* eval_list(loliObj* lst, loliObj* env){
 	loliObj* car = head(lst);
 	loliObj* cdr = tail(lst);
-	loliObj* env = lst->env;
 	return nil;
 }

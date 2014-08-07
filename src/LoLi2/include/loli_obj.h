@@ -31,7 +31,6 @@ enum loliType {
 	STR,
 	CHAR,
 	KEY,
-	TYPE,
 	BOOL
 };
 
@@ -92,11 +91,6 @@ struct loliObj {
 		std::string value;
 	}KEY;
 
-	struct {
-		loliObj* name;
-		loliObj* def;
-	}TYPE;
-
 	loliObj(loliType type){
 		this->type = type;
 	}
@@ -133,9 +127,6 @@ struct loliObj {
 					return this->BOOL.value == o->BOOL.value;
 				case loliType::KEY:
 					return this->KEY.value == o->KEY.value;
-				case loliType::TYPE:
-					return this->TYPE.name == o->TYPE.name && \
-				               this->TYPE.def == o->TYPE.name;
 
 			}
 		}

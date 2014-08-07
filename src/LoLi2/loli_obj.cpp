@@ -141,8 +141,6 @@ std::string toString(loliObj* obj){
 			return ":" + obj->KEY.value;
 		case BOOL:
 			return obj->BOOL.value ? "TRUE" : "FALSE";
-		case TYPE:
-			return "Type: " + toString(obj->TYPE.name) + " " + toString(obj->TYPE.def);
 	}
 }
 
@@ -168,8 +166,6 @@ std::string toString(loliType ty){
 			return "Boolean";
 		case KEY:
 			return "Keyword";
-		case TYPE:
-			return "Type";
 	}
 }
 

@@ -21,7 +21,7 @@
 
 #include "loli_obj.h"
 
-extern loliObj* c_eval(loliObj* exp);
+extern loliObj* c_eval(loliObj* exp, loliObj* env);
 extern loliObj* eval_list(loliObj* lst);
 
 #endif
