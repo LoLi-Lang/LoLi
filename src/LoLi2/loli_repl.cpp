@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  loli_eval.h
+ *       Filename:  loli_repl.cpp
  *
- *    Description:  Eval of LoLi
+ *    Description:  REPL of LoLi
  *
  *        Version:  1.0
- *        Created:  07/22/2014 03:25:29 AM
+ *        Created:  08/08/2014 10:28:56 AM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,13 +16,14 @@
  * =====================================================================================
  */
 
-#ifndef __LOLI_EVAL_
-#define __LOLI_EVAL_
+#include "include/loli_obj.h"
+#include "include/loli_env.h"
+#include "include/loli_eval.h"
+#include "include/loli_reader.h"
 
-#include "loli_obj.h"
+#include <iostream>
 
-extern loliObj* c_eval(loliObj* exp, loliObj* env);
-extern loliObj* c_eval(loliObj* exp);
-extern loliObj* eval_list(loliObj* lst);
-
-#endif
+void c_repl(loliObj* env){
+	std::cout<<"LoLi > ";
+	std::string tmp = read_pair();
+}
