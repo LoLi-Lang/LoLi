@@ -23,6 +23,7 @@ MAIN = \
      loli_parser.cpp\
      loli_util.cpp\
      loli_env.cpp\
+     loli_eval.cpp\
      loli_repl.cpp\
      loli_main.cpp
 
