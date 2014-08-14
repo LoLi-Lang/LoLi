@@ -20,6 +20,8 @@
 #include <string>
 #include <cstring>
 
+#include "include/loli_repl.h"
+
 #define VERSION "Dev alpha 1"
 
 void showHelp();
@@ -43,6 +45,7 @@ int main(int argc, char** argv){
 			return 0;
 		}else if(strcmp(argv[1], "--repl") == 0){
 			//REPL
+			c_repl();
 		}
 	}else{
 		std::cout<<"Please add an option"<<std::endl;

@@ -13,6 +13,7 @@ HEADERS = \
 	  include/loli_env.h\
 	  include/loli_stack.h\
 	  include/loli_parser.h\
+	  include/loli_repl.h\
 	  include/loli_reader.h
 
 MAIN = \
@@ -21,6 +22,8 @@ MAIN = \
      loli_reader.cpp\
      loli_parser.cpp\
      loli_util.cpp\
+     loli_env.cpp\
+     loli_repl.cpp\
      loli_main.cpp
 
 TEST = \
@@ -33,13 +36,13 @@ TEST = \
        loli_parser.cpp\
        loli2test.cpp
 
-currentg: 
+CURRENTG: 
 	$(CC) $(CFLAGSG) $(GCINCLUDE) $(GC) -o currentg $(MAIN)
 
-currentc:
+CURRENTC:
 	$(CLANG) $(CFLAGSC) $(GCINCLUDE) $(GC) -o currentc $(MAIN)
 
-test:	$(HEADERS)
+TEST:	$(HEADERS)
 	$(CLANG) $(CFLAGSC) $(GCINCLUDE) $(GC) -o test $(TEST)
 
 .PHONY: clean

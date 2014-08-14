@@ -26,4 +26,9 @@
 void c_repl(loliObj* env){
 	std::cout<<"LoLi > ";
 	std::string tmp = read_pair();
+	std::cout<<tmp<<std::endl;
+}
+
+void c_repl(){
+	c_repl(top_env);
 }
