@@ -66,56 +66,17 @@ loliObj* c_eval(loliObj* exp, loliObj* env){
 				}
 				loliObj* wt = head(tail(tail(exp)));
 				loliObj* wf = head(tail(tail(tail(exp))));
-				switch(cond->type){
-					case CONS:
-						switch(head(cond)->type){
-							case PROC:
-								if(!head(cond)->PROC.rtype->equals(to_key("BOOL"))){
-									loli_err("Error! Need a BOOL for if, but get a " + toString(head(cond)->PROC.rtype));
-									return nil;
-								}else{
-									if(c_eval(cond)->equals(boolt)){
-										return c_eval(wt, env);
-									}else{
-										if(!nilp(wf) || wf != NULL){
-											return c_eval(wf, env);}
-										else{
-											return nil;
-										}
-									}
-								}
-							case LAMBDA:
-								if(!head(cond)->LAMBDA.rtype->equals(to_key("BOOL"))){
-									loli_err("Error! Need a BOOL for if, but get a " + toString(head(cond)->LAMBDA.rtype));
-									return nil;
-								}else{
-									if(c_eval(cond)->equals(boolt)){
-										return c_eval(wt, env);
-									}else{
-										if(!nilp(wf) || wf != NULL){
-											return c_eval(wf, env);}
-										else{
-											return nil;
-										}
-									}
-								}
-							default:
-								loli_err("Error! Need a BOOL for if, but get a " + toString(head(cond)->type));
-								return nil;
-						}
-					case BOOL:
-						if(cond->equals(boolt)){
-							return c_eval(wt, env);
-						}else{
-							if(!nilp(wf) || wf != NULL){
-								return c_eval(wf, env);}
-							else{
-								return nil;
-							}
-						}
-					default:
-						loli_err("Error! Need a BOOL for if, but get a " + toString(cond->type));
+				if(c_eval(cond, env)->equals(boolt)){
+					return c_eval(wt);
+				}else if(c_eval(cond, env)->equals(boolf)){
+					if(wf){
+						return c_eval(wf);
+					}else{
 						return nil;
+					}
+				}else{
+					loli_err("Condition error");
+					return nil;
 				}
 			}
 			return eval_list(exp, env);

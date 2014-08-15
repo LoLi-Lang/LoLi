@@ -115,7 +115,7 @@ loliObj* parse_list(std::string str, loliObj* env){
 		}
 	}
 	if(nilp(parse_string(str, env))){
-		return nil;
+		return c_cons(nil, nil);
 	}
 	loliObj* tmp = c_cons(parse_string(str, env), nil);
 	tmp->env = env;

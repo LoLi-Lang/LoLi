@@ -34,6 +34,8 @@ int main(){
 	global_stack.push_obj(to_int(10000));
 	global_stack.push_obj(to_flt(123.456));
 	global_stack.push_obj(to_sym("test"));
+	global_stack.push_obj(boolt);
+	global_stack.push_obj(boolf);
 	global_stack.push_obj(c_cons(t, nil));
 	do{
 		cout<<toString(global_stack.pop_obj())<<endl;
@@ -43,9 +45,9 @@ int main(){
 	while(true){
 		cout<<"Get Input: ";
 		string tmp = read_pair();
-		cout<<"Input: "<<tmp<<endl;
+	//	cout<<"Input: "<<tmp<<endl;
 		loliObj* i = parse_string(tmp, top_env);
-		cout<<toString(i)<<endl;
+	//	cout<<toString(i)<<endl;
 		cout<<"Test Eval: \n" << toString(c_eval(i))<<endl;
 	}
 }

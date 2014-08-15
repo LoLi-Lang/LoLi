@@ -102,8 +102,8 @@ loliObj* nil = to_sym("nil");
 loliObj* t = to_sym("t");
 loliObj* quote = to_sym("quote");
 
-loliObj* boolt = to_bool(true);
-loliObj* boolf = to_bool(false);
+loliObj* boolt = to_key("true");
+loliObj* boolf = to_key("false");
 
 std::string toString(loliObj* obj){
 	switch(obj->type){
