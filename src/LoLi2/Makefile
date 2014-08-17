@@ -12,6 +12,8 @@ HEADERS = \
 	  include/loli_eval.h\
 	  include/loli_env.h\
 	  include/loli_stack.h\
+	  include/loli_apply.h\
+	  include/loli_prim.h\
 	  include/loli_parser.h\
 	  include/loli_repl.h\
 	  include/loli_reader.h
@@ -31,6 +33,8 @@ TEST = \
        loli_obj.cpp\
        loli_util.cpp\
        loli_reader.cpp\
+       loli_prim.cpp\
+       loli_apply.cpp\
        loli_eval.cpp\
        loli_env.cpp\
        loli_stack.cpp\

@@ -134,3 +134,7 @@ loliObj* c_div(loliObj* obj){
 		return to_flt(tmp);
 	}
 }
+
+loliObj* c_quote(loliObj* obj){
+	return head(obj);
+}

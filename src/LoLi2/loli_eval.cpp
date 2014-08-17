@@ -19,6 +19,7 @@
 #include "include/loli_obj.h"
 #include "include/loli_env.h"
 #include "include/loli_util.h"
+#include "include/loli_apply.h"
 
 #include <iostream>
 
@@ -97,8 +98,10 @@ loliObj* eval_list(loliObj* lst, loliObj* env){
 	loliObj* car = head(lst);
 	loliObj* cdr = tail(lst);
 	std::cout<<"HEAD: "<<toString(car)<<"\tTAIL: "<<toString(cdr)<<std::endl;
-	if(car->equals(to_sym("quote"))){
-		return head(cdr);
+	try{
+		return c_apply(get_type(PROC, car, env) ,cdr, env);
+	}catch(...){
+		loli_err("No matching function");
 	}
 	return nil;
 }
