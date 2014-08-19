@@ -99,7 +99,13 @@ loliObj* eval_list(loliObj* lst, loliObj* env){
 	loliObj* cdr = tail(lst);
 	std::cout<<"HEAD: "<<toString(car)<<"\tTAIL: "<<toString(cdr)<<std::endl;
 	try{
-		return c_apply(get_type(PROC, car, env) ,cdr, env);
+		if(!nilp(get_type(PROC, car, env))){
+			return c_apply(get_type(PROC, car, env) ,cdr, env);
+		}else if(!nilp(get_type(LAMBDA, car, env))){	
+			return c_apply(get_type(LAMBDA, car, env) ,cdr, env);
+		}else{
+			throw(nil);
+		}
 	}catch(...){
 		loli_err("No matching function");
 	}
