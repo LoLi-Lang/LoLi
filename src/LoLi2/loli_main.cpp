@@ -21,10 +21,15 @@
 #include <cstring>
 
 #include "include/loli_repl.h"
+#include "include/loli_obj.h"
+#include "include/loli_env.h"
+#include "include/loli_prim.h"
 
 #define VERSION "Dev alpha 1"
 
 void showHelp();
+
+loliObj* initTopEnv();
 
 int main(int argc, char** argv){
 	if(argc >= 2){
@@ -45,6 +50,7 @@ int main(int argc, char** argv){
 			return 0;
 		}else if(strcmp(argv[1], "--repl") == 0){
 			//REPL
+			loliObj* env = initTopEnv();
 			c_repl();
 		}
 	}else{
@@ -63,4 +69,10 @@ void showHelp(){
 		\t--help\tShow help\n \
 		\t--version\tDisplay the current version\n" \
 		<<std::endl;
+}
+
+loliObj* initTopEnv(){
+	loliObj* tmp = top_env;
+	
+	return tmp;
 }
