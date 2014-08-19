@@ -26,6 +26,7 @@ MAIN = \
      loli_util.cpp\
      loli_env.cpp\
      loli_eval.cpp\
+     loli_apply.cpp\
      loli_repl.cpp\
      loli_main.cpp
 
