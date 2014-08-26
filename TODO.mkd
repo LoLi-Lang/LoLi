@@ -1,8 +1,6 @@
-1. Implement the LoLi VM and the LoLi -> CPP Compiler
+1. Implement the LoLi Compiler (Aka LLVM frontend)
 
-2. Implement the parser that parse SEXP to AST
-
->The LoLi CONS itself is AST
+2. Implement the LoLi type system (Typeclass)
 
 3. Start to build the new Read-Parse module
 
