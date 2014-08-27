@@ -28,6 +28,9 @@ class loliTypeClass {
 	std::string identifier;
 	T value;
 
+	std::string toString(){
+		return identifier;
+	}
 	//Contructures:
 	loliTypeClass(){
 		this->value = NULL;
@@ -45,7 +48,7 @@ class loliTypeClass {
 		this->value = NULL;
 		this->parentType = type;
 		this->identifier = id;
-	}
+	} //inherit from an exisiting type
 
 	loliTypeClass(T value, loliTypeClass* p, std::string id){
 		this->value = value;
