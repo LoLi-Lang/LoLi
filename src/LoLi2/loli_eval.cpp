@@ -23,91 +23,56 @@
 
 #include <iostream>
 
-loliObj* eval_list(loliObj* lst);
 loliObj* eval_list(loliObj* lst, loliObj* env);
 
-loliObj* c_eval(loliObj* exp);
-
-loliObj* c_eval(loliObj* exp, loliObj* env){
-	if(nilp(exp)){
-		return nil;
+loliObj* loliSym::eval(loliObj* env){
+	if(env->nilp() || env == NULL){
+		loliObj* r = lookup_top_env(this);
+		if(r->nilp()){
+			loli_err("Symbol: " + this->toString() + " is unbound.");
+			return nil;
+		}else{
+			return r;
+		}
+	}else{
+		loliObj* r = lookup_env(this, env);
+		if(r->nilp()){
+			loli_err("Symbol: " + this->toString() + " is unbound in its environment.");
+			return nil;
+		}else{
+			return r;
+		}
 	}
-	switch(exp->type){
-		case INT:
-		case FLT:
-		case CHAR:
-		case STR:
-		case LAMBDA:
-		case BOOL:
-		case PROC:
-		case KEY:
-			return exp;
-		case SYM:
-			if(nilp(env) || env == NULL){
-				loliObj* r = lookup_top_env(exp);
-				if(nilp(r)){
-					loli_err("Symbol: " + toString(exp) + " is unbound.");
-					return nil;
-				}else{
-					return r;
-				}
+}
+
+loliObj* loliCons::eval(loliObj* env){
+	if(this->head() == SYM("if")){
+		loliObj* cond = lcons(this->tail())->head();
+		if(this->tail()->nilp()){
+			loli_err("Need at least one expression for if");
+			return nil;
+		}
+		loliObj* wt = lcons(lcons(this->tail())->tail())->head();
+		loliObj* wf = lcons(lcons(lcons(this->tail())->tail())->tail())->head();
+		if(cond->eval(env)==boolt){
+			return wt->eval(top_env);
+		}else if(cond->eval(env)==boolf){
+			if(wf){
+				return wf->eval(top_env);
 			}else{
-				loliObj* r = lookup_env(exp, env);
-				if(nilp(r)){
-					loli_err("Symbol: " + toString(exp) + " is unbound in its environment.");
-					return nil;
-				}else{
-					return r;
-				}
+				return nil;
 			}
-		case CONS:
-			if(head(exp)->equals(to_sym("if"))){
-				loliObj* cond = head(tail(exp));
-				if(nilp(tail(exp))){
-					loli_err("Need at least one expression for if");
-					return nil;
-				}
-				loliObj* wt = head(tail(tail(exp)));
-				loliObj* wf = head(tail(tail(tail(exp))));
-				if(c_eval(cond, env)->equals(boolt)){
-					return c_eval(wt);
-				}else if(c_eval(cond, env)->equals(boolf)){
-					if(wf){
-						return c_eval(wf);
-					}else{
-						return nil;
-					}
-				}else{
-					loli_err("Condition error");
-					return nil;
-				}
-			}
-			return eval_list(exp, env);
+		}else{
+			loli_err("Condition error");
+			return nil;
+		}
 	}
-}
-
-loliObj* c_eval(loliObj* exp){
-	return c_eval(exp, exp->env);
-}
-
-loliObj* eval_list(loliObj* lst){
-	return eval_list(lst, lst->env);
+	return eval_list(this, env);
 }
 
 loliObj* eval_list(loliObj* lst, loliObj* env){
-	loliObj* car = head(lst);
-	loliObj* cdr = tail(lst);
-	std::cout<<"HEAD: "<<toString(car)<<"\tTAIL: "<<toString(cdr)<<std::endl;
-	try{
-		if(!nilp(get_type(PROC, car, env))){
-			return c_apply(get_type(PROC, car, env) ,cdr, env);
-		}else if(!nilp(get_type(LAMBDA, car, env))){	
-			return c_apply(get_type(LAMBDA, car, env) ,cdr, env);
-		}else{
-			throw(nil);
-		}
-	}catch(...){
-		loli_err("No matching function");
-	}
+	loliObj* car = lcons(lst)->head();
+	loliObj* cdr = lcons(lst)->tail();
+	std::cout<<"HEAD: "<<car->toString()<<"\tTAIL: "<<cdr->toString()<<std::endl;
 	return nil;
 }

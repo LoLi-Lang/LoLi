@@ -20,6 +20,7 @@
 #define __LOLI_ENV_
 
 #include "loli_obj.h"
+#include "loli_typeclass.h"
 
 extern loliObj* top_env;
 
@@ -28,7 +29,7 @@ extern loliObj* add_to_env(loliObj* obj, loliObj* env);
 extern loliObj* add_to_top_env(loliObj* obj);
 extern loliObj* lookup_env(loliObj* sym, loliObj* env);
 extern loliObj* lookup_top_env(loliObj* sym);
-extern loliObj* get_type(loliType type, loliObj* sym, loliObj* env);
+extern loliObj* get_type(loliTypeClass* type, loliObj* sym, loliObj* env);
 
 //Primitive functions:
 extern loliObj* c_def(loliObj* obj);

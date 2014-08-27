@@ -22,41 +22,66 @@
 #include "loli_obj.h"
 #include <string>
 
-template <class T>
+class loliTypeClass;
+
+extern loliTypeClass* typeOBJ;
+extern loliTypeClass* typeNUM;
+extern loliTypeClass* typeINT;
+extern loliTypeClass* typeFLT;
+extern loliTypeClass* typeSYM;
+extern loliTypeClass* typeKEY;
+extern loliTypeClass* typeCONS;
+extern loliTypeClass* typeFN;
+extern loliTypeClass* typePROC;
+extern loliTypeClass* typeLAMBDA;
+extern loliTypeClass* typeCHAR;
+extern loliTypeClass* typeSTRING;
+extern loliTypeClass* typeBOOL;
+
 class loliTypeClass {
-	loliTypeClass * parentType;
+	public:
+	loliTypeClass * parentType = typeOBJ;
 	std::string identifier;
-	T value;
 
 	std::string toString(){
 		return identifier;
 	}
 	//Contructures:
 	loliTypeClass(){
-		this->value = NULL;
 		this->parentType = NULL;
 		this->identifier = "";
 	}
 
-	loliTypeClass(T value, std::string id){
-		this->value = value;
+	loliTypeClass(std::string id){
 		this->parentType = NULL;
 		this->identifier = id;
 	}
 
 	loliTypeClass(loliTypeClass* type, std::string id){
-		this->value = NULL;
 		this->parentType = type;
 		this->identifier = id;
-	} //inherit from an exisiting type
+	}
 
-	loliTypeClass(T value, loliTypeClass* p, std::string id){
-		this->value = value;
-		this->parentType = p;
-		this->identifier = id;
+	bool operator<=(loliTypeClass* o){
+		if(o==typeOBJ){
+			return true;
+		}else{
+			loliTypeClass* tmp = this;
+			while(tmp != typeOBJ){
+				if(tmp == o){
+					delete tmp;
+					return true;
+				}else{
+					tmp = tmp->parentType;
+				}
+			}
+			delete tmp;
+			return false;
+		}
 	}
 
 	~loliTypeClass();
 };
+
 
 #endif

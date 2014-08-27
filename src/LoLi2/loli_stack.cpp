@@ -27,7 +27,7 @@ loliStack global_stack;
 std::string stack_to_string(loliStack stack){
 	std::string tmp = "";
 	for(int i = 0 ; i < stack.obj_in_stack; i++){
-		tmp = tmp + "Stack [" + std::to_string(i) + "]: " + toString(&stack.stack[i]) + "\n";
+		tmp = tmp + "Stack [" + std::to_string(i) + "]: " + (&stack.stack[i])->toString() + "\n";
 	}
 	return tmp;
 }

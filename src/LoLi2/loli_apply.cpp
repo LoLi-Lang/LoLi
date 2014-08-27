@@ -20,19 +20,20 @@
 #include "include/loli_util.h"
 #include "include/loli_eval.h"
 #include "include/loli_env.h"
+#include "include/loli_typeclass.h"
 
 loliObj* c_apply (loliObj* fn, loliObj* args, loliObj* env){
-	if(fn->type == PROC){
-		return fn->PROC.proc(args);
-	}else if(fn->type == LAMBDA){
+	if(fn->type == typePROC){
+		return ((loliPrim*)fn)->proc(args);
+	}else if(fn->type == typeLAMBDA){
 		loliObj* tmpe = env;
-		for(loliObj* e = fn->env; !nilp(head(e)); e = tail(e)){
-			tmpe = add_to_env(to_env_entry(head(e), head(args)), tmpe);
-			args = tail(args);
+		for(loliObj* e = fn->env;!((loliCons*)e)->head()->nilp() ; e = ((loliCons*)e)->tail()){
+			tmpe = add_to_env(to_env_entry(((loliCons*)e)->head(), ((loliCons*)args)->head(), tmpe);
+			args = ((loliCons*)args)->tail();
 		}
-		return c_eval(fn->LAMBDA.exp, tmpe);
+		return c_eval(((loliLambda*)fn)->exp, tmpe);
 	}else{
-		loli_err(toString(fn) + " is not appliable!");
+		loli_err(fn->toString() + " is not appliable!");
 		return nil;
 	}
 }

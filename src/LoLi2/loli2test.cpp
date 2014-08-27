@@ -31,23 +31,23 @@
 using namespace std;
 
 int main(){
-	global_stack.push_obj(to_int(10000));
-	global_stack.push_obj(to_flt(123.456));
-	global_stack.push_obj(to_sym("test"));
+	global_stack.push_obj(INT(10000));
+	global_stack.push_obj(FLT(123.456));
+	global_stack.push_obj(SYM("test"));
 	global_stack.push_obj(boolt);
 	global_stack.push_obj(boolf);
-	global_stack.push_obj(c_cons(t, nil));
+	global_stack.push_obj(CONS(t, nil));
 	do{
-		cout<<toString(global_stack.pop_obj())<<endl;
+		cout<<global_stack.pop_obj()->toString()<<endl;
 	}while(!global_stack.isEmpty());
-	loliObj* test = c_cons(to_sym("a"), c_cons(to_sym("b"), c_cons(to_sym("c"), c_cons(to_sym("d"), nil))));
-	cout<<"Length of "<< toString(test)<<": "<< length(test)<<endl;
+	loliObj* test = CONS(SYM("a"), CONS(SYM("b"), CONS(SYM("c"), sCONS(SYM("d")))));
+	cout<<"Length of "<< test->toString()<<": "<< test->length()<<endl;
 	while(true){
 		cout<<"Get Input: ";
 		string tmp = read_pair();
 	//	cout<<"Input: "<<tmp<<endl;
 		loliObj* i = parse_string(tmp, top_env);
 	//	cout<<toString(i)<<endl;
-		cout<<"Test Eval: \n" << toString(c_eval(i))<<endl;
+		cout<<"Test Eval: \n" << c_eval(i)->toString()<<endl;
 	}
 }

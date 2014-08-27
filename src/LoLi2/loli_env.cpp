@@ -17,16 +17,17 @@
  */
 
 #include "include/loli_obj.h"
+#include "include/loli_typeclass.h"
 #include "include/loli_util.h"
 
 loliObj* top_env = nil;
 
 loliObj* to_env_entry(loliObj* sym, loliObj* value){
-	return c_cons(sym, value);
+	return CONS(sym, value);
 }
 
 loliObj* add_to_env(loliObj* obj, loliObj* env){
-	return c_cons(obj, env);
+	return CONS(obj, env);
 }
 
 void add_to_top_env(loliObj* obj){
@@ -35,9 +36,9 @@ void add_to_top_env(loliObj* obj){
 
 loliObj* lookup_env(loliObj* sym, loliObj* env){
 	loliObj* result = nil;
-	for(loliObj* e = env; !nilp(e); e = tail(e)){
-		if(head(head(e))->equals(sym)){
-			result = c_cons(tail(head(e)), result);
+	for(loliObj* e = env; !e->nilp(); e = lcons(e)->tail()){
+		if(lsym(lcons(lcons(e)->head())->head()) == sym){
+			result = CONS(lcons(lcons(e)->head())->tail(), result);
 		}
 	}
 	return result;
@@ -47,24 +48,24 @@ loliObj* lookup_top_env(loliObj* sym){
 	return lookup_env(sym, top_env);
 }
 
-loliObj* get_type(loliType type, loliObj* sym, loliObj* env){
+loliObj* get_type(loliTypeClass* type, loliObj* sym, loliObj* env){
 	loliObj* tmp = lookup_env(sym, env);
-	if(nilp(tmp)){
+	if(tmp->nilp()){
 		return nil;
 	}
-	for(loliObj* e = tmp; !nilp(e); e = tail(e)){
-		if(head(e)->type == type){
-			return head(e);
+	for(loliObj* e = tmp; !e->nilp(); e = lcons(e)->tail()){
+		if(lcons(e)->head()->type <= type){
+			return lcons(e)->head();
 		}
 	}
 	return nil;
 }
 
 loliObj* c_def(loliObj* obj){
-	loliObj* sym = head(obj);
-	loliObj* value = head(tail(obj));
-	if(!nilp(get_type(value->type, sym, top_env))){
-		loli_err("Object: "+ toString(sym)  +" already exist, use set! to change the value");
+	loliObj* sym = lsym(lcons(obj)->head());
+	loliObj* value = lcons(lcons(obj)->tail())->head();
+	if(!get_type(value->type, sym, top_env)->nilp()){
+		loli_err("Object: "+ sym->toString()  +" already exist, use set! to change the value");
 		return nil;
 	}else{
 		add_to_top_env(to_env_entry(sym, value));
@@ -73,10 +74,10 @@ loliObj* c_def(loliObj* obj){
 }
 
 loliObj* c_set(loliObj* obj){
-	loliObj* sym = head(obj);
-	loliObj* value = head(tail(obj));
-	if(nilp(get_type(value->type, sym, top_env))){
-		loli_err("Symbol: "+ toString(sym) +" is not defined with this type, ues def to define");
+	loliObj* sym = lsym(lcons(obj)->head());
+	loliObj* value = lcons(lcons(obj)->tail())->head();
+	if(get_type(value->type, sym, top_env)->nilp()){
+		loli_err("Symbol: "+ sym->toString() +" is not defined with this type, ues def to define");
 		return nil;
 	}else{
 		*get_type(value->type, sym, top_env) = *to_env_entry(sym, value);
