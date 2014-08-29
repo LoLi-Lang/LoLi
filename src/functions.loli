@@ -4,9 +4,7 @@
 		(cons start (.. (add1 start) end)))))
 
 (def null? (\ (obj)
-	(if (eq? nil obj)
-		t
-		nil)))
+	(eq? nil obj)))
 
 (def append (\ (lsta lstb)
 	(if (null? lsta)
