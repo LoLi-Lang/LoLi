@@ -48,12 +48,12 @@ class loliTypeClass {
 	}
 	//Contructures:
 	loliTypeClass(){
-		this->parentType = NULL;
+		this->parentType = typeOBJ;
 		this->identifier = "";
 	}
 
 	loliTypeClass(std::string id){
-		this->parentType = NULL;
+		this->parentType = typeOBJ;
 		this->identifier = id;
 	}
 

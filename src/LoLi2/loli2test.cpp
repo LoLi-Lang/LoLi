@@ -48,6 +48,6 @@ int main(){
 	//	cout<<"Input: "<<tmp<<endl;
 		loliObj* i = parse_string(tmp, top_env);
 	//	cout<<toString(i)<<endl;
-		cout<<"Test Eval: \n" << c_eval(i)->toString()<<endl;
+		cout<<"Test Eval: \n" << i->eval(top_env)->toString()<<endl;
 	}
 }

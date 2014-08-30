@@ -23,6 +23,7 @@
 #include <string>
 
 //Macros
+#define lnum(x) 	((loliNum*)x)
 #define lint(x) 	((loliInt*)x)
 #define lflt(x)		((loliFlt*)x)
 #define lchar(x)	((loliChar*)x)
@@ -54,10 +55,10 @@ class loliObj {
 		typedef loliObj* (loliProc)(loliObj*);
 		loliTypeClass *type = typeOBJ;
 		loliObj* 	env;
-		virtual std::string toString();
-		virtual int length();
-		virtual loliObj* eval(loliObj* env);
-		virtual bool operator==(loliObj* o);
+		virtual std::string toString(){return "";}
+		virtual int length(){return 1;}
+		virtual loliObj* eval(loliObj* env){return this;}
+		virtual bool operator==(loliObj* o){return *this == o;}
 		bool operator!=(loliObj* o){
 			return !(this==o);
 		}
@@ -65,12 +66,16 @@ class loliObj {
 			return this==nil;
 		}
 
-		loliObj(){};
+		loliObj(){
+			env = nil;
+		};
 };
 
 class loliNum : public loliObj { //Place holder
 	public:
 		loliTypeClass *type = typeNUM;
+		double value;
+
 		int length(){
 			return 1;
 		}
