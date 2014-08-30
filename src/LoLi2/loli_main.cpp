@@ -25,7 +25,7 @@
 #include "include/loli_env.h"
 #include "include/loli_prim.h"
 
-#define VERSION "Dev alpha 1"
+#define VERSION "Dev alpha 2"
 
 void showHelp();
 

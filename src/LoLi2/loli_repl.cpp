@@ -32,7 +32,7 @@ void c_repl(loliObj* env){
 		try{
 			//EVAL
 			loliObj* exp = parse_string(input, env);
-			std::cout<<toString(c_eval(exp))<<std::endl;
+			std::cout<<exp->eval(env)->toString()<<std::endl;
 		}catch(...){
 			loli_err("Error while evaluating: \n" + input);
 			break;
