@@ -74,7 +74,8 @@ class loliObj {
 class loliNum : public loliObj { //Place holder
 	public:
 		loliTypeClass *type = typeNUM;
-		double value;
+
+		virtual long double getValue(){return 0;}
 
 		int length(){
 			return 1;
@@ -89,6 +90,10 @@ class loliInt : public loliNum {
 	public:
 		long int value;
 		loliTypeClass *type = typeINT;
+
+		long double getValue(){
+			return this->value;
+		}
 
 		std::string toString(){
 			return std::to_string(value);
@@ -115,6 +120,10 @@ class loliFlt: public loliNum {
 	public:
 		long double value;
 		loliTypeClass *type = typeFLT;
+
+		long double getValue(){
+			return this->value;
+		}
 
 		std::string toString(){
 			return std::to_string(value);

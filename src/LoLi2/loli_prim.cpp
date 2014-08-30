@@ -24,7 +24,7 @@ loliNum* c_plus(loliObj* obj){
 	double tmp = 0;
 	for(loliObj* o = obj; !o->nilp(); o = lcons(o)->tail()){
 		if(lcons(o)->head()->type <= typeNUM){
-			tmp = tmp + lnum(lcons(o)->head())->value;
+			tmp = tmp + lnum(lcons(o)->head())->getValue();
 		}
 		else{
 			loli_err(lcons(o)->head()->toString() + " is not a number!");
@@ -42,7 +42,7 @@ loliNum* c_mult(loliObj* obj){
 	double tmp = 0;
 	for(loliObj* o = obj; !o->nilp(); o = lcons(o)->tail()){
 		if(lcons(o)->head()->type <= typeNUM){
-			tmp = tmp * lnum(lcons(o)->head())->value;
+			tmp = tmp * lnum(lcons(o)->head())->getValue();
 		}
 		else{
 			loli_err(lcons(o)->head()->toString() + " is not a number!");
@@ -60,7 +60,7 @@ loliNum* c_sub(loliObj* obj){
 	double tmp = 0;
 	for(loliObj* o = obj; !o->nilp(); o = lcons(o)->tail()){
 		if(lcons(o)->head()->type <= typeNUM){
-			tmp = tmp - lnum(lcons(o)->head())->value;
+			tmp = tmp - lnum(lcons(o)->head())->getValue();
 		}
 		else{
 			loli_err(lcons(o)->head()->toString() + " is not a number!");
@@ -78,8 +78,8 @@ loliNum* c_div(loliObj* obj){
 	double tmp = 0;
 	for(loliObj* o = obj; !o->nilp(); o = lcons(o)->tail()){
 		if(lcons(o)->head()->type <= typeNUM){
-			if(lnum(lcons(o)->head())->value != 0){
-			tmp = tmp / lnum(lcons(o)->head())->value;
+			if(lnum(lcons(o)->head())->getValue() != 0){
+			tmp = tmp / lnum(lcons(o)->head())->getValue();
 			}else{
 				loli_err("Error! Divide by ZERO!");
 				return INT(0);
