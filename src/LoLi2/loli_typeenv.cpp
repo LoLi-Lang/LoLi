@@ -18,5 +18,7 @@
 
 #include "include/loli_obj.h"
 #include "include/loli_typeclass.h"
+#include "include/loli_typeenv.h"
+
 
 
