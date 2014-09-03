@@ -27,19 +27,14 @@
 #include "include/loli_parser.h"
 #include "include/loli_eval.h"
 #include "include/loli_env.h"
+#include "include/loli_typeclass.h"
 
 using namespace std;
 
 int main(){
-	global_stack.push_obj(INT(10000));
-	global_stack.push_obj(FLT(123.456));
-	global_stack.push_obj(SYM("test"));
-	global_stack.push_obj(boolt);
-	global_stack.push_obj(boolf);
-	global_stack.push_obj(CONS(t, nil));
-	do{
-		cout<<global_stack.pop_obj()->toString()<<endl;
-	}while(!global_stack.isEmpty());
+    if(typeINT->isFrom(typeNUM)){
+        cout<<"INT <= NUM"<<endl;
+    }
 	loliObj* test = CONS(SYM("a"), CONS(SYM("b"), CONS(SYM("c"), sCONS(SYM("d")))));
 	cout<<"Length of "<< test->toString()<<": "<< test->length()<<endl;
 	while(true){

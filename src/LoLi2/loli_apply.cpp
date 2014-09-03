@@ -24,14 +24,14 @@
 
 loliObj* c_apply (loliObj* fn, loliObj* args, loliObj* env){
 	if(fn->type == typePROC){
-		return ((loliPrim*)fn)->proc(args);
+		return lproc(fn)->proc(args);
 	}else if(fn->type == typeLAMBDA){
 		loliObj* tmpe = env;
-		for(loliObj* e = fn->env;!((loliCons*)e)->head()->nilp() ; e = ((loliCons*)e)->tail()){
-			tmpe = add_to_env(to_env_entry(((loliCons*)e)->head(), ((loliCons*)args)->head()), tmpe);
-			args = ((loliCons*)args)->tail();
+		for(loliObj* e = fn->env;!lcons(e)->head()->nilp() ; e = lcons(e)->tail()){
+			tmpe = add_to_env(to_env_entry(lcons(e)->head(), lcons(args)->head()), tmpe);
+			args = lcons(args)->tail();
 		}
-		return ((loliLambda*)fn)->exp->eval(tmpe);
+		return llambda(fn)->exp->eval(tmpe);
 	}else{
 		loli_err(fn->toString() + " is not appliable!");
 		return nil;

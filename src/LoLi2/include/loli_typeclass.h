@@ -21,6 +21,7 @@
 
 #include "loli_obj.h"
 #include <string>
+#include <iostream>
 
 class loliTypeClass;
 
@@ -40,10 +41,10 @@ extern loliTypeClass* typeBOOL;
 
 class loliTypeClass {
 	public:
-	loliTypeClass * parentType = typeOBJ;
+	loliTypeClass * parentType;
 	std::string identifier;
 
-	std::string toString(){
+	const std::string toString(){
 		return identifier;
 	}
 	//Contructures:
@@ -62,25 +63,23 @@ class loliTypeClass {
 		this->identifier = id;
 	}
 
-	bool operator<=(loliTypeClass* o){
+	bool isFrom(loliTypeClass* o){
+        //when typeA <= typeB, typeA is an inheritor of typeB, e.g. typeINT <= typeNUM
 		if(o==typeOBJ){
 			return true;
-		}else{
-			loliTypeClass* tmp = this;
-			while(tmp != typeOBJ){
-				if(tmp == o){
-					delete tmp;
-					return true;
-				}else{
-					tmp = tmp->parentType;
-				}
-			}
-			delete tmp;
-			return false;
-		}
-	}
+        }else{
+            if(o == this){
+                return true;
+            }else{
+                if(this==typeOBJ && o!=typeOBJ){
+                    return false;
+                }
+                return this->parentType->isFrom(o);
+            }
+        }
+    }
 
-	~loliTypeClass();
+    ~loliTypeClass(){}
 };
 
 

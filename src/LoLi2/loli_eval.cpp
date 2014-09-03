@@ -71,8 +71,13 @@ loliObj* loliCons::eval(loliObj* env){
 }
 
 loliObj* eval_list(loliObj* lst, loliObj* env){
-	loliObj* car = lcons(lst)->head();
+	loliObj* car = lcons(lst)->head()->eval(env);
 	loliObj* cdr = lcons(lst)->tail();
 	std::cout<<"HEAD: "<<car->toString()<<"\tTAIL: "<<cdr->toString()<<std::endl;
+    if(car->type->isFrom(typeFN)){
+            return c_apply(car, cdr, env);
+    }else{
+            loli_err(car->toString() + " is not a function!");
+    }
 	return nil;
 }
