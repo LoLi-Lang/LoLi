@@ -26,6 +26,7 @@
 loliObj* eval_list(loliObj* lst, loliObj* env);
 
 loliObj* loliSym::eval(loliObj* env){
+    std::cout<<typeOBJ->toString()<<std::endl;
 	if(env->nilp() || env == NULL){
 		loliObj* r = lookup_top_env(this);
 		if(r->nilp()){
@@ -46,7 +47,8 @@ loliObj* loliSym::eval(loliObj* env){
 }
 
 loliObj* loliCons::eval(loliObj* env){
-	if(this->head() == SYM("if")){
+    std::cout<<typeOBJ->toString()<<std::endl;
+    if(this->head() == SYM("if")){
 		loliObj* cond = lcons(this->tail())->head();
 		if(this->tail()->nilp()){
 			loli_err("Need at least one expression for if");

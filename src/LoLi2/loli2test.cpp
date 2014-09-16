@@ -32,9 +32,11 @@
 using namespace std;
 
 int main(){
-    if(typeINT->isFrom(typeNUM)){
-        cout<<"INT <= NUM"<<endl;
-    }
+    cout<<typeOBJ->toString()<<endl;
+    cout<<typeNUM->toString()<<endl;
+    cout<<typeINT->toString()<<endl;
+    cout<<typeFLT->toString()<<endl;
+    cout<<typeSYM->toString()<<endl;
 	loliObj* test = CONS(SYM("a"), CONS(SYM("b"), CONS(SYM("c"), sCONS(SYM("d")))));
 	cout<<"Length of "<< test->toString()<<": "<< test->length()<<endl;
 	while(true){

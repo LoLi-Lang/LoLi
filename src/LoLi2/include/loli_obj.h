@@ -21,6 +21,7 @@
 
 #include "loli_typeclass.h"
 #include <string>
+#include <iostream>
 
 //Macros
 #define lnum(x) 	((loliNum*)x)
@@ -57,7 +58,10 @@ class loliObj {
 		loliObj* 	env;
 		virtual std::string toString(){return "";}
 		virtual int length(){return 1;}
-		virtual loliObj* eval(loliObj* env){return this;}
+		virtual loliObj* eval(loliObj* env){
+            //For debug:
+            std::cout<<typeOBJ->toString()<<std::endl;
+            return this;}
 		virtual bool operator==(loliObj* o){return *this == o;}
 		bool operator!=(loliObj* o){
 			return !(this==o);
@@ -82,6 +86,7 @@ class loliNum : public loliObj { //Place holder
 		}
 
 		loliObj* eval(loliObj* env){
+            std::cout<<typeOBJ->toString()<<std::endl;
 			return this;
 		}
 };
@@ -100,6 +105,7 @@ class loliInt : public loliNum {
 		}
 
 		loliInt(long int n){
+            this->type = typeINT;
 			value = n;
 		}
 
@@ -130,6 +136,7 @@ class loliFlt: public loliNum {
 		}
 
 		loliFlt(long double n){
+            this->type = typeFLT;
 			value = n;
 		}
 
@@ -157,6 +164,7 @@ class loliSym: public loliObj {
 		loliSym(){}
 
 		loliSym(std::string v){
+            this->type = typeSYM;
 			name = v;
 		}
 
@@ -187,6 +195,7 @@ class loliKey: public loliObj {
 		loliKey(){}
 
 		loliKey(std::string v){
+            this->type = typeKEY;
 			name = v;
 		}
 
@@ -203,6 +212,7 @@ class loliKey: public loliObj {
 		}
 
 		loliObj* eval(loliObj* env){
+            std::cout<<typeOBJ->toString()<<std::endl;
 			return this;
 		}
 };
@@ -228,16 +238,19 @@ class loliCons: public loliObj {
 		}
 
 		loliCons(){
+            this->type = typeCONS;
 			hd = nil;
 			tl = nil;
 		}
 
 		loliCons(loliObj* obj){
+            this->type = typeCONS;
 			hd = obj;
 			tl = nil;
 		}
 
 		loliCons(loliObj* hd, loliObj* tl){
+            this->type = typeCONS;
 			this->hd = hd;
 			this->tl = tl;
 		}
@@ -282,6 +295,7 @@ class loliFunction: public loliObj { //Place Holder
 		loliFunction(){}
 
 		loliObj* eval(loliObj* env){
+            std::cout<<typeOBJ->toString()<<std::endl;
 			return this;
 		}
 };
@@ -299,6 +313,7 @@ class loliPrim: public loliFunction {
 		loliPrim(){}
 
 		loliPrim(loliObj::loliProc* p, loliObj* r, loliObj* i){
+            this->type = typePROC;
 			this->proc = p;
 			this->rtype = r;
 			this->itype = i;
@@ -318,6 +333,7 @@ class loliLambda: public loliFunction {
 		loliLambda(){}
 
 		loliLambda(loliObj* rtype, loliObj* arg, loliObj* exp, loliObj* env){
+            this->type = typeLAMBDA;
 			this->rtype = rtype;
 			this->arg = arg;
 			this->exp = exp;
@@ -334,6 +350,7 @@ class loliChar: public loliObj {
 		loliChar(){}
 
 		loliChar(char c){
+            this->type = typeCHAR;
 			this->value = c;
 		}
 
@@ -346,6 +363,7 @@ class loliChar: public loliObj {
 		}
 
 		loliObj* eval(loliObj* env){
+            std::cout<<typeOBJ->toString()<<std::endl;
 			return this;
 		}
 };
@@ -358,6 +376,7 @@ class loliString: public loliObj {
 		loliString(){}
 
 		loliString(std::string str){
+            this->type = typeSTRING;
 			this->value = str;
 		}
 
@@ -370,6 +389,7 @@ class loliString: public loliObj {
 		}
 
 		loliObj* eval(loliObj* env){
+            std::cout<<typeOBJ->toString()<<std::endl;
 			return this;
 		}
 };
@@ -382,6 +402,7 @@ class loliBool: public loliKey {
 		loliBool(){}
 
 		loliBool(bool b){
+            this->type = typeBOOL;
 			this->value = b;
 			if(b){
 				this->name = "true";
