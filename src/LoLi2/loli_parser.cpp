@@ -32,19 +32,19 @@ loliObj* parse_string(std::string str, loliObj* env){
 		return nil;
 	}
 	if(str[0] == '\''){
-		loliObj* tmp = CONS(quote, CONS(parse_string(str.substr(1), env), nil));
+		loliCons* tmp = CONS(quote, CONS(parse_string(str.substr(1), env), nil));
 		tmp->env = env;
 		return tmp;
 	}
 	if(str[0] == '\"'){
 		for(ulong i = 1; i < str.length(); i++){
 			if(str[i] == '\"'){
-				loliObj* tmp = STRING(str.substr(1, i - 1));
+				loliString* tmp = STRING(str.substr(1, i - 1));
 				tmp->env = env;
 				return tmp;
 			}
 		}
-		loliObj* tmp = STRING(str.substr(1, str.length() - 2));
+		loliString* tmp = STRING(str.substr(1, str.length() - 2));
 		tmp->env = env;
 		return tmp;
 	}
@@ -52,7 +52,7 @@ loliObj* parse_string(std::string str, loliObj* env){
 		for(ulong i = 1; i < str.length(); i++){
 			if(is_spchar(str[i])){
 				if(i != 1){
-					loliObj* tmp = KEY(str.substr(1, i));
+					loliKey* tmp = KEY(str.substr(1, i));
 					tmp->env = env;
 					return tmp;
 				}else{
@@ -61,22 +61,22 @@ loliObj* parse_string(std::string str, loliObj* env){
 				}
 			}
 		}
-		loliObj* tmp = KEY(str.substr(1));
+		loliKey* tmp = KEY(str.substr(1));
 		tmp->env = env;
 		return tmp;
 	}
 	if(str[0] == '('){
-		loliObj* tmp = parse_list(str.substr(1, str.length() - 2), env);
+		auto* tmp = parse_list(str.substr(1, str.length() - 2), env);
 		tmp->env = env;
 		return tmp;
 	}
 	try{
 		if(stol(str) == stold(str)){
-			loliObj* tmp = INT(stol(str));
+			loliInt* tmp = INT(stol(str));
 			tmp->env = env;
 			return tmp;
 		}else{
-			loliObj* tmp = INT(stold(str));
+			loliFlt* tmp = FLT(stold(str));
 			tmp->env = env;
 			return tmp;
 		}
@@ -89,7 +89,7 @@ loliObj* parse_string(std::string str, loliObj* env){
 		}
 	}
 	//Default return is a symbol
-	loliObj* tmp = SYM(str);
+	loliSym* tmp = SYM(str);
 	tmp->env = env;
 	return tmp;
 }

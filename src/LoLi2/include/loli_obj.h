@@ -54,7 +54,7 @@ extern loliObj* nil;
 class loliObj {
 	public:	
 		typedef loliObj* (loliProc)(loliObj*);
-		loliTypeClass *type = typeOBJ;
+		loliTypeClass *type;
 		loliObj* 	env;
 		virtual std::string toString(){return "";}
 		virtual int length(){return 1;}
@@ -71,6 +71,7 @@ class loliObj {
 		}
 
 		loliObj(){
+            this->type = typeOBJ;
 			env = nil;
 		};
 };

@@ -65,15 +65,15 @@ class loliTypeClass {
 
 	bool isFrom(loliTypeClass* o){
         //when typeA <= typeB, typeA is an inheritor of typeB, e.g. typeINT <= typeNUM
-		if(o==typeOBJ){
-			return true;
+        if(this==typeOBJ && o!=typeOBJ){
+            return false;
+        }
+        if(o==typeOBJ){
+            return true;
         }else{
             if(o == this){
                 return true;
             }else{
-                if(this==typeOBJ && o!=typeOBJ){
-                    return false;
-                }
                 return this->parentType->isFrom(o);
             }
         }
