@@ -86,7 +86,7 @@ class loliNum : public loliObj { //Place holder
 		}
 
 		loliObj* eval(loliObj* env){
-            std::cout<<typeOBJ->toString()<<std::endl;
+            std::cout<<this->type->toString()<<std::endl;
 			return this;
 		}
 };
@@ -107,6 +107,11 @@ class loliInt : public loliNum {
 		loliInt(long int n){
             this->type = typeINT;
 			value = n;
+		}
+
+		loliObj* eval(loliObj* env){
+            std::cout<<this->type->toString()<<std::endl;
+			return this;
 		}
 
 		loliInt(){
@@ -138,6 +143,11 @@ class loliFlt: public loliNum {
 		loliFlt(long double n){
             this->type = typeFLT;
 			value = n;
+		}
+
+		loliObj* eval(loliObj* env){
+            std::cout<<this->type->toString()<<std::endl;
+			return this;
 		}
 
 		loliFlt(){
@@ -212,7 +222,7 @@ class loliKey: public loliObj {
 		}
 
 		loliObj* eval(loliObj* env){
-            std::cout<<typeOBJ->toString()<<std::endl;
+            std::cout<<this->type->toString()<<std::endl;
 			return this;
 		}
 };
@@ -295,7 +305,7 @@ class loliFunction: public loliObj { //Place Holder
 		loliFunction(){}
 
 		loliObj* eval(loliObj* env){
-            std::cout<<typeOBJ->toString()<<std::endl;
+            std::cout<<this->type->toString()<<std::endl;
 			return this;
 		}
 };
@@ -363,7 +373,7 @@ class loliChar: public loliObj {
 		}
 
 		loliObj* eval(loliObj* env){
-            std::cout<<typeOBJ->toString()<<std::endl;
+            std::cout<<this->type->toString()<<std::endl;
 			return this;
 		}
 };
@@ -389,7 +399,7 @@ class loliString: public loliObj {
 		}
 
 		loliObj* eval(loliObj* env){
-            std::cout<<typeOBJ->toString()<<std::endl;
+            std::cout<<this->type->toString()<<std::endl;
 			return this;
 		}
 };
