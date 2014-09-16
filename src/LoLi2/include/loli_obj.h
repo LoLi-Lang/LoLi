@@ -60,7 +60,7 @@ class loliObj {
 		virtual int length(){return 1;}
 		virtual loliObj* eval(loliObj* env){
             //For debug:
-            std::cout<<typeOBJ->toString()<<std::endl;
+            std::cout<<type->toString()<<std::endl;
             return this;}
 		virtual bool operator==(loliObj* o){return *this == o;}
 		bool operator!=(loliObj* o){
@@ -71,7 +71,6 @@ class loliObj {
 		}
 
 		loliObj(){
-            this->type = typeOBJ;
 			env = nil;
 		};
 };
