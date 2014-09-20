@@ -50,6 +50,11 @@
 class loliObj;
 
 extern loliObj* nil;
+extern loliObj* t;
+extern loliObj* quote;
+
+extern loliObj* boolt;
+extern loliObj* boolf;
 
 class loliObj {
 	public:	
@@ -71,6 +76,7 @@ class loliObj {
 		}
 
 		loliObj(){
+            this->type = typeOBJ;
 			env = nil;
 		};
 };
@@ -180,7 +186,7 @@ class loliSym: public loliObj {
 
 		bool operator==(loliObj* o){
 			if(o->type == this->type){
-				return ((loliSym*)o)->name == this->name;
+				return lsym(o)->name == this->name;
 			}else{
 				return false;
 			}
@@ -421,11 +427,5 @@ class loliBool: public loliKey {
 			}
 		}
 };
-
-extern loliObj* t;
-extern loliObj* quote;
-
-extern loliObj* boolt;
-extern loliObj* boolf;
 
 #endif

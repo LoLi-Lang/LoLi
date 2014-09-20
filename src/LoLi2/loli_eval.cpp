@@ -26,6 +26,12 @@
 loliObj* eval_list(loliObj* lst, loliObj* env);
 
 loliObj* loliSym::eval(loliObj* env){
+    if(this->name == "t" || this == t){
+        return t;
+    }
+    if(this->name == "nil" || this == nil){
+        return nil;
+    }
     std::cout<<this->type->toString()<<std::endl;
 	if(env->nilp() || env == NULL){
 		loliObj* r = lookup_top_env(this);

@@ -37,14 +37,23 @@ int main(){
     cout<<typeINT->toString()<<endl;
     cout<<typeFLT->toString()<<endl;
     cout<<typeSYM->toString()<<endl;
-	loliObj* test = CONS(SYM("a"), CONS(SYM("b"), CONS(SYM("c"), sCONS(SYM("d")))));
-	cout<<"Length of "<< test->toString()<<": "<< test->length()<<endl;
-	while(true){
-		cout<<"Get Input: ";
-		string tmp = read_pair();
-	//	cout<<"Input: "<<tmp<<endl;
-		loliObj* i = parse_string(tmp, top_env);
-	//	cout<<toString(i)<<endl;
-		cout<<"Test Eval: \n" << i->eval(top_env)->toString()<<endl;
-	}
+    loliObj* test = CONS(SYM("a"), CONS(SYM("b"), CONS(SYM("c"), sCONS(SYM("d")))));
+    cout<<"Length of "<< test->toString()<<": "<< test->length()<<endl;
+    add_to_top_env(to_env_entry(SYM("nil"), nil));
+    add_to_top_env(to_env_entry(SYM("t"), t));
+    add_to_top_env(to_env_entry(SYM("quote"), quote));
+    add_to_top_env(to_env_entry(KEY("true"), boolt));
+    add_to_top_env(to_env_entry(KEY("false"), boolf));
+    while(true){
+        cout<<"Get Input: ";
+        string tmp = read_pair();
+        //	cout<<"Input: "<<tmp<<endl;
+        while(isspace(tmp[0])){
+            tmp=tmp.substr(1);
+        }
+        if(tmp[0] != '\0'){
+            loliObj* i = parse_string(tmp, top_env);
+            cout<<"Test Eval: \n" << i->eval(top_env)->toString()<<endl;
+        }
+    }
 }

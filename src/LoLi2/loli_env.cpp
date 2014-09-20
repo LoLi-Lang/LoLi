@@ -20,6 +20,8 @@
 #include "include/loli_typeclass.h"
 #include "include/loli_util.h"
 
+#include <iostream>
+
 loliObj* top_env = nil;
 
 loliObj* to_env_entry(loliObj* sym, loliObj* value){
@@ -36,8 +38,10 @@ void add_to_top_env(loliObj* obj){
 
 loliObj* lookup_env(loliObj* sym, loliObj* env){
 	loliObj* result = nil;
-	for(loliObj* e = env; !e->nilp(); e = lcons(e)->tail()){
-		if(lsym(lcons(lcons(e)->head())->head()) == sym){
+	for(auto e = env; !e->nilp(); e = lcons(e)->tail()){
+        std::cout<<lcons(e)->head()->toString()<<std::endl;
+        std::cout<<lcons(lcons(e)->head())->head()->type->toString()<<std::endl;
+		if(lsym(lcons(lcons(e)->head())->head()) == lsym(sym)){
 			result = CONS(lcons(lcons(e)->head())->tail(), result);
 		}
 	}
