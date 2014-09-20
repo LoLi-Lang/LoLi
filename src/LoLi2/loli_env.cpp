@@ -39,8 +39,8 @@ void add_to_top_env(loliObj* obj){
 loliObj* lookup_env(loliObj* sym, loliObj* env){
 	loliObj* result = nil;
 	for(auto e = env; !e->nilp(); e = lcons(e)->tail()){
-        std::cout<<lcons(e)->head()->toString()<<std::endl;
-        std::cout<<lcons(lcons(e)->head())->head()->type->toString()<<std::endl;
+        //std::cout<<lcons(e)->head()->toString()<<std::endl;
+        //std::cout<<lcons(lcons(e)->head())->head()->type->toString()<<std::endl;
 		if(lsym(lcons(lcons(e)->head())->head()) == lsym(sym)){
 			result = CONS(lcons(lcons(e)->head())->tail(), result);
 		}
