@@ -23,9 +23,9 @@
 #include "include/loli_typeclass.h"
 
 loliObj* c_apply (loliObj* fn, loliObj* args, loliObj* env){
-	if(fn->type == typePROC){
+	if(lproc(fn)->proc){
 		return lproc(fn)->proc(args);
-	}else if(fn->type == typeLAMBDA){
+	}else if(llambda(fn)->exp){
 		loliObj* tmpe = env;
 		for(loliObj* e = fn->env;!lcons(e)->head()->nilp() ; e = lcons(e)->tail()){
 			tmpe = add_to_env(to_env_entry(lcons(e)->head(), lcons(args)->head()), tmpe);

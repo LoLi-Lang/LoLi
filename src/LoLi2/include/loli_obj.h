@@ -30,6 +30,7 @@
 #define lchar(x)	((loliChar*)x)
 #define lstr(x) 	((loliString*)x)
 #define lcons(x) 	((loliCons*)x)
+#define lfunc(x) 	((loliFunction*)x)
 #define lproc(x) 	((loliPrim*)x)
 #define llambda(x) 	((loliLambda*)x)
 #define lsym(x) 	((loliSym*)x)

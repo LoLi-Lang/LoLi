@@ -39,7 +39,7 @@ loliObj* loliSym::eval(loliObj* e){
 			loli_err("Symbol: " + this->toString() + " is unbound.");
 			return nil;
 		}else{
-			return r;
+			return lcons(r)->head();
 		}
 	}else{
 		loliObj* r = lookup_env(this, e);
@@ -47,7 +47,7 @@ loliObj* loliSym::eval(loliObj* e){
 			loli_err("Symbol: " + this->toString() + " is unbound in its environment.");
 			return nil;
 		}else{
-			return r;
+			return lcons(r)->head();
 		}
 	}
 }
@@ -82,7 +82,8 @@ loliObj* eval_list(loliObj* lst, loliObj* env){
 	loliObj* car = lcons(lst)->head()->eval(env);
 	loliObj* cdr = lcons(lst)->tail();
 	std::cout<<"HEAD: "<<car->toString()<<"\tTAIL: "<<cdr->toString()<<std::endl;
-    if(car->type->isFrom(typeFN)){
+    std::cout<<car->type->toString()<<std::endl;
+    if(lfunc(car)->rtype){
             return c_apply(car, cdr, env);
     }else{
             loli_err(car->toString() + " is not a function!");
