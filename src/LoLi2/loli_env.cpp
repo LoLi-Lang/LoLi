@@ -39,9 +39,9 @@ void add_to_top_env(loliObj* obj){
 loliObj* lookup_env(loliObj* sym, loliObj* env){
 	loliObj* result = nil;
 	for(auto e = env; !e->nilp(); e = lcons(e)->tail()){
-        //std::cout<<lcons(e)->head()->toString()<<std::endl;
-        //std::cout<<lcons(lcons(e)->head())->head()->type->toString()<<std::endl;
-		if(lsym(lcons(lcons(e)->head())->head()) == lsym(sym)){
+       // std::cout<<lcons(e)->head()->toString()<<std::endl;
+       // std::cout<<lsym(lcons(lcons(e)->head())->head())->type->toString()<<std::endl;
+		if(lsym(lcons(lcons(e)->head())->head())->equal(lsym(sym))){
 			result = CONS(lcons(lcons(e)->head())->tail(), result);
 		}
 	}
@@ -58,7 +58,7 @@ loliObj* get_type(loliTypeClass* type, loliObj* sym, loliObj* env){
 		return nil;
 	}
 	for(loliObj* e = tmp; !e->nilp(); e = lcons(e)->tail()){
-		if(lcons(e)->head()->type <= type){
+		if(lcons(e)->head()->type->isFrom(type)){
 			return lcons(e)->head();
 		}
 	}

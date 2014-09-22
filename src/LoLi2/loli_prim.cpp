@@ -20,7 +20,7 @@
 #include "include/loli_util.h"
 #include "include/loli_typeclass.h"
 
-loliNum* c_plus(loliObj* obj){
+loliObj* c_plus(loliObj* obj){
 	double tmp = 0;
 	for(loliObj* o = obj; !o->nilp(); o = lcons(o)->tail()){
 		if(lcons(o)->head()->type <= typeNUM){
@@ -38,7 +38,7 @@ loliNum* c_plus(loliObj* obj){
 	}
 }
 
-loliNum* c_mult(loliObj* obj){
+loliObj* c_mult(loliObj* obj){
 	double tmp = 0;
 	for(loliObj* o = obj; !o->nilp(); o = lcons(o)->tail()){
 		if(lcons(o)->head()->type <= typeNUM){
@@ -56,7 +56,7 @@ loliNum* c_mult(loliObj* obj){
 	}
 }
 
-loliNum* c_sub(loliObj* obj){
+loliObj* c_sub(loliObj* obj){
 	double tmp = 0;
 	for(loliObj* o = obj; !o->nilp(); o = lcons(o)->tail()){
 		if(lcons(o)->head()->type <= typeNUM){
@@ -74,7 +74,7 @@ loliNum* c_sub(loliObj* obj){
 	}
 }
 
-loliNum* c_div(loliObj* obj){
+loliObj* c_div(loliObj* obj){
 	double tmp = 0;
 	for(loliObj* o = obj; !o->nilp(); o = lcons(o)->tail()){
 		if(lcons(o)->head()->type <= typeNUM){

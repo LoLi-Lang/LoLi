@@ -21,6 +21,7 @@
 #include "../header/loli_gc.h"
 
 #include <string>
+#include <iostream>
 
 loliObj* parse_list(std::string str, loliObj* env);
 

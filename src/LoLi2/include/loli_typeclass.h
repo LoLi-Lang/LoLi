@@ -41,8 +41,8 @@ extern loliTypeClass* typeBOOL;
 
 class loliTypeClass {
 	public:
-	loliTypeClass * parentType;
-	std::string identifier;
+	loliTypeClass * parentType = typeOBJ;
+	std::string identifier = "";
 
 	const std::string toString(){
 		return identifier;
@@ -65,6 +65,7 @@ class loliTypeClass {
 
 	bool isFrom(loliTypeClass* o){
         //when typeA <= typeB, typeA is an inheritor of typeB, e.g. typeINT <= typeNUM
+        std::cout<<this->toString()<<"\t"<<o->toString()<<std::endl;
         if(this==typeOBJ && o!=typeOBJ){
             return false;
         }

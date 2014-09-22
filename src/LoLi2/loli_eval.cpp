@@ -25,7 +25,7 @@
 
 loliObj* eval_list(loliObj* lst, loliObj* env);
 
-loliObj* loliSym::eval(loliObj* env){
+loliObj* loliSym::eval(loliObj* e){
     if(this->name == "t" || this == t){
         return t;
     }
@@ -33,7 +33,7 @@ loliObj* loliSym::eval(loliObj* env){
         return nil;
     }
     std::cout<<this->type->toString()<<std::endl;
-	if(env->nilp() || env == NULL){
+	if(e->nilp() || e == NULL){
 		loliObj* r = lookup_top_env(this);
 		if(r->nilp()){
 			loli_err("Symbol: " + this->toString() + " is unbound.");
@@ -42,7 +42,7 @@ loliObj* loliSym::eval(loliObj* env){
 			return r;
 		}
 	}else{
-		loliObj* r = lookup_env(this, env);
+		loliObj* r = lookup_env(this, e);
 		if(r->nilp()){
 			loli_err("Symbol: " + this->toString() + " is unbound in its environment.");
 			return nil;

@@ -67,7 +67,7 @@ class loliObj {
             //For debug:
             std::cout<<type->toString()<<std::endl;
             return this;}
-		virtual bool operator==(loliObj* o){return *this == o;}
+		virtual bool equal(loliObj* o){return this == o;}
 		bool operator!=(loliObj* o){
 			return !(this==o);
 		}
@@ -124,12 +124,8 @@ class loliInt : public loliNum {
 			value = 0;
 		}
 
-		bool operator==(loliObj* o){
-			if(o->type == this->type){
-				return ((loliInt*)o)->value == this->value;
-			}else{
-				return false;
-			}
+		bool equal(loliObj* o){
+            return ((loliInt*)o)->value == this->value;
 		}
 };
 
@@ -159,12 +155,8 @@ class loliFlt: public loliNum {
 		loliFlt(){
 			value = 0.0;
 		}
-		bool operator==(loliObj* o){
-			if(o->type == this->type){
-				return ((loliFlt*)o)->value == this->value;
-			}else{
-				return false;
-			}
+		bool equal(loliObj* o){
+            return ((loliFlt*)o)->value == this->value;
 		}
 };
 
@@ -184,13 +176,9 @@ class loliSym: public loliObj {
 			name = v;
 		}
 
-		bool operator==(loliObj* o){
-			if(o->type == this->type){
-				return lsym(o)->name == this->name;
-			}else{
-				return false;
-			}
-		}
+		bool equal(loliObj* o){
+            return lsym(o)->name == this->name;
+        }
 
 		int length(){
 			return 1;
@@ -215,13 +203,9 @@ class loliKey: public loliObj {
 			name = v;
 		}
 
-		bool operator==(loliObj* o){
-			if(o->type == this->type){
-				return ((loliKey*)o)->name == this->name;
-			}else{
-				return false;
-			}
-		}
+		bool equal(loliObj* o){
+            return ((loliKey*)o)->name == this->name;
+        }
 
 		int length(){
 			return 1;
@@ -287,13 +271,9 @@ class loliCons: public loliObj {
 			return tl;
 		}
 
-		bool operator==(loliObj* o){
-			if(o->type == this->type){
-				return (this->hd == ((loliCons* )o)->hd) && (this->tl == ((loliCons*)o)->tl);
-			}else{
-				return false;
-			}
-		}
+		bool equal(loliObj* o){
+            return (this->hd->equal(((loliCons* )o)->hd)) && (this->tl->equal(((loliCons*)o)->tl));
+        }
 
 		loliObj* eval(loliObj* env);
 };

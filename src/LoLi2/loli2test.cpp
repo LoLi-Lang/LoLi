@@ -26,24 +26,27 @@
 #include "include/loli_reader.h"
 #include "include/loli_parser.h"
 #include "include/loli_eval.h"
+#include "include/loli_prim.h"
 #include "include/loli_env.h"
 #include "include/loli_typeclass.h"
 
 using namespace std;
 
 int main(){
-    cout<<typeOBJ->toString()<<endl;
-    cout<<typeNUM->toString()<<endl;
-    cout<<typeINT->toString()<<endl;
-    cout<<typeFLT->toString()<<endl;
-    cout<<typeSYM->toString()<<endl;
-    loliObj* test = CONS(SYM("a"), CONS(SYM("b"), CONS(SYM("c"), sCONS(SYM("d")))));
-    cout<<"Length of "<< test->toString()<<": "<< test->length()<<endl;
     add_to_top_env(to_env_entry(SYM("nil"), nil));
     add_to_top_env(to_env_entry(SYM("t"), t));
     add_to_top_env(to_env_entry(SYM("quote"), quote));
-    add_to_top_env(to_env_entry(KEY("true"), boolt));
-    add_to_top_env(to_env_entry(KEY("false"), boolf));
+    add_to_top_env(to_env_entry(SYM("+"), PROC(c_plus, KEY("NUM"), KEY("NUM"))));
+    auto lop = SYM("+");
+    loliSym* lsp = SYM("+");
+    if(lsym(lsp)->equal(lop)){
+        cout<<"Equal!"<<endl;
+    }else{
+        cout<<lsp->name<<"\t"<<lsym(lop)->name<<endl;
+        if(lsym(lop)->name == lsp->name){
+            cout<<"Name equal!"<<endl;
+        }
+    }
     while(true){
         cout<<"Get Input: ";
         string tmp = read_pair();

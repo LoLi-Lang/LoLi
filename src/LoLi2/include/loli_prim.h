@@ -21,10 +21,10 @@
 
 #include "loli_obj.h"
 
-extern loliNum* c_plu(loliObj* obj);
-extern loliNum* c_sub(loliObj* obj);
-extern loliNum* c_mul(loliObj* obj);
-extern loliNum* c_div(loliObj* obj);
+extern loliObj* c_plus(loliObj* obj);
+extern loliObj* c_sub(loliObj* obj);
+extern loliObj* c_mult(loliObj* obj);
+extern loliObj* c_div(loliObj* obj);
 extern loliObj* c_quote(loliObj* obj);
 
 #endif
