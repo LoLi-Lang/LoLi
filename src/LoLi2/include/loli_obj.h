@@ -21,6 +21,7 @@
 
 #include "loli_typeclass.h"
 #include <string>
+#include <typeinfo>
 #include <iostream>
 
 //Macros
@@ -69,11 +70,11 @@ class loliObj {
             std::cout<<type->toString()<<std::endl;
             return this;}
 		virtual bool equal(loliObj* o){return this == o;}
-		bool operator!=(loliObj* o){
-			return !(this==o);
-		}
+        virtual loliTypeClass* getType(){
+            return this->type;
+        }
 		bool nilp(){
-			return this==nil;
+			return this->equal(nil);
 		}
 
 		loliObj(){
@@ -93,7 +94,7 @@ class loliNum : public loliObj { //Place holder
 		}
 
 		loliObj* eval(loliObj* env){
-            std::cout<<this->type->toString()<<std::endl;
+            std::cout<<typeid(this).name()<<std::endl;
 			return this;
 		}
 };
@@ -117,7 +118,7 @@ class loliInt : public loliNum {
 		}
 
 		loliObj* eval(loliObj* env){
-            std::cout<<this->type->toString()<<std::endl;
+            std::cout<<typeid(this).name()<<std::endl;
 			return this;
 		}
 
@@ -149,7 +150,7 @@ class loliFlt: public loliNum {
 		}
 
 		loliObj* eval(loliObj* env){
-            std::cout<<this->type->toString()<<std::endl;
+            std::cout<<this->getType()->toString()<<std::endl;
 			return this;
 		}
 
@@ -213,7 +214,7 @@ class loliKey: public loliObj {
 		}
 
 		loliObj* eval(loliObj* env){
-            std::cout<<this->type->toString()<<std::endl;
+            std::cout<<this->getType()->toString()<<std::endl;
 			return this;
 		}
 };

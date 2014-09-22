@@ -22,6 +22,7 @@
 #include "loli_obj.h"
 #include <string>
 #include <iostream>
+#include <typeinfo>
 
 class loliTypeClass;
 
@@ -43,6 +44,7 @@ class loliTypeClass {
 	public:
 	loliTypeClass * parentType = typeOBJ;
 	std::string identifier = "";
+    std::type_info ti;
 
 	const std::string toString(){
 		return identifier;

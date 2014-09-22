@@ -22,13 +22,13 @@
 
 #include <iostream>
 
-loliObj* top_env = nil;
+loliCons* top_env = CONS(CONS(SYM("nil"), nil), nil);
 
-loliObj* to_env_entry(loliObj* sym, loliObj* value){
+loliCons* to_env_entry(loliObj* sym, loliObj* value){
 	return CONS(sym, value);
 }
 
-loliObj* add_to_env(loliObj* obj, loliObj* env){
+loliCons* add_to_env(loliObj* obj, loliObj* env){
 	return CONS(obj, env);
 }
 
