@@ -18,17 +18,20 @@
 
 #include "include/loli_env.h"
 #include "include/loli_typeclass.h"
+#include <typeinfo>
 
-loliTypeClass* typeOBJ = new loliTypeClass("OBJ");
-loliTypeClass* typeNUM = new loliTypeClass(typeOBJ, "NUM");
-loliTypeClass* typeINT = new loliTypeClass(typeNUM, "INT");
-loliTypeClass* typeFLT = new loliTypeClass(typeNUM, "FLT");
-loliTypeClass* typeSYM = new loliTypeClass(typeOBJ, "SYM");
-loliTypeClass* typeKEY = new loliTypeClass(typeOBJ, "KEY");
-loliTypeClass* typeCONS = new loliTypeClass(typeOBJ, "CONS");
-loliTypeClass* typeFN = new loliTypeClass(typeOBJ, "FUNC");
-loliTypeClass* typeLAMBDA = new loliTypeClass(typeFN, "LAMBDA");
-loliTypeClass* typePROC = new loliTypeClass(typeFN, "PROC");
-loliTypeClass* typeCHAR = new loliTypeClass(typeOBJ, "CHAR");
-loliTypeClass* typeSTRING = new loliTypeClass(typeOBJ, "STRING");
-loliTypeClass* typeBOOL = new loliTypeClass(typeKEY, "BOOL");
+using namespace std;
+
+loliTypeClass* typeOBJ = new loliTypeClass("OBJ", typeid(loliObj*).name());
+loliTypeClass* typeNUM = new loliTypeClass(typeOBJ, "NUM", typeid(loliNum*).name());
+loliTypeClass* typeINT = new loliTypeClass(typeNUM, "INT", typeid(loliInt*).name());
+loliTypeClass* typeFLT = new loliTypeClass(typeNUM, "FLT", typeid(loliFlt*).name());
+loliTypeClass* typeSYM = new loliTypeClass(typeOBJ, "SYM", typeid(loliSym*).name());
+loliTypeClass* typeKEY = new loliTypeClass(typeOBJ, "KEY", typeid(loliKey*).name());
+loliTypeClass* typeCONS = new loliTypeClass(typeOBJ, "CONS", typeid(loliCons*).name());
+loliTypeClass* typeFN = new loliTypeClass(typeOBJ, "FUNC", typeid(loliFunction*).name());
+loliTypeClass* typeLAMBDA = new loliTypeClass(typeFN, "LAMBDA", typeid(loliLambda*).name());
+loliTypeClass* typePROC = new loliTypeClass(typeFN, "PROC", typeid(loliPrim*).name());
+loliTypeClass* typeCHAR = new loliTypeClass(typeOBJ, "CHAR", typeid(loliChar*).name());
+loliTypeClass* typeSTRING = new loliTypeClass(typeOBJ, "STRING", typeid(loliString*).name());
+loliTypeClass* typeBOOL = new loliTypeClass(typeKEY, "BOOL", typeid(loliBool*).name());

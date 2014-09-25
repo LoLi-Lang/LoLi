@@ -44,7 +44,7 @@ class loliTypeClass {
 	public:
 	loliTypeClass * parentType = typeOBJ;
 	std::string identifier = "";
-    std::type_info ti;
+    char* ti;
 
 	const std::string toString(){
 		return identifier;
@@ -60,9 +60,21 @@ class loliTypeClass {
 		this->identifier = id;
 	}
 
+	loliTypeClass(std::string id, const char* tp){
+		this->parentType = typeOBJ;
+		this->identifier = id;
+        this->ti = tp;
+	}
+
 	loliTypeClass(loliTypeClass* type, std::string id){
 		this->parentType = type;
 		this->identifier = id;
+	}
+
+	loliTypeClass(loliTypeClass* type, std::string id, const char* tp){
+		this->parentType = type;
+		this->identifier = id;
+        this->ti = tp;
 	}
 
 	bool isFrom(loliTypeClass* o){
