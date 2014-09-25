@@ -44,10 +44,10 @@ class loliTypeClass {
 	public:
 	loliTypeClass * parentType = typeOBJ;
 	std::string identifier = "";
-    char* ti;
+    const char* ti;
 
 	const std::string toString(){
-		return identifier;
+		return identifier + ti;
 	}
 	//Contructures:
 	loliTypeClass(){
