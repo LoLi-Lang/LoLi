@@ -25,8 +25,5 @@ loliObj* c_lambda(loliObj* exp){
     auto s = lcons(exp)->head(); //Return type
     auto a = lcons(lcons(exp)->tail())->head(); //Arg List   
     auto e = lcons(lcons(lcons(exp)->tail())->tail())->head(); //Exp
-
-    std::cout<<s->toString()<<"\t"<<a->toString()<<"\t"<<e->toString()<<std::endl;
-
     return LAMBDA(lkey(s), a, e);
 }

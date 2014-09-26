@@ -337,7 +337,6 @@ class loliLambda: public loliFunction {
 
 		loliLambda(loliObj* r, loliObj* a, loliObj* e){
             this->type = typeLAMBDA;
-            std::cout<<a->toString()<<"\t"<<r->toString()<<std::endl;
 			this->rtype = r;
 			this->arg = a;
 			this->exp = e;
