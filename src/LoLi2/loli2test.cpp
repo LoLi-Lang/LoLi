@@ -41,10 +41,6 @@ int main(){
     add_to_top_env(to_env_entry(SYM("*"), PROC(c_mult, KEY("NUM"), KEY("NUM"))));
     add_to_top_env(to_env_entry(SYM("/"), PROC(c_div, KEY("NUM"), KEY("NUM"))));
 
-    cout<<typeid(loliCons*).name()<<"\t"<<typeid(top_env).name()<<endl;
-
-    cout<<typeid(typeid(top_env)).name()<<endl;
-
     while(true){
         cout<<"Get Input: ";
         string tmp = read_pair();
