@@ -47,7 +47,7 @@
 #define sCONS(x)	new loliCons(x) //Single Cons
 #define CONS(x, y)	new loliCons(x, y)
 #define PROC(x, y, z)	new loliPrim(x, y, z)
-#define LAMBDA(x, y, z, w) new loliLambda(x, y, z, w)
+#define LAMBDA(x, y, z) new loliLambda(x, y, z)
 
 class loliObj;
 
@@ -330,17 +330,17 @@ class loliLambda: public loliFunction {
 		loliObj* exp;
 
 		std::string toString(){
-			return "<LAMBDA " + arg->toString() + " -> " + rtype->toString() + " >";
+			return "<LAMBDA " + this->arg->toString() + " -> " + this->rtype->toString() + " >";
 		}
 
 		loliLambda(){}
 
-		loliLambda(loliObj* rtype, loliObj* arg, loliObj* exp, loliObj* env){
+		loliLambda(loliObj* r, loliObj* a, loliObj* e){
             this->type = typeLAMBDA;
-			this->rtype = rtype;
-			this->arg = arg;
-			this->exp = exp;
-			this->env = env;
+            std::cout<<a->toString()<<"\t"<<r->toString()<<std::endl;
+			this->rtype = r;
+			this->arg = a;
+			this->exp = e;
 		}
 };
 

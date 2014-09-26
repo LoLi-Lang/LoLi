@@ -30,6 +30,7 @@
 #include "include/loli_prim.h"
 #include "include/loli_env.h"
 #include "include/loli_typeclass.h"
+#include "include/loli_lambda.h"
 
 using namespace std;
 
@@ -40,6 +41,7 @@ int main(){
     add_to_top_env(to_env_entry(SYM("-"), PROC(c_sub, KEY("NUM"), KEY("NUM"))));
     add_to_top_env(to_env_entry(SYM("*"), PROC(c_mult, KEY("NUM"), KEY("NUM"))));
     add_to_top_env(to_env_entry(SYM("/"), PROC(c_div, KEY("NUM"), KEY("NUM"))));
+    add_to_top_env(to_env_entry(SYM("\\"), PROC(c_lambda, KEY("LAMBDA"), KEY("CONS"))));
 
     while(true){
         cout<<"Get Input: ";
