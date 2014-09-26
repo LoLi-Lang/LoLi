@@ -47,7 +47,7 @@ class loliTypeClass {
     const char* ti;
 
 	const std::string toString(){
-		return identifier + ti;
+		return ":" + identifier + "\t" + ti;
 	}
 	//Contructures:
 	loliTypeClass(){

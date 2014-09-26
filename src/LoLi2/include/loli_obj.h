@@ -94,6 +94,7 @@ class loliNum : public loliObj { //Place holder
 		}
 
 		loliObj* eval(loliObj* env){
+            this->type = typeNUM;
             std::cout<<typeid(this).name()<<std::endl;
 			return this;
 		}
@@ -118,7 +119,8 @@ class loliInt : public loliNum {
 		}
 
 		loliObj* eval(loliObj* env){
-            std::cout<<typeid(this).name()<<std::endl;
+            this->type = typeINT;
+            std::cout<<type->toString()<<std::endl;
 			return this;
 		}
 
@@ -150,6 +152,7 @@ class loliFlt: public loliNum {
 		}
 
 		loliObj* eval(loliObj* env){
+            this->type = typeFLT;
             std::cout<<this->getType()->toString()<<std::endl;
 			return this;
 		}
@@ -214,6 +217,7 @@ class loliKey: public loliObj {
 		}
 
 		loliObj* eval(loliObj* env){
+            this->type = typeKEY;
             std::cout<<this->getType()->toString()<<std::endl;
 			return this;
 		}
@@ -293,6 +297,7 @@ class loliFunction: public loliObj { //Place Holder
 		loliFunction(){}
 
 		loliObj* eval(loliObj* env){
+            this->type = typeFN;
             std::cout<<this->type->toString()<<std::endl;
 			return this;
 		}
@@ -361,6 +366,7 @@ class loliChar: public loliObj {
 		}
 
 		loliObj* eval(loliObj* env){
+            this->type = typeCHAR;
             std::cout<<this->type->toString()<<std::endl;
 			return this;
 		}
@@ -387,6 +393,7 @@ class loliString: public loliObj {
 		}
 
 		loliObj* eval(loliObj* env){
+            this->type = typeSTRING;
             std::cout<<this->type->toString()<<std::endl;
 			return this;
 		}

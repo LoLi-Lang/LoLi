@@ -27,13 +27,14 @@
 loliObj* eval_list(loliObj* lst, loliObj* env);
 
 loliObj* loliSym::eval(loliObj* e){
-    if(this->name == "t" || this == t){
-        return t;
-    }
+    this->type = typeSYM;
     if(this->name == "nil" || this == nil){
         return nil;
     }
     std::cout<<typeid(this).name()<<std::endl;
+    if(this->name == "t" || this == t){
+        return t;
+    }
 	if(e->nilp() || e == NULL){
 		loliObj* r = lookup_top_env(this);
 		if(r->nilp()){
@@ -54,7 +55,8 @@ loliObj* loliSym::eval(loliObj* e){
 }
 
 loliObj* loliCons::eval(loliObj* env){
-    std::cout<<this->getType()->toString()<<std::endl;
+    this->type = typeCONS;
+    std::cout<<this->type->toString()<<std::endl;
     if(this->head() == SYM("if")){
 		loliObj* cond = lcons(this->tail())->head();
 		if(this->tail()->nilp()){

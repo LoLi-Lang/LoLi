@@ -35,7 +35,7 @@ using namespace std;
 
 int main(){
     add_to_top_env(to_env_entry(SYM("t"), t));
-    add_to_top_env(to_env_entry(SYM("quote"), quote));
+    add_to_top_env(to_env_entry(SYM("quote"), PROC(c_quote, KEY("OBJ"), KEY("OBJ"))));
     add_to_top_env(to_env_entry(SYM("+"), PROC(c_plus, KEY("NUM"), KEY("NUM"))));
     add_to_top_env(to_env_entry(SYM("-"), PROC(c_sub, KEY("NUM"), KEY("NUM"))));
     add_to_top_env(to_env_entry(SYM("*"), PROC(c_mult, KEY("NUM"), KEY("NUM"))));
