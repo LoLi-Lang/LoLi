@@ -68,8 +68,11 @@ class loliObj {
 		virtual loliObj* eval(loliObj* env){
             //For debug:
             std::cout<<type->toString()<<std::endl;
-            return this;}
-		virtual bool equal(loliObj* o){return this == o;}
+            return this;
+        }
+		virtual bool equal(loliObj* o){
+            return this == o;
+        }
         virtual loliTypeClass* getType(){
             return this->type;
         }
