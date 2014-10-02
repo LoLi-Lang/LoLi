@@ -84,11 +84,16 @@ loliObj* eval_list(loliObj* lst, loliObj* env){
 	loliObj* car = lcons(lst)->head()->eval(env);
 	loliObj* cdr = lcons(lst)->tail();
 	std::cout<<"HEAD: "<<car->toString()<<"\tTAIL: "<<cdr->toString()<<std::endl;
-//    std::cout<<car->type->toString()<<std::endl;
-    if(lfunc(car)->rtype){
-            return c_apply(car, cdr, env);
-    }else{
-            loli_err(car->toString() + " is not a function!");
+    //    std::cout<<cdr->type->toString()<<std::endl;
+    if(lcons(lcons(lcons(cdr)->tail())->head())->hd == NULL){
+        std::cout<<lcons(lcons(lcons(cdr)->tail())->head())->toString()<<std::endl;
+        return c_apply(car, cdr->eval(env), env);
     }
-	return nil;
+    if(lfunc(car)->rtype){
+        return c_apply(car, cdr, env);
+    }
+    else{
+        loli_err(car->toString() + " is not a function!");
+    }
+    return nil;
 }
