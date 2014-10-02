@@ -23,7 +23,7 @@
 loliObj* c_plus(loliObj* obj){
 	double tmp = 0;
 	for(loliObj* o = obj; !o->nilp(); o = lcons(o)->tail()){
-		if(lcons(o)->head()->type <= typeNUM){
+		if(lcons(o)->head()->type->isFrom(typeNUM)){
 			tmp = tmp + lnum(lcons(o)->head())->getValue();
 		}
 		else{
@@ -41,7 +41,7 @@ loliObj* c_plus(loliObj* obj){
 loliObj* c_mult(loliObj* obj){
 	double tmp = 0;
 	for(loliObj* o = obj; !o->nilp(); o = lcons(o)->tail()){
-		if(lcons(o)->head()->type <= typeNUM){
+		if(lcons(o)->head()->type->isFrom(typeNUM)){
 			tmp = tmp * lnum(lcons(o)->head())->getValue();
 		}
 		else{
@@ -57,9 +57,10 @@ loliObj* c_mult(loliObj* obj){
 }
 
 loliObj* c_sub(loliObj* obj){
-	double tmp = 0;
+	double tmp = lnum(lcons(obj)->head())->getValue();
+    obj = lcons(obj)->tail();
 	for(loliObj* o = obj; !o->nilp(); o = lcons(o)->tail()){
-		if(lcons(o)->head()->type <= typeNUM){
+		if(lcons(o)->head()->type->isFrom(typeNUM)){
 			tmp = tmp - lnum(lcons(o)->head())->getValue();
 		}
 		else{
@@ -75,9 +76,10 @@ loliObj* c_sub(loliObj* obj){
 }
 
 loliObj* c_div(loliObj* obj){
-	double tmp = 0;
+	double tmp = lnum(lcons(obj)->head())->getValue();
+    obj = lcons(obj)->tail();
 	for(loliObj* o = obj; !o->nilp(); o = lcons(o)->tail()){
-		if(lcons(o)->head()->type <= typeNUM){
+		if(lcons(o)->head()->type->isFrom(typeNUM)){
 			if(lnum(lcons(o)->head())->getValue() != 0){
 			tmp = tmp / lnum(lcons(o)->head())->getValue();
 			}else{

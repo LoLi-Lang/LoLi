@@ -85,11 +85,11 @@ loliObj* eval_list(loliObj* lst, loliObj* env){
 	loliObj* cdr = lcons(lst)->tail();
 	std::cout<<"HEAD: "<<car->toString()<<"\tTAIL: "<<cdr->toString()<<std::endl;
     //    std::cout<<cdr->type->toString()<<std::endl;
-    if(lcons(lcons(lcons(cdr)->tail())->head())->hd == NULL){
-        std::cout<<lcons(lcons(lcons(cdr)->tail())->head())->toString()<<std::endl;
-        return c_apply(car, cdr->eval(env), env);
-    }
     if(lfunc(car)->rtype){
+        if(lcons(lcons(lcons(cdr)->tail())->head())->hd == NULL){
+            std::cout<<lcons(lcons(lcons(cdr)->tail())->head())->toString()<<std::endl;
+            return c_apply(car, cdr->eval(env), env);
+        }
         return c_apply(car, cdr, env);
     }
     else{

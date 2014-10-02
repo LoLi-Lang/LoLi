@@ -22,10 +22,15 @@
 #include "include/loli_env.h"
 #include "include/loli_typeclass.h"
 
+#include <iostream>
+
 loliObj* c_apply (loliObj* fn, loliObj* args, loliObj* env){
+    std::cout<<fn->toString()<<"\t"<<fn->type->toString()<<std::endl;
 	if(lproc(fn)->proc){
+        std::cout<<"PROC:\t"<<&(lproc(fn)->proc)<<std::endl;
 		return lproc(fn)->proc(args);
 	}else if(llambda(fn)->exp){
+        std::cout<<"LAMBDA"<<std::endl;
 		loliObj* tmpe = env;
 		for(loliObj* e = fn->env;!lcons(e)->head()->nilp() ; e = lcons(e)->tail()){
 			tmpe = add_to_env(to_env_entry(lcons(e)->head(), lcons(args)->head()), tmpe);
