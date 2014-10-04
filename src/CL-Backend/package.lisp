@@ -1,0 +1,2 @@
+(defpackage #:loli
+  (:use :cl))
