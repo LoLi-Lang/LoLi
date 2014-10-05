@@ -1,6 +1,7 @@
 (in-package #:cl-user)
 
 (defpackage #:loli
-  (:use :cl))
+  (:use :cl)
+  :documentation "Everything of LoLi")
 
 (provide 'loli-package)
