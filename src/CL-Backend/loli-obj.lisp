@@ -22,13 +22,13 @@
 
 (defconstant loli-true
   (make-loli-obj
-   :value :TRUE
+   :value :true
    :loli-type *type-bool*
    :env '()))
 
 (defconstant loli-false
   (make-loli-obj
-   :value :FALSE
+   :value :false
    :loli-type *type-bool*
    :env '()))
 

@@ -21,5 +21,4 @@
    *type-proc*)
   "The Global Environment Contains All Types of LoLi")
 
-
 (provide 'loli-base)

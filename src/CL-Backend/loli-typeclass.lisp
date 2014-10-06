@@ -34,15 +34,16 @@
 (defparameter *type-bool*
   (make-loli-type-class :name "Boolean" :id :BOOL :parent *type-key*) "The Boolean Type in LoLi")
 
-(defun is-from (type-a type-b)
+(defun sub-type-p (type-a type-b)
+;  (format *standard-output* "~A ~A" type-a type-b)
   (if (or (null type-a) (null type-b))
       'NULL-ARG
-      (if (equal type-b *type-obj*)
+      (if (equalp type-b *type-obj*)
           t
-          (if (equal type-a *type-obj*)
+          (if (equalp type-a *type-obj*)
               nil
-              (if (equal type-a type-b)
+              (if (equalp type-a type-b)
                   t
-                  (is-from (loli-type-class-parent type-a) type-b))))))
+                  (sub-type-p (loli-type-class-parent type-a) type-b))))))
 
 (provide 'loli-type-class)
