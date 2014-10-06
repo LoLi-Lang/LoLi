@@ -48,4 +48,6 @@ If you are not satisfied with current Lisp dialects, or if you have some great i
 Reason Why The Developing Speed is So Slow
 -
 ---
-Go to the Google Play Store/Apple App Store and search for a game called : "Love Live", play it, you will know.
+Go to the Google Play Store / Apple App Store and search for a game called : "Love Live", play it, you will know.
+
+Also, since C++ is way too complex, if you are an expert dealing with C++ template programming / meta programming, please join my work. Otherwise I will rewrite it in Common Lisp.
