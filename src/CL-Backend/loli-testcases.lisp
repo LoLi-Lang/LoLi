@@ -1,9 +1,7 @@
 (require 'loli-package "package")
+(require 'loli-type-class "loli-typeclass")
+(require 'loli-obj"loli-obj")
 
 (in-package #:loli)
 
-(is-from *type-obj* *type-obj*)
-(is-from *type-int* *type-obj*)
-(is-from *type-int* *type-num*)
-(is-from *type-flt* *type-num*)
-(is-from *type-num* *type-flt*)
+(format *standard-output* "~A" (is-from (loli-obj-loli-type loli-true) *type-bool*))
