@@ -93,15 +93,9 @@
   (to-loli-sym 't '()))
 
 (defconstant loli-true
-  (make-loli-obj
-   :value :true
-   :loli-type *type-bool*
-   :env '()))
+  (to-loli-bool :true '()))
 
 (defconstant loli-false
-  (make-loli-obj
-   :value :false
-   :loli-type *type-bool*
-   :env '()))
+  (to-loli-bool :false '()))
 
 (provide 'loli-obj)
