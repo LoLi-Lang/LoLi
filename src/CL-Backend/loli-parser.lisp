@@ -11,7 +11,10 @@
      while j))
 
 (defun loli-parse (str &optional (env '()))
-  (let ((trimed (string-trim '(#\Space #\Tab #\Newline) str)))
-    (tokenize trimed)))
+  (let* ((trimed (string-trim '(#\Space #\Tab #\Newline) str))
+         (token-lst (remove-if #'(lambda (x) (equalp x ""))
+                               (tokenize trimed))))
+    token-lst
+    ))
 
 (provide 'loli-parser)
