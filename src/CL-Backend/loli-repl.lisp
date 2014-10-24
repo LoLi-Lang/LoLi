@@ -41,15 +41,26 @@
                                (tokenize trimed))))
     token-lst))
 
-(defun loli-simple-eval (obj)
+(defun loli-eval-sym (sym env)
+  (cond
+    ((equalp (loli-obj-value sym) "nil")
+     loli-nil)
+    ((equalp (loli-obj-value sym) "t")
+     loli-t)
+    ((null env)
+     )
+    )
+  )
+
+(defun loli-simple-eval (obj &optional (env '()))
   (cond
     ((sub-type-p (loli-obj-loli-type obj)
-              *type-fn*)
-     'FUNCTION)
+                 *type-sym*)
+     'SYMBOL)
     ((sub-type-p (loli-obj-loli-type obj)
-              *type-cons*)
+                 *type-cons*)
      'CONS)
-    (t (loli-obj-value obj))))
+    (t obj)))
 
 (defun rep (top-env type-env &optional (in-stream *standard-input*))
   (loli-simple-eval
