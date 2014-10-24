@@ -19,6 +19,12 @@
                   (to-loli-sym "AAA"))
        *TEST-ENV*))
 
+(setf *TEST-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym "AAA")
+                  (to-loli-int "111"))
+       *TEST-ENV*))
+
 (loli-lookup (to-loli-sym "AAA")
              *TEST-ENV*)
 
