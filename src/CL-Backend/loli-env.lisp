@@ -27,6 +27,10 @@
           (get-typed type (loli-tail loli-c)))
       'NO-MATCHING-FOUND))
 
+(defun typed-lookup (sym &optional (type *type-obj*) (env *TOP-ENV*))
+  (get-typed type
+             (loli-lookup sym env)))
+
 ;;INIT TOP ENV
 (setf *TOP-ENV*
       (loli-cons
