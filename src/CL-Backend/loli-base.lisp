@@ -3,7 +3,6 @@
 
 (in-package :loli)
 
-(defparameter *TOP-ENV* nil "The TOP-LEVEL Environment of LoLi")
 (defparameter *TYPE-ENV*
   (list
    *type-obj*
