@@ -18,6 +18,15 @@
                        (loli-tail env)))
       loli-nil))
 
+(defun get-typed (type loli-c)
+  (if (equal (loli-obj-loli-type loli-c) *type-cons*)
+      (if (sub-type-p (loli-obj-loli-type
+                       (loli-head loli-c))
+                      type)
+          (loli-head loli-c)
+          (get-typed type (loli-tail loli-c)))
+      'NO-MATCHING-FOUND))
+
 ;;INIT TOP ENV
 (setf *TOP-ENV*
       (loli-cons
