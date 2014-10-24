@@ -1,9 +1,55 @@
 (require 'loli-package "package")
-(require 'loli-eval "loli-eval")
-(require 'loli-read "loli-read")
-(require 'loli-parser "loli-parser")
 
 (in-package #:loli)
+
+(defun loli-validate-input (str &optional (p 0) (q t))
+  (format *standard-output* "~A~%" str)
+  (loop for c across str
+     do
+       (cond
+         ((equal c #\()
+          (if q
+              (setq p (1+ p))))
+         ((equal c #\))
+          (if q
+              (if (>= p 1)
+                  (setq p (1- p))
+                  (return-from loli-validate-input 'UNMATCHED-PARENTHESIS))))
+         ((equal c #\")
+          (setq q (not q)))))
+  (return-from loli-validate-input (and q (= 0 p))))
+
+(defun loli-get-input (&optional (in-stream *standard-input*))
+  (let* ((tmp (read-line in-stream))
+         (stat (loli-validate-input tmp)))
+    (if (equal stat 'UNMATCHED-PARENTHESIS)
+        (return-from loli-get-input 'UNIMPLEMENTED-ERROR)
+        (loop while (not stat)
+           do (setq tmp (concatenate 'string tmp (read-line in-stream))
+                    stat (loli-validate-input tmp))))
+    (return-from loli-get-input tmp)))
+
+(defun tokenize (str)
+  (loop for i = 0 then (1+ j)
+     as j = (position #\Space str :start i)
+     collect (subseq str i j)
+     while j))
+
+(defun loli-parse (str &optional (env '()))
+  (let* ((trimed (string-trim '(#\Space #\Tab #\Newline) str))
+         (token-lst (remove-if #'(lambda (x) (equalp x ""))
+                               (tokenize trimed))))
+    token-lst))
+
+(defun loli-simple-eval (obj)
+  (cond
+    ((sub-type-p (loli-obj-loli-type obj)
+              *type-fn*)
+     'FUNCTION)
+    ((sub-type-p (loli-obj-loli-type obj)
+              *type-cons*)
+     'CONS)
+    (t (loli-obj-value obj))))
 
 (defun rep (top-env type-env &optional (in-stream *standard-input*))
   (loli-simple-eval

@@ -8,8 +8,9 @@
   (head loli-nil :type loli-obj)
   (tail loli-nil :type loli-obj))
 
-(defun loli-cons (head &optional (tail loli-nil))
-  (make-loli-cons-struct :head head :tail tail))
+(defun loli-cons (head &optional (tail loli-nil) (env '()))
+  (to-loli-cons
+   (make-loli-cons-struct :head head :tail tail) env))
 
 (defun loli-head (o)
   (if (loli-obj-p o)
