@@ -1,4 +1,5 @@
 (require 'loli-package "package")
+(require 'loli-obj "loli-obj")
 
 (in-package #:loli)
 
@@ -41,7 +42,7 @@
                                (tokenize trimed))))
     token-lst))
 
-(defun loli-eval-sym (sym env)
+(defun loli-eval-sym (sym &optional (env '()))
   (cond
     ((equalp (loli-obj-value sym) "nil")
      loli-nil)
@@ -56,7 +57,7 @@
   (cond
     ((sub-type-p (loli-obj-loli-type obj)
                  *type-sym*)
-     'SYMBOL)
+     (loli-eval-sym obj env))
     ((sub-type-p (loli-obj-loli-type obj)
                  *type-cons*)
      'CONS)
