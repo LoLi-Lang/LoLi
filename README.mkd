@@ -3,8 +3,8 @@ LoLi
 ---
 LoLi is another approach to System F-sub in a **LISPy** way.
 
-![LoLi](http://img1.ak.crunchyroll.com/i/spire1/b385695d7d32a54d7672bda638d49a351225770690_full.jpg)
-> Image from the internet
+![LoLi](/logo_maki.jpg)
+> Image with authorization from illustrator
 
 Why LoLi
 -

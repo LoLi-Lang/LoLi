@@ -44,9 +44,9 @@
 
 (defun loli-eval-sym (sym &optional (env '()))
   (cond
-    ((equalp (loli-obj-value sym) "nil")
+    ((equalp (loli-obj-value sym) 'nil)
      loli-nil)
-    ((equalp (loli-obj-value sym) "t")
+    ((equalp (loli-obj-value sym) 't)
      loli-t)
     ((null env)
      )
@@ -62,6 +62,17 @@
                  *type-cons*)
      'CONS)
     (t obj)))
+
+(defun loli-output (obj)
+  (cond
+    ((sub-type-p (loli-obj-loli-type obj)
+                 *type-fn*)
+     'FUNCTION)
+    ((sub-type-p (loli-obj-loli-type obj)
+                 *type-cons*)
+     'CONS)
+    (t
+     (loli-obj-value obj))))
 
 (defun rep (top-env type-env &optional (in-stream *standard-input*))
   (loli-simple-eval
