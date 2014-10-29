@@ -63,7 +63,7 @@
      'CONS)
     (t obj)))
 
-(defun loli-output (obj)
+(defun loli-output (obj &optional (output-stream *standard-output*))
   (cond
     ((sub-type-p (loli-obj-loli-type obj)
                  *type-fn*)
@@ -72,7 +72,8 @@
                  *type-cons*)
      'CONS)
     (t
-     (loli-obj-value obj))))
+     (format output-stream "~A" (loli-obj-value obj)))))
+
 
 (defun rep (top-env type-env &optional (in-stream *standard-input*))
   (loli-output
