@@ -3,26 +3,28 @@ Language Design of LoLi
 Z.Shang
 2014
 
+THIS ONE IS OUTDATED, DETAILS MAY BE DIFFERENT FROM THE IMPLEMENTATION
+
 LoLi is a Lisp dialect that combines Lisp - 1 and Lisp - 2, that means in LoLi there will be one namespace but supporting duplicated name, and the interpreter will infer the value based on the comtext (or by manully specified).
 
 Here is the language design of LoLi:
 -Basic Symbols:
-	T			same as T in Common Lisp
-	NIL			same as NIL in Common Lisp
+	T			    same as T in Common Lisp, but not Boolean true
+	NIL		    	same as NIL in Common Lisp, but not Boolean false
 	set!			same as SET! in Scheme
-	def			like define in Scheme or defvar in Common Lisp ( (defvar foo #'(lambda ...)) while defining a lambda expression)
-	\ 			lambda (\ (args) (exp))
+	def 			like define in Scheme or defvar in Common Lisp, or the def of Arc ( (defvar foo #'(lambda ...)) while defining a lambda expression)
+	\ 	    		lambda (\ :TYPE-ID (arg-lst) (exp))
 	let 			same as LET in Common Lisp
 	quote("\'")		same as QUOTE in Common Lisp/Scheme
 
 -Naming Regulation:
-	Predicate 		end with "?" (E.g. null?)
+	Predicate 		    end with "?" (E.g. null?)
 	Destructive 		end with "!" (E.g. set!)
 	Recursive Function	end with "-r" (E.g. map-r)
 	Global Variable		surround by "**" (E.g. *TOP-LEVEL*)
-	Function		use full spellling connected by "-" instead of abbreviation (E.g. number-of-count instead of numOfCount)
-	Argument		use "lst" for list, "num" for number, "sym" for symbol
-	Commentary		add commentary that shows the function's parameter and returning type (E.g. ;;Num -> Num)
+	Function		    use full spellling connected by "-" instead of abbreviation (E.g. number-of-count instead of numOfCount)
+	Argument		    use "lst" for list, "num" for number, "sym" for symbol
+	Commentary		    add commentary that shows the function's parameter and returning type (E.g. ;;Num -> Num)
 
 -Core Data Structure:
 	LoLi Object (the list structured memory):
