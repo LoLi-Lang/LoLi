@@ -75,8 +75,11 @@
      (loli-obj-value obj))))
 
 (defun rep (top-env type-env &optional (in-stream *standard-input*))
-  (loli-simple-eval
-   (loli-get-input in-stream)))
+  (loli-output
+   (loli-simple-eval
+    (loli-parse
+     (loli-get-input in-stream))
+    top-env)))
 
 (defun test-rep (&optional (in-stream *standard-input*))
   (loli-parse
