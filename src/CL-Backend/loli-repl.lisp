@@ -68,7 +68,22 @@
   (cond
     ((sub-type-p (loli-obj-loli-type obj)
                  *type-fn*)
-     'FUNCTION)
+     (cond
+       ((sub-type-p (loli-obj-loli-type obj)
+                    *type-proc*)
+        (format output-stream "<Primitive Procedure ~{~A~^,~} => ~A>"
+                (make-list
+                 (loli-proc-struct-arity (loli-obj-value obj))
+                 :initial-element
+                 (loli-type-class-id
+                  (loli-proc-struct-arg-type (loli-obj-value obj))))
+                (loli-type-class-id
+                 (loli-proc-struct-return-type (loli-obj-value obj)))))
+       ((sub-type-p (loli-obj-loli-type obj)
+                    *type-lambda*)
+        (format output-stream "<Lambda Expression>"))
+       (t
+        (format output-stream "<Unknown Function>"))))
     ((sub-type-p (loli-obj-loli-type obj)
                  *type-cons*)
      (format output-stream "(")
