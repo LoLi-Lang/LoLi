@@ -1,5 +1,6 @@
 (require 'loli-package "package")
 (require 'loli-obj "loli-obj")
+(require 'loli-prim "loli-prim")
 
 (in-package #:loli)
 
@@ -70,7 +71,18 @@
      'FUNCTION)
     ((sub-type-p (loli-obj-loli-type obj)
                  *type-cons*)
-     'CONS)
+     (format output-stream "(")
+     (loli-output (loli-head obj) output-stream)
+     (if (sub-type-p (loli-obj-loli-type (loli-tail obj))
+                     *type-cons*)
+         (progn
+           (format output-stream " ")
+           (loli-output (loli-tail obj) output-stream)
+           (format output-stream ")"))
+         (progn
+           (format output-stream " . ")
+           (loli-output (loli-tail obj) output-stream)
+           (format output-stream ")"))))
     (t
      (format output-stream "~A" (loli-obj-value obj)))))
 
