@@ -32,6 +32,12 @@
   (arity 0 :type integer)
   (cl-fn nil :type function))
 
+(defstruct loli-lambda-struct
+  (return-type *type-obj* :type loli-type-class)
+  (arg-lst loli-nil :type loli-obj)
+  (arg-types '() :type list)
+  (exp loli-nil :type loli-obj))
+
 (defconstant loli-cons-f
   (to-loli-proc
    (make-loli-proc-struct :return-type *type-cons* :arg-type *type-obj* :arity 2 :cl-fn #'loli-cons)

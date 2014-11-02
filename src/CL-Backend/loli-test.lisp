@@ -2,6 +2,8 @@
 (require 'loli-obj "loli-obj")
 (require 'loli-prim "loli-prim")
 (require 'loli-env "loli-env")
+(require 'loli-repl "loli-repl")
+(require 'loli-type-class "loli-typeclass")
 
 (in-package #:loli)
 
@@ -30,3 +32,8 @@
 
 (loli-lookup (to-loli-sym "A")
              *TEST-ENV*)
+
+(defparameter *TEST-LAMBDA*
+  (to-loli-lambda
+   (make-loli-lambda-struct :return-type *type-obj*
+                            :arg-types (list *type-obj* *type-int*))))

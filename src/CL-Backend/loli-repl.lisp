@@ -1,6 +1,7 @@
 (require 'loli-package "package")
 (require 'loli-obj "loli-obj")
 (require 'loli-prim "loli-prim")
+(require 'loli-type-class "loli-typeclass")
 
 (in-package #:loli)
 
@@ -81,7 +82,11 @@
                  (loli-proc-struct-return-type (loli-obj-value obj)))))
        ((sub-type-p (loli-obj-loli-type obj)
                     *type-lambda*)
-        (format output-stream "<Lambda Expression>"))
+        (format output-stream "<Lambda Expression ~{~A~^,~} => ~A>"
+                (loop for a in (loli-lambda-struct-arg-types (loli-obj-value obj))
+                   collect (loli-type-class-id a))
+                (loli-type-class-id
+                 (loli-lambda-struct-return-type (loli-obj-value obj)))))
        (t
         (format output-stream "<Unknown Function>"))))
     ((sub-type-p (loli-obj-loli-type obj)
