@@ -105,6 +105,12 @@
      (format output-stream "~A" (loli-obj-value obj)))))
 
 (defun loli-rep (&optional (in-stream *standard-input*) (env *TOP-ENV*) (out-stream *standard-output*))
-  (loli-output (loli-read-from-string (loli-get-input in-stream) env) out-stream))
+  (loli-output
+   (loli-simple-eval
+    (loli-read-from-string
+     (loli-get-input in-stream)
+     env)
+    env)
+   out-stream))
 
 (provide 'loli-repl)
