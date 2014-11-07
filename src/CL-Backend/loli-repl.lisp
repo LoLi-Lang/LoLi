@@ -3,6 +3,7 @@
 (require 'loli-prim "loli-prim")
 (require 'loli-type-class "loli-typeclass")
 (require 'loli-env "loli-env")
+(require 'loli-read "loli-read")
 
 (in-package #:loli)
 
@@ -40,9 +41,9 @@
     ((equalp (loli-obj-value sym) 't)
      loli-t)
     ((and (null env) (null (loli-obj-env sym)))
-     #'ERR-SYMBOL-UNBOUND)
+     'ERR-SYMBOL-UNBOUND)
     ((not (null (loli-obj-env sym)))
-     (let ((r (loli-lookup sym (loli-obj-env))))
+     (let ((r (loli-lookup sym (loli-obj-env sym))))
        (if (not (equal r loli-nil))
            r)))
     ((not (null env))
@@ -103,16 +104,7 @@
     (t
      (format output-stream "~A" (loli-obj-value obj)))))
 
-
-(defun rep (top-env type-env &optional (in-stream *standard-input*))
-  (loli-output
-   (loli-simple-eval
-    (loli-parse
-     (loli-get-input in-stream))
-    top-env)))
-
-(defun test-rep (&optional (in-stream *standard-input*))
-  (loli-parse
-   (loli-get-input in-stream)))
+(defun loli-rep (&optional (in-stream *standard-input*) (env *TOP-ENV*) (out-stream *standard-output*))
+  (loli-output (loli-read-from-string (loli-get-input in-stream) env) out-stream))
 
 (provide 'loli-repl)

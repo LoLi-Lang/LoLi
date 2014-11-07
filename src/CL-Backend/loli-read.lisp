@@ -1,9 +1,9 @@
 (require 'loli-package "package")
 (require 'loli-obj "loli-obj")
-(require 'loli-repl "loli-repl")
-(require 'loli-type-class "loli-typeclass")
 (require 'loli-prim "loli-prim")
 (require 'loli-type-class "loli-typeclass")
+
+(in-package #:loli)
 
 (defun loli-read-list (lst &optional (env '()))
   (loli-cons (loli-read-single-obj (car lst) env)
@@ -13,8 +13,16 @@
   (if (null cl-obj)
       loli-nil
       (typecase cl-obj
-        (integer (to-loli-int cl-obj env))
-        (float (to-loli-flt cl-obj env))
+        ((or integer
+             bit
+             bignum
+             fixnum) (to-loli-int cl-obj env))
+        ((or float
+             single-float
+             double-float
+             short-float
+             long-float) (to-loli-flt cl-obj env))
+        (number (to-loli-num cl-obj env))
         (string (to-loli-string cl-obj env))
         (character (to-loli-char cl-obj env))
         (keyword (to-loli-key cl-obj env))
