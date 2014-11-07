@@ -34,6 +34,15 @@
                     stat (loli-validate-input tmp))))
     (return-from loli-get-input tmp)))
 
+(define-condition loli-error (error)
+  ())
+
+(define-condition loli-err-symbol-not-bound (loli-error)
+  ((err-obj :initarg :obj :reader err-obj))
+  (:report (lambda (condition stream)
+             (format stream "Error: Symbol ~A is not bound"
+                     (loli-obj-value (err-obj condition))))))
+
 (defun loli-eval-sym (sym &optional (env '()))
   (cond
     ((equalp (loli-obj-value sym) 'nil)
