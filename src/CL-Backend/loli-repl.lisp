@@ -125,12 +125,10 @@
     (t
      (format output-stream "~A" (loli-obj-value obj)))))
 
-(defmacro _rep_ (in env)
-  `(loli-simple-eval (loli-read-from-string
-                      (loli-get-input ,in)) ,env))
 
 (defmacro  loli-rep (&optional (in-stream *standard-input*) (env *TOP-ENV*) (out-stream *standard-output*))
-  (let ((o (_rep_ in-stream env)))
+  (let ((o (loli-simple-eval (loli-read-from-string
+                              (loli-get-input in-stream)) env)))
     o))
 
 (provide 'loli-repl)
