@@ -37,11 +37,23 @@
 (define-condition loli-error (error)
   ())
 
+(defun loli-get-new-value ()
+  (format *standard-output* "Enter a new value: ")
+  (multiple-value-list (loli-read-from-string (loli-get-input))))
+
 (define-condition loli-err-symbol-not-bound (loli-error)
   ((err-obj :initarg :obj :reader err-obj))
   (:report (lambda (condition stream)
              (format stream "Error: Symbol ~A is not bound"
                      (loli-obj-value (err-obj condition))))))
+
+(defmacro loli-symbol-not-bound-debug (obj)
+  `(restart-case
+       (error 'loli-err-symbol-not-bound :obj ,obj)
+     (use-new-value (new-value)
+       :report "Enter a new value"
+       :interactive loli-get-new-value
+       (setq ,obj new-value))))
 
 (defun loli-eval-sym (sym &optional (env '()))
   (cond
@@ -50,7 +62,7 @@
     ((equalp (loli-obj-value sym) 't)
      loli-t)
     ((and (null env) (null (loli-obj-env sym)))
-     'ERR-SYMBOL-UNBOUND)
+     (loli-symbol-not-bound-debug sym))
     ((not (null (loli-obj-env sym)))
      (let ((r (loli-lookup sym (loli-obj-env sym))))
        (if (not (equal r loli-nil))
@@ -60,7 +72,7 @@
        (if (not (equal r loli-nil))
            r)))
     (t
-     'ERR-SYMBOL-UNBOUND)))
+     (loli-symbol-not-bound-debug sym))))
 
 (defun loli-simple-eval (obj &optional (env '()))
   (cond
@@ -113,13 +125,12 @@
     (t
      (format output-stream "~A" (loli-obj-value obj)))))
 
-(defun loli-rep (&optional (in-stream *standard-input*) (env *TOP-ENV*) (out-stream *standard-output*))
-  (loli-output
-   (loli-simple-eval
-    (loli-read-from-string
-     (loli-get-input in-stream)
-     env)
-    env)
-   out-stream))
+(defmacro _rep_ (in env)
+  `(loli-simple-eval (loli-read-from-string
+                      (loli-get-input ,in)) ,env))
+
+(defmacro  loli-rep (&optional (in-stream *standard-input*) (env *TOP-ENV*) (out-stream *standard-output*))
+  (let ((o (_rep_ in-stream env)))
+    o))
 
 (provide 'loli-repl)
