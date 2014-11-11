@@ -74,6 +74,9 @@
     (t
      (loli-symbol-not-bound-debug sym))))
 
+(defun loli-eval-cons (lcons &optional (env '()))
+  )
+
 (defun loli-simple-eval (obj &optional (env '()))
   (cond
     ((sub-type-p (loli-obj-loli-type obj)
@@ -81,7 +84,7 @@
      (loli-eval-sym obj env))
     ((sub-type-p (loli-obj-loli-type obj)
                  *type-cons*)
-     'CONS)
+     (loli-eval-cons obj env))
     (t obj)))
 
 (defun loli-output (obj &optional (output-stream *standard-output*))
