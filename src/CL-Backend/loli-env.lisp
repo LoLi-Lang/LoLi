@@ -8,7 +8,7 @@
 (defparameter *TOP-ENV* loli-nil "The TOP-LEVEL Environment of LoLi")
 
 (defun loli-lookup (sym &optional (env *TOP-ENV*))
-  (if (equal (loli-obj-loli-type env) *type-cons*)
+  (if (sub-type-p (loli-obj-loli-type env) *type-cons*)
       (if (equalp (loli-obj-value sym)
                   (loli-obj-value (loli-head (loli-head env))))
           (loli-cons (loli-tail (loli-head env))
@@ -34,14 +34,20 @@
 ;;INIT TOP ENV
 (setf *TOP-ENV*
       (loli-cons
-       (loli-cons (to-loli-sym "nil")
+       (loli-cons (to-loli-sym 'nil)
                   loli-nil)
        *TOP-ENV*))
 
 (setf *TOP-ENV*
       (loli-cons
-       (loli-cons (to-loli-sym "t")
+       (loli-cons (to-loli-sym 't)
                   loli-t)
+       *TOP-ENV*))
+
+(setf *TOP-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym 'aa)
+                  (to-loli-int 123))
        *TOP-ENV*))
 
 (provide 'loli-env)

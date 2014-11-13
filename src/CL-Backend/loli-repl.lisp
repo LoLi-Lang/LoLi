@@ -8,19 +8,32 @@
 
 (in-package #:loli)
 
+(defun loli-get-new-value ()
+  (format *standard-output* "New Value: ")
+  (multiple-value-list (loli-read-from-string (loli-get-input *query-io*))))
+
 (defun loli-symbol-not-bound-debug (obj env)
-  (restart-case
-      (cerror "Symbol not bound" 'loli-err-symbol-not-bound :err-obj obj :err-env env)
-    (use-new-value (new-value)
-      :report "Enter a new value"
-      :interactive loli-get-new-value
-      (loli-eval-sym new-value env))))
+  (do ()
+      ((or
+        (not (equal loli-nil (loli-lookup obj env)))
+        (equal (loli-obj-value obj) 't)
+        (equal (loli-obj-value obj) 'nil)))
+    (restart-case
+        (cerror "Symbol not bound" 'loli-err-symbol-not-bound :err-obj obj :err-env env)
+      (use-new-value (new-value)
+        :report "Enter a new value"
+        :interactive (lambda ()
+                       (format *query-io* "New Value: ")
+                       (force-output *query-io*)
+                       (list (loli-read-from-string (loli-get-input *query-io*))))
+        (setq obj new-value))))
+  (loli-simple-eval obj env))
 
 (defun handle-loli-symbol-not-bound (condition)
   (when (typep condition 'loli-err-symbol-not-bound)
     (loli-symbol-not-bound-debug (err-obj condition) (err-env condition))))
 
-(defun loli-eval-sym (sym &optional (env '()))
+(defun loli-eval-sym (sym &optional (env *TOP-ENV*))
   (handler-bind ((loli-err-symbol-not-bound #'handle-loli-symbol-not-bound))
     (cond
       ((equalp (loli-obj-value sym) 'nil)
@@ -28,23 +41,24 @@
       ((equalp (loli-obj-value sym) 't)
        (return-from loli-eval-sym loli-t))
       ((and (null env) (null (loli-obj-env sym)))
-       (signal 'loli-err-symbol-not-bound :err-obj sym :err-env env))
+       (loli-symbol-not-bound-debug sym env))
       ((not (null (loli-obj-env sym)))
        (let ((r (loli-lookup sym (loli-obj-env sym))))
          (if (not (equal r loli-nil))
-             (return-from loli-eval-sym r))))
+             (return-from loli-eval-sym r)
+             (loli-symbol-not-bound-debug sym env))))
       ((not (null env))
        (let ((r (loli-lookup sym env)))
          (if (not (equal r loli-nil))
-             (return-from loli-eval-sym r))))
+             (return-from loli-eval-sym r)
+             (loli-symbol-not-bound-debug sym env))))
       (t
-       (signal 'loli-err-symbol-not-bound :err-obj sym :err-env env)))))
+       (loli-symbol-not-bound-debug sym env)))))
 
 (defun loli-eval-cons (lcons &optional (env '()))
   )
 
-(defun loli-simple-eval (obj &optional (env '()))
-  (format *standard-output* "~A~%" (loli-type-class-name (loli-obj-loli-type obj)))
+(defun loli-simple-eval (obj &optional (env *TOP-ENV*))
   (cond
     ((sub-type-p (loli-obj-loli-type obj)
                  *type-sym*)
@@ -97,11 +111,10 @@
 
 
 (defun loli-rep (&optional (in-stream *standard-input*) (env *TOP-ENV*) (out-stream *standard-output*))
-  (let ((i (loli-get-input in-stream))
-        (*break-on-signals* 'error))
+  (let ((i (loli-get-input in-stream)))
     (if (equalp i "")
         nil
         (let ((o (loli-simple-eval (loli-read-from-string i env) env)))
-          o))))
+          (loli-output o out-stream)))))
 
 (provide 'loli-repl)
