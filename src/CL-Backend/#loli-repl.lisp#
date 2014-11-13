@@ -14,7 +14,8 @@
     (use-new-value (new-value)
       :report "Enter a new value"
       :interactive loli-get-new-value
-      (loli-eval-sym new-value env))))
+      (setf obj new-value)
+      (loli-eval-sym obj env))))
 
 (defun handle-loli-symbol-not-bound (condition)
   (when (typep condition 'loli-err-symbol-not-bound)
@@ -101,7 +102,12 @@
         (*break-on-signals* 'error))
     (if (equalp i "")
         nil
-        (let ((o (loli-simple-eval (loli-read-from-string i env) env)))
+        (let ((o
+               (eval
+               (loli-simple-eval (loli-read-from-string i env) env)
+                )
+
+                ))
           o))))
 
 (provide 'loli-repl)
