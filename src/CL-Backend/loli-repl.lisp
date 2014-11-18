@@ -10,24 +10,23 @@
 
 (defun loli-get-new-value ()
   (format *standard-output* "New Value: ")
-  (multiple-value-list (loli-read-from-string (loli-get-input *query-io*))))
+  (multiple-value-list (loli-read-from-string (loli-get-input))))
 
 (defun loli-symbol-not-bound-debug (obj env)
-  (do ()
-      ((or
-        (not (equal loli-nil (loli-lookup obj env)))
-        (equal (loli-obj-value obj) 't)
-        (equal (loli-obj-value obj) 'nil)))
-    (restart-case
-        (cerror "Symbol not bound" 'loli-err-symbol-not-bound :err-obj obj :err-env env)
-      (use-new-value (new-value)
-        :report "Enter a new value"
-        :interactive (lambda ()
-                       (format *query-io* "New Value: ")
-                       (force-output *query-io*)
-                       (list (loli-read-from-string (loli-get-input *query-io*))))
-        (setq obj new-value))))
-  (loli-simple-eval obj env))
+  (format *standard-output* "Debug:")
+  (loli-output obj)
+  (format *standard-output* "~%~%")
+  (if
+   (or (not (equal loli-nil (loli-lookup obj env)))
+       (equal (loli-obj-value obj) 't)
+       (equal (loli-obj-value obj) 'nil))
+   obj
+   (restart-case
+       (cerror "Symbol not bound" 'loli-err-symbol-not-bound :err-obj obj :err-env env)
+     (use-value (new-value)
+       :report "Enter a new value"
+       :interactive loli-get-new-value
+       (loli-symbol-not-bound-debug new-value env)))))
 
 (defun handle-loli-symbol-not-bound (condition)
   (when (typep condition 'loli-err-symbol-not-bound)
@@ -41,22 +40,48 @@
       ((equalp (loli-obj-value sym) 't)
        (return-from loli-eval-sym loli-t))
       ((and (null env) (null (loli-obj-env sym)))
-       (loli-symbol-not-bound-debug sym env))
+       (progn
+         (format *standard-output* "BOTH NULL~%")
+         (return-from loli-eval-sym
+           (loli-eval-sym
+            (loli-symbol-not-bound-debug sym env)
+            env))))
       ((not (null (loli-obj-env sym)))
        (let ((r (loli-lookup sym (loli-obj-env sym))))
          (if (not (equal r loli-nil))
              (return-from loli-eval-sym r)
-             (loli-symbol-not-bound-debug sym env))))
+             (progn
+               (format *standard-output* "Inner env err~%")
+               (return-from loli-eval-sym
+                 (loli-eval-sym
+                  (loli-symbol-not-bound-debug sym env)
+                  env))))))
       ((not (null env))
        (let ((r (loli-lookup sym env)))
          (if (not (equal r loli-nil))
              (return-from loli-eval-sym r)
-             (loli-symbol-not-bound-debug sym env))))
+             (progn
+               (format *standard-output* "Outer env err~%")
+               (return-from loli-eval-sym
+                 (loli-eval-sym
+                  (loli-symbol-not-bound-debug sym env)
+                  env))))))
       (t
-       (loli-symbol-not-bound-debug sym env)))))
+                                        ;      (loli-symbol-not-bound-debug sym env)
+       ))))
 
-(defun loli-eval-cons (lcons &optional (env '()))
+(defun loli-simple-apply (fn lst &optional (env *TOP-ENV*))
+
   )
+
+(defun loli-eval-cons (lcons &optional (env *TOP-ENV*))
+  (loli-simple-apply (loli-head lcons) (loli-eval-list (loli-tail lcons) env) env))
+
+(defun loli-eval-list (lst &optional (env *TOP-ENV*))
+  (if (equalp lst loli-nil)
+      loli-nil)
+  (loli-cons (loli-simple-eval (loli-head lst) env)
+             (loli-eval-list (loli-tail lst) env)))
 
 (defun loli-simple-eval (obj &optional (env *TOP-ENV*))
   (cond
