@@ -71,8 +71,7 @@
        ))))
 
 (defun loli-simple-apply (fn lst &optional (env *TOP-ENV*))
-
-  )
+  (apply (loli-proc-struct-cl-fn (loli-obj-value fn)) lst))
 
 (defun loli-eval-cons (lcons &optional (env *TOP-ENV*))
   (loli-simple-apply (loli-head lcons) (loli-eval-list (loli-tail lcons) env) env))
@@ -80,8 +79,8 @@
 (defun loli-eval-list (lst &optional (env *TOP-ENV*))
   (if (equalp lst loli-nil)
       loli-nil)
-  (loli-cons (loli-simple-eval (loli-head lst) env)
-             (loli-eval-list (loli-tail lst) env)))
+  (cons (loli-simple-eval (loli-head lst) env)
+        (loli-eval-list (loli-tail lst) env)))
 
 (defun loli-simple-eval (obj &optional (env *TOP-ENV*))
   (cond

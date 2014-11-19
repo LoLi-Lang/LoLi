@@ -8,9 +8,9 @@
   (head loli-nil :type loli-obj)
   (tail loli-nil :type loli-obj))
 
-(defun loli-cons (head &optional (tail loli-nil) (env '()))
+(defun loli-cons (head &optional (tail loli-nil))
   (to-loli-cons
-   (make-loli-cons-struct :head head :tail tail) env))
+   (make-loli-cons-struct :head head :tail tail) '()))
 
 (defun loli-head (o)
   (if (loli-obj-p o)
@@ -41,6 +41,21 @@
 (defconstant loli-cons-f
   (to-loli-proc
    (make-loli-proc-struct :return-type *type-cons* :arg-type *type-obj* :arity 2 :cl-fn #'loli-cons)
+   '()))
+
+(defun loli-add (a b)
+  (if (or (sub-type-p (loli-obj-loli-type a) *type-flt*)
+          (sub-type-p (loli-obj-loli-type b) *type-flt*))
+      (to-loli-flt
+       (+ (loli-obj-value a) (loli-obj-value b))
+       '())
+      (to-loli-int
+       (+ (loli-obj-value a) (loli-obj-value b))
+       '())))
+
+(defconstant loli-add-f
+  (to-loli-proc
+   (make-loli-proc-struct :return-type *type-num* :arg-type *type-num* :arity 2 :cl-fn #'loli-add)
    '()))
 
 (provide 'loli-prim)
