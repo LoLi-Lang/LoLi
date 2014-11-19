@@ -16,14 +16,14 @@
   (if (loli-obj-p o)
       (if (loli-cons-struct-p (loli-obj-value o))
           (loli-cons-struct-head (loli-obj-value o))
-          'ERR-NOT-LOLI-CONS)
+          (format t "~A is not loli-cons" o))
       'ERR-NOT-LOLI-OBJ))
 
 (defun loli-tail (o)
   (if (loli-obj-p o)
       (if (loli-cons-struct-p (loli-obj-value o))
           (loli-cons-struct-tail (loli-obj-value o))
-          'ERR-NOT-LOLI-CONS)
+          (format t "~A is not loli-cons" o))
       'ERR-NOT-LOLI-OBJ))
 
 (defstruct loli-proc-struct

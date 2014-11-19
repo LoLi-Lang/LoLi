@@ -70,17 +70,23 @@
                                         ;      (loli-symbol-not-bound-debug sym env)
        ))))
 
+(defun break-loli-cons (lcons)
+  (if (equalp lcons loli-nil)
+      nil
+      (cons (loli-head lcons)
+            (break-loli-cons (loli-tail lcons)))))
+
 (defun loli-simple-apply (fn lst &optional (env *TOP-ENV*))
-  (apply (loli-proc-struct-cl-fn (loli-obj-value fn)) lst))
+  (apply (loli-proc-struct-cl-fn (loli-obj-value (loli-head fn))) (break-loli-cons lst)))
 
 (defun loli-eval-cons (lcons &optional (env *TOP-ENV*))
-  (loli-simple-apply (loli-head lcons) (loli-eval-list (loli-tail lcons) env) env))
+  (loli-simple-apply (loli-simple-eval (loli-head lcons) env) (loli-eval-list (loli-tail lcons) env) env))
 
 (defun loli-eval-list (lst &optional (env *TOP-ENV*))
   (if (equalp lst loli-nil)
-      loli-nil)
-  (cons (loli-simple-eval (loli-head lst) env)
-        (loli-eval-list (loli-tail lst) env)))
+      loli-nil
+      (loli-cons (loli-simple-eval (loli-head lst) env)
+                 (loli-eval-list (loli-tail lst) env))))
 
 (defun loli-simple-eval (obj &optional (env *TOP-ENV*))
   (cond

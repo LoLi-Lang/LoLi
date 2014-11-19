@@ -50,4 +50,10 @@
                   (to-loli-int 123))
        *TOP-ENV*))
 
+(setf *TOP-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym '+)
+                  loli-add-f)
+       *TOP-ENV*))
+
 (provide 'loli-env)
