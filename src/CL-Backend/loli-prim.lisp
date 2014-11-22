@@ -53,9 +53,54 @@
        (+ (loli-obj-value a) (loli-obj-value b))
        '())))
 
+(defun loli-sub (a b)
+  (if (or (sub-type-p (loli-obj-loli-type a) *type-flt*)
+          (sub-type-p (loli-obj-loli-type b) *type-flt*))
+      (to-loli-flt
+       (- (loli-obj-value a) (loli-obj-value b))
+       '())
+      (to-loli-int
+       (- (loli-obj-value a) (loli-obj-value b))
+       '())))
+
+(defun loli-mul (a b)
+  (if (or (sub-type-p (loli-obj-loli-type a) *type-flt*)
+          (sub-type-p (loli-obj-loli-type b) *type-flt*))
+      (to-loli-flt
+       (* (loli-obj-value a) (loli-obj-value b))
+       '())
+      (to-loli-int
+       (* (loli-obj-value a) (loli-obj-value b))
+       '())))
+
+(defun loli-div (a b)
+  (if (or (sub-type-p (loli-obj-loli-type a) *type-flt*)
+          (sub-type-p (loli-obj-loli-type b) *type-flt*))
+      (to-loli-flt
+       (/ (loli-obj-value a) (loli-obj-value b))
+       '())
+      (to-loli-int
+       (/ (loli-obj-value a) (loli-obj-value b))
+       '())))
+
 (defconstant loli-add-f
   (to-loli-proc
    (make-loli-proc-struct :return-type *type-num* :arg-type *type-num* :arity 2 :cl-fn #'loli-add)
+   '()))
+
+(defconstant loli-sub-f
+  (to-loli-proc
+   (make-loli-proc-struct :return-type *type-num* :arg-type *type-num* :arity 2 :cl-fn #'loli-sub)
+   '()))
+
+(defconstant loli-mul-f
+  (to-loli-proc
+   (make-loli-proc-struct :return-type *type-num* :arg-type *type-num* :arity 2 :cl-fn #'loli-mul)
+   '()))
+
+(defconstant loli-div-f
+  (to-loli-proc
+   (make-loli-proc-struct :return-type *type-num* :arg-type *type-num* :arity 2 :cl-fn #'loli-div)
    '()))
 
 (defconstant loli-quit-f

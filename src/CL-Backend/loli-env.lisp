@@ -58,6 +58,24 @@
 
 (setf *TOP-ENV*
       (loli-cons
+       (loli-cons (to-loli-sym '-)
+                  loli-sub-f)
+       *TOP-ENV*))
+
+(setf *TOP-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym '*)
+                  loli-mul-f)
+       *TOP-ENV*))
+
+(setf *TOP-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym '/)
+                  loli-div-f)
+       *TOP-ENV*))
+
+(setf *TOP-ENV*
+      (loli-cons
        (loli-cons (to-loli-sym 'quit)
                   loli-quit-f)
        *TOP-ENV*))
