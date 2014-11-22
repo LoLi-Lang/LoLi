@@ -99,6 +99,7 @@
     (t obj)))
 
 (defun loli-output (obj &optional (output-stream *standard-output*))
+  (force-output output-stream)
   (cond
     ((sub-type-p (loli-obj-loli-type obj)
                  *type-fn*)
@@ -146,5 +147,15 @@
         nil
         (let ((o (loli-simple-eval (loli-read-from-string i env) env)))
           (loli-output o out-stream)))))
+
+(defun loli-repl (&optional
+                    (in-stream *standard-input*)
+                    (env *TOP-ENV*)
+                    (out-stream *standard-output*))
+  (do ()
+      (nil 'QUIT)
+    (format out-stream "~%LoLi > ")
+    (force-output out-stream)
+    (loli-rep in-stream env out-stream)))
 
 (provide 'loli-repl)

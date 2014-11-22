@@ -33,7 +33,6 @@
   (loli-read-single-obj (read-from-string str) env))
 
 (defun loli-validate-input (str &optional (p 0) (q t))
-  (format *standard-output* "~A~%" str)
   (loop for c across str
      do
        (cond

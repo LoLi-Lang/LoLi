@@ -58,4 +58,10 @@
    (make-loli-proc-struct :return-type *type-num* :arg-type *type-num* :arity 2 :cl-fn #'loli-add)
    '()))
 
+(defconstant loli-quit-f
+  (to-loli-proc
+   (make-loli-proc-struct :return-type *type-obj* :arg-type *type-obj*
+                          :arity 0 :cl-fn #'sb-ext:exit)
+   '()))
+
 (provide 'loli-prim)
