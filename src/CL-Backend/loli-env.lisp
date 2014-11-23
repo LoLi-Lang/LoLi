@@ -80,4 +80,22 @@
                   loli-quit-f)
        *TOP-ENV*))
 
+(setf *TOP-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym 'cons)
+                  loli-cons-f)
+       *TOP-ENV*))
+
+(setf *TOP-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym 'head)
+                  loli-head-f)
+       *TOP-ENV*))
+
+(setf *TOP-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym 'tail)
+                  loli-tail-f)
+       *TOP-ENV*))
+
 (provide 'loli-env)

@@ -38,11 +38,6 @@
   (arg-types '() :type list)
   (exp loli-nil :type loli-obj))
 
-(defconstant loli-cons-f
-  (to-loli-proc
-   (make-loli-proc-struct :return-type *type-cons* :arg-type *type-obj* :arity 2 :cl-fn #'loli-cons)
-   '()))
-
 (defun loli-add (a b)
   (if (or (sub-type-p (loli-obj-loli-type a) *type-flt*)
           (sub-type-p (loli-obj-loli-type b) *type-flt*))
@@ -85,28 +80,50 @@
 
 (defconstant loli-add-f
   (to-loli-proc
-   (make-loli-proc-struct :return-type *type-num* :arg-type *type-num* :arity 2 :cl-fn #'loli-add)
+   (make-loli-proc-struct :return-type *type-num* :arg-type *type-num*
+                          :arity 2 :cl-fn #'loli-add)
    '()))
 
 (defconstant loli-sub-f
   (to-loli-proc
-   (make-loli-proc-struct :return-type *type-num* :arg-type *type-num* :arity 2 :cl-fn #'loli-sub)
+   (make-loli-proc-struct :return-type *type-num* :arg-type *type-num*
+                          :arity 2 :cl-fn #'loli-sub)
    '()))
 
 (defconstant loli-mul-f
   (to-loli-proc
-   (make-loli-proc-struct :return-type *type-num* :arg-type *type-num* :arity 2 :cl-fn #'loli-mul)
+   (make-loli-proc-struct :return-type *type-num* :arg-type *type-num*
+                          :arity 2 :cl-fn #'loli-mul)
    '()))
 
 (defconstant loli-div-f
   (to-loli-proc
-   (make-loli-proc-struct :return-type *type-num* :arg-type *type-num* :arity 2 :cl-fn #'loli-div)
+   (make-loli-proc-struct :return-type *type-num* :arg-type *type-num*
+                          :arity 2 :cl-fn #'loli-div)
    '()))
 
 (defconstant loli-quit-f
   (to-loli-proc
    (make-loli-proc-struct :return-type *type-obj* :arg-type *type-obj*
                           :arity 0 :cl-fn #'sb-ext:exit)
+   '()))
+
+(defconstant loli-cons-f
+  (to-loli-proc
+   (make-loli-proc-struct :return-type *type-cons* :arg-type *type-obj*
+                          :arity 2 :cl-fn #'loli-cons)
+   '()))
+
+(defconstant loli-head-f
+  (to-loli-proc
+   (make-loli-proc-struct :return-type *type-obj* :arg-type *type-cons*
+                          :arity 1 :cl-fn #'loli-head)
+   '()))
+
+(defconstant loli-tail-f
+  (to-loli-proc
+   (make-loli-proc-struct :return-type *type-obj* :arg-type *type-cons*
+                          :arity 1 :cl-fn #'loli-tail)
    '()))
 
 (provide 'loli-prim)
