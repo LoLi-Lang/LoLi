@@ -1,6 +1,7 @@
 (require 'loli-package "package")
 (require 'loli-obj "loli-obj")
 (require 'loli-prim "loli-prim")
+(require 'loli-lambda "loli-lambda")
 (require 'loli-type-class "loli-typeclass")
 
 (in-package #:loli)
@@ -96,6 +97,12 @@
       (loli-cons
        (loli-cons (to-loli-sym 'tail)
                   loli-tail-f)
+       *TOP-ENV*))
+
+(setf *TOP-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym '\\)
+                  loli-lambda-f)
        *TOP-ENV*))
 
 (provide 'loli-env)

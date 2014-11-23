@@ -79,14 +79,17 @@
 (defun loli-simple-apply (fn lst &optional (env *TOP-ENV*))
   (apply (loli-proc-struct-cl-fn (loli-obj-value (loli-head fn))) (break-loli-cons lst)))
 
-(defun loli-eval-cons (lcons &optional (env *TOP-ENV*))
-  (loli-simple-apply (loli-simple-eval (loli-head lcons) env) (loli-eval-list (loli-tail lcons) env) env))
-
 (defun loli-eval-list (lst &optional (env *TOP-ENV*))
   (if (equalp lst loli-nil)
       loli-nil
       (loli-cons (loli-simple-eval (loli-head lst) env)
                  (loli-eval-list (loli-tail lst) env))))
+
+(defun loli-eval-cons (lcons &optional (env *TOP-ENV*))
+  (if (equalp (loli-obj-value (loli-head lcons)) '\\)
+      (apply (loli-proc-struct-cl-fn (loli-obj-value loli-lambda-f))
+             (break-loli-cons (loli-tail lcons)))
+      (loli-simple-apply (loli-simple-eval (loli-head lcons) env) (loli-eval-list (loli-tail lcons) env) env)))
 
 (defun loli-simple-eval (obj &optional (env *TOP-ENV*))
   (cond
@@ -118,7 +121,7 @@
                     *type-lambda*)
         (format output-stream "<Lambda Expression ~{~A~^,~} => ~A>"
                 (loop for a in (loli-lambda-struct-arg-types (loli-obj-value obj))
-                   collect (loli-type-class-id a))
+                   collect (loli-obj-value a))
                 (loli-type-class-id
                  (loli-lambda-struct-return-type (loli-obj-value obj)))))
        (t

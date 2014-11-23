@@ -32,12 +32,6 @@
   (arity 0 :type integer)
   (cl-fn nil :type function))
 
-(defstruct loli-lambda-struct
-  (return-type *type-obj* :type loli-type-class)
-  (arg-lst loli-nil :type loli-obj)
-  (arg-types '() :type list)
-  (exp loli-nil :type loli-obj))
-
 (defun loli-add (a b)
   (if (or (sub-type-p (loli-obj-loli-type a) *type-flt*)
           (sub-type-p (loli-obj-loli-type b) *type-flt*))
