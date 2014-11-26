@@ -1,6 +1,7 @@
 (require 'loli-package "package")
 (require 'loli-obj "loli-obj")
 (require 'loli-prim "loli-prim")
+(require 'loli-lambda "loli-lambda")
 (require 'loli-type-class "loli-typeclass")
 (require 'loli-env "loli-env")
 (require 'loli-read "loli-read")
@@ -46,22 +47,23 @@
            (loli-eval-sym
             (loli-symbol-not-bound-debug sym env)
             env))))
-      ((not (null (loli-obj-env sym)))
-       (let ((r (loli-lookup sym (loli-obj-env sym))))
+      ((not (null env))
+       (let ((r (loli-lookup sym env)))
          (if (not (equal r loli-nil))
-             (return-from loli-eval-sym r)
+             (return-from loli-eval-sym (loli-head r))
              (progn
-               (format *standard-output* "Inner env err~%")
+               (format *standard-output* "Outer env err~%")
                (return-from loli-eval-sym
                  (loli-eval-sym
                   (loli-symbol-not-bound-debug sym env)
                   env))))))
-      ((not (null env))
-       (let ((r (loli-lookup sym env)))
+      ((not (null (loli-obj-env sym)))
+       (let ((r (loli-lookup sym (loli-obj-env sym))))
          (if (not (equal r loli-nil))
-             (return-from loli-eval-sym r)
+             (return-from loli-eval-sym (loli-head r))
              (progn
-               (format *standard-output* "Outer env err~%")
+               (loli-output (loli-obj-env sym))
+               (format *standard-output* "Inner env err~%")
                (return-from loli-eval-sym
                  (loli-eval-sym
                   (loli-symbol-not-bound-debug sym env)
@@ -76,8 +78,31 @@
       (cons (loli-head lcons)
             (break-loli-cons (loli-tail lcons)))))
 
+(defun loli-make-lambda-env (env lambda-arg v-lst)
+  (if (equalp (loli-obj-value lambda-arg) 'nil)
+      env
+      (loli-cons
+       (loli-cons
+        (loli-head lambda-arg)
+        (loli-head v-lst))
+       (loli-make-lambda-env env
+                             (loli-tail lambda-arg)
+                             (loli-tail v-lst)))))
+
 (defun loli-simple-apply (fn lst &optional (env *TOP-ENV*))
-  (apply (loli-proc-struct-cl-fn (loli-obj-value (loli-head fn))) (break-loli-cons lst)))
+  (if (sub-type-p (loli-obj-loli-type fn) *type-cons*)
+      (setf fn (loli-head fn)))
+  (cond
+    ((sub-type-p (loli-obj-loli-type fn) *type-proc*)
+     (apply (loli-proc-struct-cl-fn (loli-obj-value fn))
+            (break-loli-cons lst)))
+    ((sub-type-p (loli-obj-loli-type fn) *type-lambda*)
+     (loli-simple-eval (loli-lambda-struct-exp (loli-obj-value fn))
+                       (loli-make-lambda-env env
+                                             (loli-lambda-struct-arg-lst (loli-obj-value fn))
+                                             lst)))
+    (t
+     loli-nil)))
 
 (defun loli-eval-list (lst &optional (env *TOP-ENV*))
   (if (equalp lst loli-nil)
