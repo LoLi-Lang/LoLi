@@ -23,7 +23,10 @@ using namespace tokenizer;
 // Token class
 // --------------------------- //
 
-// Constructor
+// Constructor 
+// param: type - the type of Token
+// param: token - the string of token
+// param: linum - the line number of token
 Token::Token(TokenType type, std::string &token, int linum)
     :type(type), token(token), linum(linum){}
 
@@ -43,6 +46,8 @@ Tokenizer::~Tokenizer() { }
 
 
 // Find the type of the incoming character
+// param: c - the input char
+// return: the chartype of the input char
 CharType Tokenizer::findCharType(char c)
 {
     if ('0' <= c && c <= '9') {
@@ -54,6 +59,18 @@ CharType Tokenizer::findCharType(char c)
         return ALPHA_CHAR;
     }
     
+    if (c == '!' || c == '$'
+        || c == '%' || c == '&'
+        || c == '*' || c == '+'
+        || c == '-' || c == '.'
+        || c == '/' || c == ':'
+        || c == '=' || c == '>'
+        || c == '?' || c == '@'
+        || c == '^' || c == '_'
+        || c == '~') {
+        return SPECIAL_IDEN;
+    }
+
     if (c == ' ' || c == '\n' ||
         c == '\r' || c == '\t') {
         return EMPTY_CHAR;
@@ -71,8 +88,10 @@ CharType Tokenizer::findCharType(char c)
 }
 
 
-// Scan the next character
-int Tokenizer::scan(std::istream &file)
+// Scan the next char from file, save token stream to
+// token_stream vector
+// param: file - the input file
+void Tokenizer::scan(std::istream &file)
 {
     std::string buffer;
 
@@ -83,13 +102,14 @@ int Tokenizer::scan(std::istream &file)
     while (file.get(c)) {
         buffer.clear();
 
-        // NAME
-        if (findCharType(c) == ALPHA_CHAR || c == '_') {
+        // IDENTIFIER
+        if (findCharType(c) == ALPHA_CHAR
+            || findCharType(c) == SPECIAL_IDEN) {
             buffer += c;
             while(file.get(next)) {
                 if (findCharType(next) == ALPHA_CHAR ||
-                    findCharType(next) == NUMBER_CHAR ||
-                    next == '-' || next == '_' || next == '!' || next == '?') {
+                    findCharType(next) == SPECIAL_IDEN ||
+                    findCharType(next) == NUMBER_CHAR) {
                     buffer += next;
                 }
                 else {
@@ -115,7 +135,7 @@ int Tokenizer::scan(std::istream &file)
             }
             file.putback(next);
 
-            token_stream.push_back(Token(INTEGER, buffer, linum));
+            token_stream.push_back(Token(NUMBER, buffer, linum));
             continue;
         }
 
@@ -139,25 +159,23 @@ int Tokenizer::scan(std::istream &file)
                 if (next == '\\') {
                     file.get(next);
                     // Deal with special ASCII chars
-                    switch (next)
-                    {
+                    switch (next) {
                     case 'a': buffer += '\a';
                         break;
                     case 'b': buffer += '\b';
                         break;
-                    case 'f': buffer += '\f';
-                        break;
                     case 'n': buffer += '\n';
                         break;
-                    case 't': buffer += '\t';
+                    case 'r': buffer += '\r';
                         break;
-                    case 'v': buffer += '\v';
+                    case 't': buffer += '\t';
                         break;
                     case '\\': buffer += '\\';
                         break;
                     case '"': buffer += '"';
                         break;
-                    default: break;
+                    default: 
+                        break;
                     }
                 }
                 else {
@@ -189,13 +207,25 @@ int Tokenizer::scan(std::istream &file)
         // SPECIAL
         if (findCharType(c) == SPECIAL_CHAR) {
             buffer += c;
-            token_stream.push_back(Token(SPECIAL, buffer, linum));
-            continue;
+
+            switch(c) {
+            case '`': token_stream.push_back(Token(ACUTE, buffer, linum));
+                break;
+            case ',': token_stream.push_back(Token(COMMA, buffer, linum));
+                break;
+            case '.': token_stream.push_back(Token(DOT, buffer, linum));
+                break;
+            case '(': token_stream.push_back(Token(LEFTPAREN, buffer, linum));
+                break;
+            case ')': token_stream.push_back(Token(RIGHTPAREN, buffer, linum));
+                break;
+            default:
+                break;
+            }
         }
                 
     } // while loop
-	return 0;
-} // Tokenizer::scan 
+}
 
 
 // Dump token stream for debug

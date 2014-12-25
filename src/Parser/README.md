@@ -69,8 +69,8 @@ that's not behind a single '\'.
 * \t tab
 * \n return
 * \r return
-* \" "
-* \\ \
+* \" quotemark
+* \\ backslash
 * \<line ending> escaped line ending. Continue with next line.
 
 
@@ -85,7 +85,7 @@ token -> <identifier>
        | (
        | )
        | #(
-       # ignore UTF8 code for now | #u8
+       | #u8
        | '
        | `
        | ,

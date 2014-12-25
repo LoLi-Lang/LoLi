@@ -1,13 +1,12 @@
 // --*- C++ -*-------------------------------------//
 // 
-//                 The Mark Toy Language
+//                 The Loli Language
 //
 //
 // filename: Tokenizer.h
 // descript: The tokens definition and tokenizer
 //           implementation
-// author  : Kevin Hu
-// email   : hxy9243 AT gmail DOT com
+// author  : Kevin Hu <hxy9243@gmail.com>
 // note: 
 //
 //-------------------------------------------------//
@@ -22,74 +21,80 @@
 namespace marklang {
 namespace tokenizer {
 
-    // --------------------------- //
-    // Typedefs and constants
-    // --------------------------- //
-    enum CharType
-    {
-        ALPHA_CHAR,
-        NUMBER_CHAR,
-        EMPTY_CHAR,
-        COMMENT_CHAR,
-        SPECIAL_CHAR,
-        END_CHAR
-    };
 
-    enum TokenType
-    {
-        NAME,
-        INTEGER,
-        FLOAT,
-        STRING,
-        EMPTY,
-        SPECIAL,
-        END
-    };
+// --------------------------- //
+// Typedefs and constants
+// --------------------------- //
+enum CharType 
+{
+    ALPHA_CHAR,
+    SPECIAL_IDEN,
+    NUMBER_CHAR,
+    EMPTY_CHAR,
+    COMMENT_CHAR,
+    SPECIAL_CHAR,
+    END_CHAR
+};
+
+enum TokenType
+{
+    NAME,
+    NUMBER,
+    STRING,
+    LEFTPAREN,
+    RIGHTPAREN,
+    SINGLEQUOTE,
+    ACUTE,
+    COMMA,
+    DOT,
+    // SHARP_LEFTPAREN
+    // COMMA_AT
+    EMPTY,
+    END,
+};
     
 
-    // --------------------------- //
-    // Token class
-    // --------------------------- //
-    class Token
-    {
-    public:
-        // Constructor and Destructor
-        Token(TokenType type, std::string &token, int linum);
-        ~Token();
+// --------------------------- //
+// Token class
+// --------------------------- //
+class Token
+{
+public:
+    // Constructor and Destructor
+    Token(TokenType type, std::string &token, int linum);
+    ~Token();
         
-        TokenType type;
-        std::string token;
-        int linum;
-    };
+    TokenType type;
+    std::string token;
+    int linum;
+};
 
 
-    // --------------------------- //
-    // Tokenizer class
-    // --------------------------- //
-    class Tokenizer 
-    {
-    public:
-        // The vector containing all tokens
-        typedef std::vector<Token> TokenStream_t; 
-        TokenStream_t token_stream;
+// --------------------------- //
+// Tokenizer class
+// --------------------------- //
+class Tokenizer 
+{
+public:
+    // The vector containing all tokens
+    typedef std::vector<Token> TokenStream_t; 
+    TokenStream_t token_stream;
 
-        // Constructor and Destructor
-        Tokenizer();
-        ~Tokenizer();
+    // Constructor and Destructor
+    Tokenizer();
+    ~Tokenizer();
         
-        // Scan the next character
-        int scan(std::istream &file);
+    // Scan the next character
+    void scan(std::istream &file);
 
-        // Dump the token stream
-        void dump_tokens();
+    // Dump the token stream
+    void dump_tokens();
 
-    private:
-        // find type of character
-        CharType findCharType(char c);
+private:
+    // find type of character
+    CharType findCharType(char c);
+};
 
-        // find if character matches 
-        bool match(char c);
-    };
 
 } // namespace tokenizer
 } // namespace marklang
