@@ -23,8 +23,17 @@ For the time being, inline hex escape and vertical bars are not supported.
 
 Here are some valid identifiers:
 
-lambda q list->vector +soup+ + V17a <=? a34kTMNs ->string ...
-this-is-a-very-long-id
+* lambda
+* q
+* list->vector
+* +soup+
+* +
+* V17a
+* <=?
+* a34kTMNs
+* ->string
+* ...
+* this-is-a-very-long-id
 
 
 Also for ease of things, identifiers are case-sensitive.
@@ -39,13 +48,12 @@ Also for ease of things, identifiers are case-sensitive.
 For now integers, float and double would be supported.
 For integers, bin, oct, dec and hex would be supported
 
-bin: #b10100
-oct: #o24
-dec: #d20 20
-hex: #d14
-
-float: 3.1415 4.5e4
-double: 2.3d3 2.3D3
+* bin: #b10100
+* oct: #o24
+* dec: #d20 20
+* hex: #d14
+* float: 3.1415 4.5e4
+* double: 2.3d3 2.3D3
 
 ### string
 
@@ -55,14 +63,15 @@ that's not behind a single '\'.
 "\"To be or not to be?\" He whispered to himself."
 
 '\' serves as a escape sign, the following characters could be escaped:
-\a bell char
-\b backspace char
-\t tab
-\n return
-\r return
-\" "
-\\ \
-\<line ending> escaped line ending. Continue with next line.
+
+* \a bell char
+* \b backspace char
+* \t tab
+* \n return
+* \r return
+* \" "
+* \\ \
+* \<line ending> escaped line ending. Continue with next line.
 
 
 ### Tokenizer specifications
