@@ -4,12 +4,17 @@ Tokenizer and Parser Design
 The Tokenizer and Parser defines the syntax of the Language.
 The current syntax definition borrows much ideas from Scheme
 specifications [R7RS](http://www.scheme-reports.org/) sixth draft.
-The first versions of the language might not implement all the features.
+The first versions of this language might not implement all the features.
 
 
 ## Tokenizer
 
 There are following token types in the language:
+
+* identifier
+* boolean
+* number
+* 
 
 ### identifier
 

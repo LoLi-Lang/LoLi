@@ -50,7 +50,7 @@ enum TokenType
     // SHARP_LEFTPAREN
     // COMMA_AT
     EMPTY,
-    END,
+    ERRORTOKEN
 };
     
 

@@ -104,7 +104,7 @@ void Tokenizer::scan(std::istream &file)
 
         // IDENTIFIER
         if (findCharType(c) == ALPHA_CHAR
-            || findCharType(c) == SPECIAL_IDEN) {
+            || (findCharType(c) == SPECIAL_IDEN && c == '+' && c == '-')) {
             buffer += c;
             while(file.get(next)) {
                 if (findCharType(next) == ALPHA_CHAR ||
@@ -122,20 +122,82 @@ void Tokenizer::scan(std::istream &file)
             continue;
         }   
 
-        // NUMBER tokens
+        // NUMBERS
         if (findCharType(c) == NUMBER_CHAR) {
+            int state = 0;
             buffer += c;
             while (file.get(next)) {
-                if (findCharType(next) == NUMBER_CHAR) {
-                    buffer += next;
+                switch (state) {
+                case 0: 
+                    if (findCharType(next) == NUMBER_CHAR) {
+                        buffer += next;
+                    }
+                    else if (next == '.') {
+                        buffer += next;
+                        state = 1;
+                    }
+                    else if (next == 'e' || next == 'E'
+                             || next == 'd' || next == 'D') {
+                        buffer += next;
+                        state = 3;
+                    }
+                    else {
+                        state = 4;
+                    }
+                    break;
+                case 1:
+                    if (findCharType(next) == NUMBER_CHAR) {
+                        buffer += next;
+                    }
+                    else if (next == 'e' || next == 'E'
+                             || next == 'd' || next == 'D') {
+                        buffer += next;
+                        state = 2;
+                    }
+                    else {
+                        state = 4;
+                    }
+                    break;
+                case 2:
+                    if (next == '+' || next == '-') {
+                        buffer += next;
+                        state = 3;
+                    }
+                    else if (findCharType(next) == NUMBER_CHAR) {
+                        buffer += next;
+                        state = 3;
+                    }
+                    else {
+                        state = -1;
+                    }
+                    break;
+                case 3:
+                    if (findCharType(next) == NUMBER_CHAR) {
+                        buffer += next;
+                    }
+                    else {
+                        state = 4;
+                    }
+                    break;
+                case 4:
+                    break;
+                default:
+                    break;
+                }
+                if (state < 4) {
+                    continue;
+                }
+                else if (state == 4) {
+                    file.putback(next);
+                    token_stream.push_back(Token(NUMBER, buffer, linum));
+                    break;
                 }
                 else {
+                    file.putback(next);
+                    token_stream.push_back(Token(ERRORTOKEN, buffer, linum));
                     break;
                 }
             }
-            file.putback(next);
-
-            token_stream.push_back(Token(NUMBER, buffer, linum));
             continue;
         }
 
