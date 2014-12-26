@@ -28,10 +28,10 @@ namespace tokenizer {
 enum CharType 
 {
     ALPHA_CHAR,
-    SPECIAL_IDEN,
     NUMBER_CHAR,
     EMPTY_CHAR,
     COMMENT_CHAR,
+    SPECIAL_IDEN,
     SPECIAL_CHAR,
     END_CHAR
 };

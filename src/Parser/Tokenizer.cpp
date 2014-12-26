@@ -104,12 +104,12 @@ void Tokenizer::scan(std::istream &file)
 
         // IDENTIFIER
         if (findCharType(c) == ALPHA_CHAR
-            || (findCharType(c) == SPECIAL_IDEN && c == '+' && c == '-')) {
+            || findCharType(c) == SPECIAL_IDEN) {
             buffer += c;
             while(file.get(next)) {
-                if (findCharType(next) == ALPHA_CHAR ||
-                    findCharType(next) == SPECIAL_IDEN ||
-                    findCharType(next) == NUMBER_CHAR) {
+                if (findCharType(next) == ALPHA_CHAR
+                    || findCharType(next) == SPECIAL_IDEN
+                    || findCharType(next) == NUMBER_CHAR) {
                     buffer += next;
                 }
                 else {
@@ -117,7 +117,6 @@ void Tokenizer::scan(std::istream &file)
                 }
             }
             file.putback(next);
-
             token_stream.push_back(Token(NAME, buffer, linum));
             continue;
         }   
@@ -126,6 +125,8 @@ void Tokenizer::scan(std::istream &file)
         if (findCharType(c) == NUMBER_CHAR) {
             int state = 0;
             buffer += c;
+
+            // starting FSM
             while (file.get(next)) {
                 switch (state) {
                 case 0: 
@@ -141,8 +142,13 @@ void Tokenizer::scan(std::istream &file)
                         buffer += next;
                         state = 3;
                     }
+                    else if (findCharType(next) == SPECIAL_CHAR
+                             || findCharType(next) == SPECIAL_IDEN
+                             || findCharType(next) == EMPTY_CHAR) {
+                        state = 5;
+                    }
                     else {
-                        state = 4;
+                        state = -1;
                     }
                     break;
                 case 1:
@@ -154,8 +160,13 @@ void Tokenizer::scan(std::istream &file)
                         buffer += next;
                         state = 2;
                     }
+                    else if (findCharType(next) == SPECIAL_CHAR
+                             || findCharType(next) == SPECIAL_IDEN
+                             || findCharType(next) == EMPTY_CHAR) {
+                        state = 5;
+                    }
                     else {
-                        state = 4;
+                        state = -1;
                     }
                     break;
                 case 2:
@@ -176,26 +187,38 @@ void Tokenizer::scan(std::istream &file)
                         buffer += next;
                     }
                     else {
-                        state = 4;
+                        state = -1;
                     }
                     break;
                 case 4:
+                    if (findCharType(next) == NUMBER_CHAR) {
+                        buffer += next;
+                    }
+                    else if (findCharType(next) == SPECIAL_CHAR
+                             || findCharType(next) == SPECIAL_IDEN
+                             || findCharType(next) == EMPTY_CHAR) {
+                        state = 5;
+                    }
+                    else {
+                        state = -1;
+                    }
+                case 5:
                     break;
                 default:
                     break;
                 }
-                if (state < 4) {
-                    continue;
-                }
-                else if (state == 4) {
+                if (state == 5) {
                     file.putback(next);
                     token_stream.push_back(Token(NUMBER, buffer, linum));
                     break;
                 }
-                else {
+                else if (state == -1) {
                     file.putback(next);
                     token_stream.push_back(Token(ERRORTOKEN, buffer, linum));
                     break;
+                }
+                else {
+                    continue;
                 }
             }
             continue;
@@ -284,6 +307,7 @@ void Tokenizer::scan(std::istream &file)
             default:
                 break;
             }
+            continue;
         }
                 
     } // while loop
