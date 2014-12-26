@@ -71,7 +71,7 @@ that's not behind a single '\'.
 * \r return
 * \" quotemark
 * \\\\ backslash
-* \\<line ending> escaped line ending. Continue with next line.
+* \\\<line ending\> escaped line ending. Continue with next line.
 
 
 ### Tokenizer specifications
