@@ -44,9 +44,9 @@ Here are some valid identifiers:
 Also for ease of things, identifiers are case-sensitive.
 
 
-### boolean
+### boolean (In LoLi, Boolean is Keyword)
 
-\#true and \#false, in short, \#t and \#f
+:true and :false, in short, :t and :f
 
 ### number
 
