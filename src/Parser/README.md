@@ -70,7 +70,7 @@ that's not behind a single '\'.
 * \n return
 * \r return
 * \" quotemark
-* \\ backslash
+* \\\\ backslash
 * \\<line ending> escaped line ending. Continue with next line.
 
 
