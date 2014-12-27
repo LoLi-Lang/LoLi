@@ -117,7 +117,14 @@ void Tokenizer::scan(std::istream &file)
                 }
             }
             file.putback(next);
-            token_stream.push_back(Token(NAME, buffer, linum));
+
+            if (buffer == ":t" || buffer == ":f"
+                || buffer == ":true" || buffer == ":false") {
+                token_stream.push_back(Token(BOOLEAN, buffer, linum));
+            }
+            else {
+                token_stream.push_back(Token(NAME, buffer, linum));
+            }
             continue;
         }   
 
@@ -140,7 +147,7 @@ void Tokenizer::scan(std::istream &file)
                     else if (next == 'e' || next == 'E'
                              || next == 'd' || next == 'D') {
                         buffer += next;
-                        state = 3;
+                        state = 2;
                     }
                     else if (findCharType(next) == SPECIAL_CHAR
                              || findCharType(next) == SPECIAL_IDEN
@@ -176,7 +183,7 @@ void Tokenizer::scan(std::istream &file)
                     }
                     else if (findCharType(next) == NUMBER_CHAR) {
                         buffer += next;
-                        state = 3;
+                        state = 4;
                     }
                     else {
                         state = -1;
@@ -185,6 +192,7 @@ void Tokenizer::scan(std::istream &file)
                 case 3:
                     if (findCharType(next) == NUMBER_CHAR) {
                         buffer += next;
+                        state = 4;
                     }
                     else {
                         state = -1;
@@ -202,6 +210,7 @@ void Tokenizer::scan(std::istream &file)
                     else {
                         state = -1;
                     }
+                    break;
                 case 5:
                     break;
                 default:
