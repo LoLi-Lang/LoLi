@@ -147,7 +147,7 @@ void Tokenizer::scan(std::istream &file)
                     else if (next == 'e' || next == 'E'
                              || next == 'd' || next == 'D') {
                         buffer += next;
-                        state = 3;
+                        state = 2;
                     }
                     else if (findCharType(next) == SPECIAL_CHAR
                              || findCharType(next) == SPECIAL_IDEN
