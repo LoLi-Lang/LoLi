@@ -14,7 +14,8 @@ There are following token types in the language:
 * identifier
 * boolean
 * number
-* 
+* string
+* special characters
 
 ### identifier
 
@@ -77,6 +78,15 @@ that's not behind a single '\'.
 * \" quotemark
 * \\\\ backslash
 * \\\<line ending\> escaped line ending. Continue with next line.
+
+
+### special characters
+
+Special characters are those special signs not included in identifiers,
+they would not be included in any identifiers. For example, the
+following are examples of special characters:
+
+( ) , \` 
 
 
 ### Tokenizer specifications
