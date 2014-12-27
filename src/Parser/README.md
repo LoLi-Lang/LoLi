@@ -46,7 +46,7 @@ Also for ease of things, identifiers are case-sensitive.
 
 ### boolean
 
-\#true and \#false, in short, \#t and \#f
+:true and :false, in short, :t and :f
 
 ### number
 

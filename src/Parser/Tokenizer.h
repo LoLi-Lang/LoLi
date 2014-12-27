@@ -41,6 +41,7 @@ enum TokenType
     NAME,
     NUMBER,
     STRING,
+    BOOLEAN,
     LEFTPAREN,
     RIGHTPAREN,
     SINGLEQUOTE,
