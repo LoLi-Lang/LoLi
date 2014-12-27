@@ -192,6 +192,7 @@ void Tokenizer::scan(std::istream &file)
                 case 3:
                     if (findCharType(next) == NUMBER_CHAR) {
                         buffer += next;
+                        state = 4;
                     }
                     else {
                         state = -1;
