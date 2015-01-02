@@ -8,3 +8,5 @@
 (in-package #:loli)
 
 (loli-repl)
+
+(sb-ext:exit)

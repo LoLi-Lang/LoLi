@@ -111,10 +111,18 @@
                  (loli-eval-list (loli-tail lst) env))))
 
 (defun loli-eval-cons (lcons &optional (env *TOP-ENV*))
-  (if (equalp (loli-obj-value (loli-head lcons)) '\\)
-      (apply (loli-proc-struct-cl-fn (loli-obj-value loli-lambda-f))
-             (break-loli-cons (loli-tail lcons)))
-      (loli-simple-apply (loli-simple-eval (loli-head lcons) env) (loli-eval-list (loli-tail lcons) env) env)))
+  (cond ((equalp (loli-obj-value (loli-head lcons)) '\\) ;; Lambda
+         (apply (loli-proc-struct-cl-fn (loli-obj-value loli-lambda-f))
+                (break-loli-cons (loli-tail lcons))))
+        ((equalp (loli-obj-value (loli-head lcons)) 'if) ;; If
+         (let ((tcons (loli-tail lcons)))
+           (setf (loli-obj-env (loli-head tcons)) env)
+           (loli-simple-eval
+            (apply (loli-proc-struct-cl-fn (loli-obj-value loli-if-f))
+                   (break-loli-cons (loli-cons env tcons)))
+            env)))
+        (t
+         (loli-simple-apply (loli-simple-eval (loli-head lcons) env) (loli-eval-list (loli-tail lcons) env) env))))
 
 (defun loli-simple-eval (obj &optional (env *TOP-ENV*))
   (cond
@@ -125,6 +133,17 @@
                  *type-cons*)
      (loli-eval-cons obj env))
     (t obj)))
+
+(defun loli-if (env c then else)
+  (if (not (equalp (loli-obj-value (loli-simple-eval c env)) (loli-obj-value loli-false)))
+      then
+      else))
+
+(defconstant loli-if-f
+  (to-loli-proc
+   (make-loli-proc-struct :return-type *type-obj* :arg-type *type-obj*
+                          :arity 3 :cl-fn #'loli-if)
+   '()))
 
 (defun loli-output (obj &optional (output-stream *standard-output*))
   (force-output output-stream)
