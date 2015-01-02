@@ -32,6 +32,13 @@
   (arity 0 :type integer)
   (cl-fn nil :type function))
 
+(defun loli-num-eq (a b)
+  (if (and (sub-type-p (loli-obj-loli-type a) *type-num*)
+           (sub-type-p (loli-obj-loli-type b) *type-num*))
+    (if (= (loli-obj-value a) (loli-obj-value b))
+        loli-true
+        loli-false)))
+
 (defun loli-add (a b)
   (if (or (sub-type-p (loli-obj-loli-type a) *type-flt*)
           (sub-type-p (loli-obj-loli-type b) *type-flt*))
@@ -119,5 +126,10 @@
    (make-loli-proc-struct :return-type *type-obj* :arg-type *type-cons*
                           :arity 1 :cl-fn #'loli-tail)
    '()))
+
+(defconstant loli-num-eq-f
+             (to-loli-proc
+               (make-loli-proc-struct :return-type *type-bool* :arg-type *type-num* :arity 2 :cl-fn #'loli-num-eq)
+               '()))
 
 (provide 'loli-prim)

@@ -3,9 +3,6 @@ CLANG = clang++
 CFLAGSG = -std=c++11 -stdlib=libstdc++ -Wall -Og -Wextra -g
 CFLAGSC = -std=c++11 -stdlib=libstdc++ -Wall -O0 -Wextra -g
 
-GC = -L/home/zshang/Program/LoLi/git/src/gc/build -lgc
-GCINCLUDE = -I/home/zshang/Program/LoLi/git/src/gc/include
-
 HEADERS = \
 	  include/loli_obj.h\
 	  include/loli_util.h\
@@ -30,6 +27,7 @@ MAIN = \
      loli_eval.cpp\
      loli_apply.cpp\
      loli_repl.cpp\
+	 loli_typeclass.cpp\
      loli_main.cpp
 
 TEST = \
@@ -47,10 +45,10 @@ TEST = \
        loli2test.cpp
 
 CURRENTG: 
-	$(CC) $(CFLAGSG) $(GCINCLUDE) $(GC) -o currentg $(MAIN)
+	$(CC) $(CFLAGSG) -o currentg $(MAIN)
 
 CURRENTC:
-	$(CLANG) $(CFLAGSC) $(GCINCLUDE) $(GC) -o currentc $(MAIN)
+	$(CLANG) $(CFLAGSC) -o currentc $(MAIN)
 
 TEST:	$(HEADERS)
 	$(CLANG) $(CFLAGSC) $(GCINCLUDE) $(GC) -o test $(TEST)

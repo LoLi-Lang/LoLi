@@ -20,7 +20,6 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-#include "../header/loli_gc.h"
 #include "include/loli_obj.h"
 
 loliObj* nil = new loliSym("nil");

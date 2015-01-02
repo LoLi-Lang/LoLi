@@ -18,7 +18,7 @@
 
 #include "include/loli_obj.h"
 #include "include/loli_util.h"
-#include "../header/loli_gc.h"
+//#include "../header/loli_gc.h"
 
 #include <string>
 #include <iostream>

@@ -96,7 +96,7 @@ class loliNum : public loliObj { //Place holder
 			return 1;
 		}
 
-		loliObj* eval(loliObj* env){
+		loliObj* eval(loliObj* env) override {
             this->type = typeNUM;
             std::cout<<typeid(this).name()<<std::endl;
 			return this;
@@ -219,7 +219,8 @@ class loliKey: public loliObj {
 			return 1;
 		}
 
-		loliObj* eval(loliObj* env){
+		loliObj* eval(loliObj* env) override {
+            std::cout<<"Override\n";
             this->type = typeKEY;
             std::cout<<this->getType()->toString()<<std::endl;
 			return this;
