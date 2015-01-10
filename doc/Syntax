@@ -26,6 +26,6 @@ There is no `&body` or `&rest` features in LoLi, the argument list must have a c
 
 Misc:
 The BOOLEAN type in LoLi is a sub-type of KEYWORD, so they look like: `:true`, `:false` instead of the Scheme style `#true`, `#false`
-There also exist `T` and `NIL`, they are SYMBOLs, and DO NOT have BOOLEAN value, `NIL` is the end of a List: `(a (b (c (d (e . NIL)))))`
+There also exist `T` and `NIL`, they are SYMBOLs, and DO NOT have BOOLEAN value, `NIL` equals to `'()`
 The type ids are also KEYWORDs
 You can extend types by creating sub-types (which is not implemented yet)
