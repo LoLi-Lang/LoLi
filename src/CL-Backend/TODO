@@ -1,0 +1,13 @@
+Features to be done:
+
+`assert`
+to assert a type of a symbol in a temporary environment, use it like `let`:
+
+assert LIST EXP
+
+(assert ((SYM1 :TYPE-ID)
+         (SYM2 :TYPE-ID)
+         ...)
+         EXP)
+
+
