@@ -2,6 +2,8 @@
 
 2. Implement the LoLi type system (Typeclass)
 
+>Done.
+
 3. Start to build the new Read-Parse module
 
 >Done.

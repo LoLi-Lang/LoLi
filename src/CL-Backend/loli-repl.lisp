@@ -114,6 +114,14 @@
   (cond ((equalp (loli-obj-value (loli-head lcons)) '\\) ;; Lambda
          (apply (loli-proc-struct-cl-fn (loli-obj-value loli-lambda-f))
                 (break-loli-cons (loli-tail lcons))))
+        ((equalp (loli-obj-value (loli-head lcons)) 'def)
+         (apply (loli-proc-struct-cl-fn (loli-obj-value loli-def-f))
+                (break-loli-cons (loli-tail lcons)))
+         (loli-output *TOP-ENV*)
+         )
+        ((equalp (loli-obj-value (loli-head lcons)) 'set!)
+         (apply (loli-proc-struct-cl-fn (loli-obj-value loli-set-f))
+                (break-loli-cons (loli-tail lcons))))
         ((equalp (loli-obj-value (loli-head lcons)) 'if) ;; If
          (let ((tcons (loli-tail lcons)))
            (setf (loli-obj-env (loli-head tcons)) env)

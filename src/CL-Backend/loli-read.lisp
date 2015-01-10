@@ -25,7 +25,11 @@
         (number (to-loli-num cl-obj env))
         (string (to-loli-string cl-obj env))
         (character (to-loli-char cl-obj env))
-        (keyword (to-loli-key cl-obj env))
+        (keyword
+         (if (or (equal cl-obj :true)
+                 (equal cl-obj :false))
+             (to-loli-bool cl-obj env)
+             (to-loli-key cl-obj env)))
         (list (loli-read-list cl-obj env))
         (symbol (to-loli-sym cl-obj env)))))
 

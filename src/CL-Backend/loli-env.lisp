@@ -6,7 +6,7 @@
 
 (in-package #:loli)
 
-(defparameter *TOP-ENV* loli-nil "The TOP-LEVEL Environment of LoLi")
+(defvar *TOP-ENV* loli-nil "The TOP-LEVEL Environment of LoLi")
 
 (defun loli-lookup (sym &optional (env *TOP-ENV*))
   (if (sub-type-p (loli-obj-loli-type env) *type-cons*)
@@ -115,6 +115,75 @@
       (loli-cons
        (loli-cons (to-loli-sym '\\)
                   loli-lambda-f)
+       *TOP-ENV*))
+
+(setf *TOP-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym '>)
+                  loli-num-greater-f)
+       *TOP-ENV*))
+
+(setf *TOP-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym '<)
+                  loli-num-less-f)
+       *TOP-ENV*))
+
+(setf *TOP-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym 'and)
+                  loli-and-f)
+       *TOP-ENV*))
+
+(setf *TOP-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym 'or)
+                  loli-or-f)
+       *TOP-ENV*))
+
+(setf *TOP-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym 'not)
+                  loli-not-f)
+       *TOP-ENV*))
+
+(defun loli-def (name value)
+  (if (equalp (typed-lookup name (loli-obj-loli-type value))
+              'NO-MATCHING-FOUND)
+      (setf *TOP-ENV* (loli-cons (loli-cons name value) *TOP-ENV*))
+      (format *standard-output* "Symbol bind already exists!~%")))
+
+(defconstant loli-def-f
+  (to-loli-proc
+   (make-loli-proc-struct :return-type *type-obj* :arg-type *type-obj*
+                          :arity 2 :cl-fn #'loli-def)))
+
+(setf *TOP-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym 'def)
+                  loli-def-f)
+       *TOP-ENV*))
+
+(defun loli-set (name value)
+  (if (equalp (typed-lookup name (loli-obj-loli-type value))
+              'NO-MATCHING-FOUND)
+      (format *standard-output*
+              "Error: the symbol ~A is not bound to the type ~A~%"
+              (loli-obj-value name)
+              (loli-type-class-id (loli-obj-loli-type value)))
+      (setf (typed-lookup name (loli-obj-loli-type value))
+            value)))
+
+(defconstant loli-set-f
+  (to-loli-proc
+   (make-loli-proc-struct :return-type *type-obj* :arg-type *type-obj*
+                          :arity 2 :cl-fn #'loli-set)
+   '()))
+
+(setf *TOP-ENV*
+      (loli-cons
+       (loli-cons (to-loli-sym 'set!)
+                  loli-set-f)
        *TOP-ENV*))
 
 (provide 'loli-env)
