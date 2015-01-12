@@ -46,4 +46,6 @@
                   t
                   (sub-type-p (loli-type-class-parent type-a) type-b))))))
 
+(defun type-id-to-type (typeid ))
+
 (provide 'loli-type-class)

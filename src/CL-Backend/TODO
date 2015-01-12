@@ -5,9 +5,19 @@ to assert a type of a symbol in a temporary environment, use it like `let`:
 
 assert LIST EXP
 
+LOLI-LIST, LOLI-OBJ => LOLI-OBJ
+
 (assert ((SYM1 :TYPE-ID)
          (SYM2 :TYPE-ID)
          ...)
          EXP)
 
 
+`type-id-to-type` (CL)
+to look up the type object according to the type id
+
+type-id-to-type TYPE-ID
+
+LOLI-KEYWORD => LOLI-TYPECLASS
+
+(type-id-to-type TYPE-ID)
