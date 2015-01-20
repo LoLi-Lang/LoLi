@@ -98,4 +98,12 @@
 (defconstant loli-false
   (to-loli-bool :false '()))
 
+(defun type-id-to-type (type-id &optional (env *TYPE-ENV*))
+  (if (null env)
+      NIL
+      (if (equalp (loli-obj-value type-id)
+                  (loli-type-class-id (car env)))
+          (car env)
+          (type-id-to-type type-id (cdr env)))))
+
 (provide 'loli-obj)

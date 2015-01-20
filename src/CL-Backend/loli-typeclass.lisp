@@ -35,7 +35,7 @@
   (make-loli-type-class :name "Boolean" :id :BOOL :parent *type-key*) "The Boolean Type in LoLi")
 
 (defun sub-type-p (type-a type-b)
-;  (format *standard-output* "~A ~A" type-a type-b)
+                                        ;  (format *standard-output* "~A ~A" type-a type-b)
   (if (or (null type-a) (null type-b))
       'NULL-ARG
       (if (equalp type-b *type-obj*)
@@ -46,6 +46,21 @@
                   t
                   (sub-type-p (loli-type-class-parent type-a) type-b))))))
 
-(defun type-id-to-type (typeid ))
+(defparameter *TYPE-ENV*
+  (list
+   *type-obj*
+   *type-fn*
+   *type-flt*
+   *type-int*
+   *type-key*
+   *type-num*
+   *type-sym*
+   *type-bool*
+   *type-char*
+   *type-string*
+   *type-cons*
+   *type-lambda*
+   *type-proc*)
+  "The Global Environment Contains All Types of LoLi")
 
 (provide 'loli-type-class)

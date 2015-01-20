@@ -11,13 +11,3 @@ LOLI-LIST, LOLI-OBJ => LOLI-OBJ
          (SYM2 :TYPE-ID)
          ...)
          EXP)
-
-
-`type-id-to-type` (CL)
-to look up the type object according to the type id
-
-type-id-to-type TYPE-ID
-
-LOLI-KEYWORD => LOLI-TYPECLASS
-
-(type-id-to-type TYPE-ID)
