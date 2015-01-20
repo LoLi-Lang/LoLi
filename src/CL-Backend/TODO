@@ -11,3 +11,5 @@ LOLI-LIST, LOLI-OBJ => LOLI-OBJ
          (SYM2 :TYPE-ID)
          ...)
          EXP)
+
+Redo the eval order, make it lazy-like
