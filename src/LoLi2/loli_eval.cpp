@@ -37,7 +37,7 @@ loliObj* loliSym::eval(loliObj* e){
     if(e->nilp() || e == NULL){
       loliObj* r = lookup_top_env(this);
       if(r->nilp()){
-        loli_err("Symbol: " + this->toString() + " is unbound.");
+        loli_err("Symbol: " + this->toString() + " is not bound.");
         return nil;
       }else{
         return lcons(r)->head();
@@ -45,7 +45,7 @@ loliObj* loliSym::eval(loliObj* e){
     }else{
       loliObj* r = lookup_env(this, e);
       if(r->nilp()){
-        loli_err("Symbol: " + this->toString() + " is unbound in its environment.");
+        loli_err("Symbol: " + this->toString() + " is not bound in its environment.");
         return nil;
       }else{
         return lcons(r)->head();
