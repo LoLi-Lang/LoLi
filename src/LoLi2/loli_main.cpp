@@ -24,6 +24,7 @@
 #include "include/loli_obj.h"
 #include "include/loli_env.h"
 #include "include/loli_prim.h"
+#include "include/loli_type.h"
 
 #define VERSION "Dev alpha 2"
 
@@ -51,7 +52,7 @@ int main(int argc, char** argv){
 		}else if(strcmp(argv[1], "--repl") == 0){
 			//REPL
 			loliObj* env = initTopEnv();
-			c_repl();
+			c_repl(env);
 		}
 	}else{
 		std::cout<<"Please add an option"<<std::endl;
@@ -73,6 +74,7 @@ void showHelp(){
 
 loliObj* initTopEnv(){
 	loliObj* tmp = top_env;
-	
+	loliObj* odef = new loliPrim(*c_def, kproc, kobj);
+    add_to_env(odef, tmp);  
 	return tmp;
 }

@@ -46,6 +46,9 @@ extern loliObj* c_is_bool(loliObj* obj);
 extern loliObj* c_is_type(loliObj* obj);
 extern loliObj* c_is_obj(loliObj* obj);
 
+loliKey* to_key(std::string k){
+    return new loliKey(k);
+}
 loliObj* kint = to_key("INT");
 loliObj* kflt = to_key("FLT");
 loliObj* knum = to_key("NUM");

@@ -41,60 +41,60 @@ extern loliTypeClass* typeSTRING;
 extern loliTypeClass* typeBOOL;
 
 class loliTypeClass {
-	public:
-	loliTypeClass * parentType = typeOBJ;
-	std::string identifier = "";
-    const char* ti;
+    public:
+        loliTypeClass * parentType = typeOBJ;
+        std::string identifier = "";
+        const char* ti;
 
-	const std::string toString(){
-		return ":" + identifier + "\t" + ti;
-	}
-	//Contructures:
-	loliTypeClass(){
-		this->parentType = typeOBJ;
-		this->identifier = "";
-	}
-
-	loliTypeClass(std::string id){
-		this->parentType = typeOBJ;
-		this->identifier = id;
-	}
-
-	loliTypeClass(std::string id, const char* tp){
-		this->parentType = typeOBJ;
-		this->identifier = id;
-        this->ti = tp;
-	}
-
-	loliTypeClass(loliTypeClass* type, std::string id){
-		this->parentType = type;
-		this->identifier = id;
-	}
-
-	loliTypeClass(loliTypeClass* type, std::string id, const char* tp){
-		this->parentType = type;
-		this->identifier = id;
-        this->ti = tp;
-	}
-
-	bool isFrom(loliTypeClass* o){
-        //when typeA <= typeB, typeA is an inheritor of typeB, e.g. typeINT <= typeNUM
-        std::cout<<this->toString()<<"\t"<<o->toString()<<std::endl;
-        if(this==typeOBJ && o!=typeOBJ){
-            return false;
+        const std::string toString(){
+            return ":" + identifier + "\t" + ti;
         }
-        if(o==typeOBJ){
-            return true;
-        }else{
-            if(o == this){
+        //Contructures:
+        loliTypeClass(){
+            this->parentType = typeOBJ;
+            this->identifier = "";
+        }
+
+        loliTypeClass(std::string id){
+            this->parentType = typeOBJ;
+            this->identifier = id;
+        }
+
+        loliTypeClass(std::string id, const char* tp){
+            this->parentType = typeOBJ;
+            this->identifier = id;
+            this->ti = tp;
+        }
+
+        loliTypeClass(loliTypeClass* type, std::string id){
+            this->parentType = type;
+            this->identifier = id;
+        }
+
+        loliTypeClass(loliTypeClass* type, std::string id, const char* tp){
+            this->parentType = type;
+            this->identifier = id;
+            this->ti = tp;
+        }
+
+        bool isFrom(loliTypeClass* o){
+            //when typeA <= typeB, typeA is an inheritor of typeB, e.g. typeINT <= typeNUM
+            std::cout<<this->toString()<<"\t"<<o->toString()<<std::endl;
+            if(this==typeOBJ && o!=typeOBJ){
+                return false;
+            }
+            if(o==typeOBJ){
                 return true;
             }else{
-                return this->parentType->isFrom(o);
+                if(o == this){
+                    return true;
+                }else{
+                    return this->parentType->isFrom(o);
+                }
             }
         }
-    }
 
-    ~loliTypeClass(){}
+        ~loliTypeClass(){}
 };
 
 

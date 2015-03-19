@@ -59,365 +59,365 @@ extern loliObj* boolt;
 extern loliObj* boolf;
 
 class loliObj {
-	public:	
-		typedef loliObj* (loliProc)(loliObj*);
-		loliTypeClass *type;
-		loliObj* 	env;
-		virtual std::string toString(){return "";}
-		virtual int length(){return 1;}
-		virtual loliObj* eval(loliObj* env){
+    public:	
+        typedef loliObj* (loliProc)(loliObj*);
+        loliTypeClass *type;
+        loliObj* 	env;
+        virtual std::string toString(){return "";}
+        virtual int length(){return 1;}
+        virtual loliObj* eval(loliObj* env){
             //For debug:
             std::cout<<type->toString()<<std::endl;
             return this;
         }
-		virtual bool equal(loliObj* o){
+        virtual bool equal(loliObj* o){
             return this == o;
         }
         virtual loliTypeClass* getType(){
             return this->type;
         }
-		bool nilp(){
-			return this->equal(nil);
-		}
+        bool nilp(){
+            return this->equal(nil);
+        }
 
-		loliObj(){
+        loliObj(){
             this->type = typeOBJ;
-			env = nil;
-		};
+            env = nil;
+        };
 };
 
 class loliNum : public loliObj { //Place holder
-	public:
-		loliTypeClass *type = typeNUM;
+    public:
+        loliTypeClass *type = typeNUM;
 
-		virtual long double getValue(){return 0;}
+        virtual long double getValue(){return 0;}
 
-		int length(){
-			return 1;
-		}
+        int length(){
+            return 1;
+        }
 
-		loliObj* eval(loliObj* env) override {
+        loliObj* eval(loliObj* env) override {
             this->type = typeNUM;
             std::cout<<typeid(this).name()<<std::endl;
-			return this;
-		}
+            return this;
+        }
 };
 
 class loliInt : public loliNum {
-	public:
-		long int value;
-		loliTypeClass *type = typeINT;
+    public:
+        long int value;
+        loliTypeClass *type = typeINT;
 
-		long double getValue(){
-			return this->value;
-		}
+        long double getValue(){
+            return this->value;
+        }
 
-		std::string toString(){
-			return std::to_string(value);
-		}
+        std::string toString(){
+            return std::to_string(value);
+        }
 
-		loliInt(long int n){
+        loliInt(long int n){
             this->type = typeINT;
-			value = n;
-		}
+            value = n;
+        }
 
-		loliObj* eval(loliObj* env){
+        loliObj* eval(loliObj* env){
             this->type = typeINT;
             std::cout<<type->toString()<<std::endl;
-			return this;
-		}
+            return this;
+        }
 
-		loliInt(){
-			value = 0;
-		}
+        loliInt(){
+            value = 0;
+        }
 
-		bool equal(loliObj* o){
+        bool equal(loliObj* o){
             return ((loliInt*)o)->value == this->value;
-		}
+        }
 };
 
 class loliFlt: public loliNum {
-	public:
-		long double value;
-		loliTypeClass *type = typeFLT;
+    public:
+        long double value;
+        loliTypeClass *type = typeFLT;
 
-		long double getValue(){
-			return this->value;
-		}
+        long double getValue(){
+            return this->value;
+        }
 
-		std::string toString(){
-			return std::to_string(value);
-		}
+        std::string toString(){
+            return std::to_string(value);
+        }
 
-		loliFlt(long double n){
+        loliFlt(long double n){
             this->type = typeFLT;
-			value = n;
-		}
+            value = n;
+        }
 
-		loliObj* eval(loliObj* env){
+        loliObj* eval(loliObj* env){
             this->type = typeFLT;
             std::cout<<this->getType()->toString()<<std::endl;
-			return this;
-		}
+            return this;
+        }
 
-		loliFlt(){
-			value = 0.0;
-		}
-		bool equal(loliObj* o){
+        loliFlt(){
+            value = 0.0;
+        }
+        bool equal(loliObj* o){
             return ((loliFlt*)o)->value == this->value;
-		}
+        }
 };
 
 class loliSym: public loliObj {
-	public:
-		std::string name = "";
-		loliTypeClass *type = typeSYM;
+    public:
+        std::string name = "";
+        loliTypeClass *type = typeSYM;
 
-		std::string toString(){
-			return name;
-		}
+        std::string toString(){
+            return name;
+        }
 
-		loliSym(){}
+        loliSym(){}
 
-		loliSym(std::string v){
+        loliSym(std::string v){
             this->type = typeSYM;
-			name = v;
-		}
+            name = v;
+        }
 
-		bool equal(loliObj* o){
+        bool equal(loliObj* o){
             return lsym(o)->name == this->name;
         }
 
-		int length(){
-			return 1;
-		}
+        int length(){
+            return 1;
+        }
 
-		loliObj* eval(loliObj* env);
+        loliObj* eval(loliObj* env);
 };
 
 class loliKey: public loliObj {
-	public:
-		std::string name = "";
-		loliTypeClass *type = typeKEY;
+    public:
+        std::string name = "";
+        loliTypeClass *type = typeKEY;
 
-		std::string toString(){
-			return ":" + name;
-		}
+        std::string toString(){
+            return ":" + name;
+        }
 
-		loliKey(){}
+        loliKey(){}
 
-		loliKey(std::string v){
+        loliKey(std::string v){
             this->type = typeKEY;
-			name = v;
-		}
+            name = v;
+        }
 
-		bool equal(loliObj* o){
+        bool equal(loliObj* o){
             return ((loliKey*)o)->name == this->name;
         }
 
-		int length(){
-			return 1;
-		}
+        int length(){
+            return 1;
+        }
 
-		loliObj* eval(loliObj* env) override {
+        loliObj* eval(loliObj* env) override {
             std::cout<<"Override\n";
             this->type = typeKEY;
             std::cout<<this->getType()->toString()<<std::endl;
-			return this;
-		}
+            return this;
+        }
 };
 
 class loliCons: public loliObj {
-	public:
-		loliObj* hd;
-		loliObj* tl;
-		loliTypeClass *type = typeCONS;
+    public:
+        loliObj* hd;
+        loliObj* tl;
+        loliTypeClass *type = typeCONS;
 
-		std::string toString(){
-			std::string tmp = "(" + hd->toString();
-			if(tl->type != typeCONS){
-				return tmp + " . " + tl->toString() + ")";
-			}else{
-				return tmp + " " + tl->toString() + ")";
-			}
-			return ""; //Blank
-		}
+        std::string toString(){
+            std::string tmp = "(" + hd->toString();
+            if(tl->type != typeCONS){
+                return tmp + " . " + tl->toString() + ")";
+            }else{
+                return tmp + " " + tl->toString() + ")";
+            }
+            return ""; //Blank
+        }
 
-		int length(){
-			return 1 + tl->length();
-		}
+        int length(){
+            return 1 + tl->length();
+        }
 
-		loliCons(){
+        loliCons(){
             this->type = typeCONS;
-			hd = nil;
-			tl = nil;
-		}
+            hd = nil;
+            tl = nil;
+        }
 
-		loliCons(loliObj* obj){
+        loliCons(loliObj* obj){
             this->type = typeCONS;
-			hd = obj;
-			tl = nil;
-		}
+            hd = obj;
+            tl = nil;
+        }
 
-		loliCons(loliObj* hd, loliObj* tl){
+        loliCons(loliObj* hd, loliObj* tl){
             this->type = typeCONS;
-			this->hd = hd;
-			this->tl = tl;
-		}
+            this->hd = hd;
+            this->tl = tl;
+        }
 
-		void setHead(loliObj* o){
-			hd = o;
-		}
+        void setHead(loliObj* o){
+            hd = o;
+        }
 
-		void setTail(loliObj* o){
-			tl = o;
-		}
+        void setTail(loliObj* o){
+            tl = o;
+        }
 
-		loliObj* head(){
-			return hd;
-		}
+        loliObj* head(){
+            return hd;
+        }
 
-		loliObj* tail(){
-			return tl;
-		}
+        loliObj* tail(){
+            return tl;
+        }
 
-		bool equal(loliObj* o){
+        bool equal(loliObj* o){
             return (this->hd->equal(((loliCons* )o)->hd)) && (this->tl->equal(((loliCons*)o)->tl));
         }
 
-		loliObj* eval(loliObj* env);
+        loliObj* eval(loliObj* env);
 };
 
 class loliFunction: public loliObj { //Place Holder
-	public:
-		loliTypeClass *type = typeFN;
+    public:
+        loliTypeClass *type = typeFN;
 
-		loliObj* rtype;
+        loliObj* rtype;
 
-		int length(){
-			return 1;
-		}
+        int length(){
+            return 1;
+        }
 
-		loliFunction(){}
+        loliFunction(){}
 
-		loliObj* eval(loliObj* env){
+        loliObj* eval(loliObj* env){
             this->type = typeFN;
             std::cout<<this->type->toString()<<std::endl;
-			return this;
-		}
+            return this;
+        }
 };
 
 class loliPrim: public loliFunction {
-	public:
-		loliTypeClass *type = typePROC;
-		loliObj::loliProc* proc;
-		loliObj* itype;
+    public:
+        loliTypeClass *type = typePROC;
+        loliObj::loliProc* proc;
+        loliObj* itype;
 
-		std::string toString(){
-			return "<Procedure " + rtype->toString() + " >";
-		}
+        std::string toString(){
+            return "<Procedure " + rtype->toString() + " >";
+        }
 
-		loliPrim(){}
+        loliPrim(){}
 
-		loliPrim(loliObj::loliProc* p, loliObj* r, loliObj* i){
+        loliPrim(loliObj::loliProc* p, loliObj* r, loliObj* i){
             this->type = typePROC;
-			this->proc = p;
-			this->rtype = r;
-			this->itype = i;
-		}
+            this->proc = p;
+            this->rtype = r;
+            this->itype = i;
+        }
 };
 
 class loliLambda: public loliFunction {
-	public: 
-		loliTypeClass *type = typeLAMBDA;
-		loliObj* arg;
-		loliObj* exp;
+    public: 
+        loliTypeClass *type = typeLAMBDA;
+        loliObj* arg;
+        loliObj* exp;
 
-		std::string toString(){
-			return "<LAMBDA " + this->arg->toString() + " -> " + this->rtype->toString() + " >";
-		}
+        std::string toString(){
+            return "<LAMBDA " + this->arg->toString() + " -> " + this->rtype->toString() + " >";
+        }
 
-		loliLambda(){}
+        loliLambda(){}
 
-		loliLambda(loliObj* r, loliObj* a, loliObj* e){
+        loliLambda(loliObj* r, loliObj* a, loliObj* e){
             this->type = typeLAMBDA;
-			this->rtype = r;
-			this->arg = a;
-			this->exp = e;
-		}
+            this->rtype = r;
+            this->arg = a;
+            this->exp = e;
+        }
 };
 
 class loliChar: public loliObj {
-	public:
-		loliTypeClass *type = typeCHAR;
+    public:
+        loliTypeClass *type = typeCHAR;
 
-		char value;
+        char value;
 
-		loliChar(){}
+        loliChar(){}
 
-		loliChar(char c){
+        loliChar(char c){
             this->type = typeCHAR;
-			this->value = c;
-		}
+            this->value = c;
+        }
 
-		std::string toString(){
-			return "#\\" + std::to_string(value);
-		}
+        std::string toString(){
+            return "#\\" + std::to_string(value);
+        }
 
-		int length(){
-			return 1;
-		}
+        int length(){
+            return 1;
+        }
 
-		loliObj* eval(loliObj* env){
+        loliObj* eval(loliObj* env){
             this->type = typeCHAR;
             std::cout<<this->type->toString()<<std::endl;
-			return this;
-		}
+            return this;
+        }
 };
 
 class loliString: public loliObj {
-	public:
-		loliTypeClass *type = typeSTRING;
-		std::string value;
+    public:
+        loliTypeClass *type = typeSTRING;
+        std::string value;
 
-		loliString(){}
+        loliString(){}
 
-		loliString(std::string str){
+        loliString(std::string str){
             this->type = typeSTRING;
-			this->value = str;
-		}
+            this->value = str;
+        }
 
-		std::string toString(){
-			return value;
-		}
+        std::string toString(){
+            return value;
+        }
 
-		int length(){
-			return value.length();
-		}
+        int length(){
+            return value.length();
+        }
 
-		loliObj* eval(loliObj* env){
+        loliObj* eval(loliObj* env){
             this->type = typeSTRING;
             std::cout<<this->type->toString()<<std::endl;
-			return this;
-		}
+            return this;
+        }
 };
 
 class loliBool: public loliKey {
-	public:
-		loliTypeClass *type = typeBOOL;
-		bool value = false;
+    public:
+        loliTypeClass *type = typeBOOL;
+        bool value = false;
 
-		loliBool(){}
+        loliBool(){}
 
-		loliBool(bool b){
+        loliBool(bool b){
             this->type = typeBOOL;
-			this->value = b;
-			if(b){
-				this->name = "true";
-			}else{
-				this->name = "false";
-			}
-		}
+            this->value = b;
+            if(b){
+                this->name = "true";
+            }else{
+                this->name = "false";
+            }
+        }
 };
 
 #endif
