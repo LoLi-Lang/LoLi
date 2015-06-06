@@ -1,0 +1,10 @@
+LoLi PHP-Backend
+=
+---
+This is a subset of LoLi implemented in PHP.
+
+
+Difference between LoLi / LoLi 2
+-
+---
+The syntax and grammar will be similar, but because of the limit of PHP per se, the advanced features are not guaranteed to be implemented here.
