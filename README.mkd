@@ -5,7 +5,7 @@ LoLi is another approach to System F-sub in a **LISPy** way.
 
 The C++ version is paused, I'm doing the Common Lisp version now.
 
-![LoLi](/logo_maki.jpg)
+![LoLi](/logo.png)
 > Image with authorization from illustrator
 
 Why LoLi
