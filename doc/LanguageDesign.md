@@ -61,7 +61,7 @@ Environment
 The environment itself is a LoliObj:
 
 ```Lisp
-	([syma . a] ([symb . b] ([symc . c] ( ... ([symn . n] . nil)))))
+([syma . a] ([symb . b] ([symc . c] ( ... ([symn . n] . nil)))))
 ; using [] and () just to be clear for reader, in LoLi there will only be ( and )
 ```
 
@@ -73,7 +73,6 @@ The environment itself is a LoliObj:
 
 A procedure in LoLi_ENV:
 
-```
 	+-----------------------------------------------+
 	|		   Env Entry			|
 	+-----------------------------------------------+
@@ -89,7 +88,6 @@ A procedure in LoLi_ENV:
 	|   |    +------------------------------+    |  |
 	|   +----------------------------------------+	|
 	+-----------------------------------------------+
-```
 
 ### Context Based Meaning Inference (CBMI)
 
