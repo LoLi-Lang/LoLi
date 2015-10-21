@@ -1,55 +1,55 @@
 LoLi
-=
----
+====
+
 LoLi is another approach to System F-sub in a **LISPy** way.
 
 The C++ version is paused, I'm doing the Common Lisp version now.
 
-![LoLi](/logo.png)
-> Image with authorization from illustrator
+![LoLi LOGO, with authorization from illustrator](/logo.png)
 
 Why LoLi
--
----
+--------
+
 I'm a LOLICON! LOLI is the JUSTICE!
 
 What is LoLi
--
----
+------------
+
 I intended to implement a Lisp dialect that combines the features of both ***Lisp - 1*** and ***Lisp - 2*** that means, LoLi will have one name space like in **Scheme** but data with the same names can exist at the same time like in **Common Lisp** and the interpreter will choose which one to eval according to the context, for example:
 
->(get-func 'foo)
+```Lisp
+(get-func 'foo)
+;=> #<LAMBDA EXP> ;;(def foo (\ (x) (+ x 1)))
 
->=> #\<LAMBDA EXP\> ;;(def foo (\ (x) (+ x 1)))
+(get-sym 'foo)
+;=> '(foo . 1)
 
->(get-sym 'foo)
-
->=> '(foo . 1)
-
->(foo foo)
-
->=> 2
+(foo foo)
+;=> 2
+```
 
 and other features like the interpreter itself can eval an expression without getting into the REPL:
 
->& ./loli --eval “(+ 1 2)”
-
->3
+```Shell
+./loli --eval “(+ 1 2)”
+# out: 3
+```
 
 and even more complicated:
 
->& ./loli --eval “(def foo (x) (.\ (y) (+ y x))) (def bar (foo 2)) (bar  3)”
-
->5
+```Shell
+./loli --eval “(def foo (x) (.\ (y) (+ y x))) (def bar (foo 2)) (bar  3)”
+# out: 5
+```
 
 JOIN US (ME) PLEASE
--
----
+-------------------
+
 If you are not satisfied with current Lisp dialects, or if you have some great ideas want to make them into a programming language, then just fork and send me a pull request, any help is appreciated.
 
 Reason Why The Developing Speed is So Slow
--
----
+------------------------------------------
+
 Go to the Google Play Store / Apple App Store and search for a game called : "Love Live", play it, you will know.
 
 Also, since C++ is way too complex, if you are an expert dealing with C++ template programming / meta programming, please join my work. Otherwise I will rewrite it in Common Lisp.
