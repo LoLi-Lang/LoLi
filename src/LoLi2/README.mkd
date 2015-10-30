@@ -1,18 +1,17 @@
 LoLi 2
-=
----
+======
+
 LoLi 2 is the more advanced version of LoLi.
 
-Not like LoLi (the prototype version), there will be a stack and AST in LoLi 2.
+Unlike LoLi (the prototype version), there will be a stack and AST in LoLi 2.
 
 Why LoLi 2
--
----
+----------
 Since there are some design faults in LoLi, I decided to start from blank again.
 
-Difference between LoLi
--
----
+Differences from LoLi
+---------------------
+
 There will be a stack and AST in LoLi 2 as mentioned above, also, the LoLi compiler will be designed and developed for this version.
 
 Also, because of the limitation of LoLi, the CBMI system may not work well with it. But LoLi 2 will be designed against CBMI.

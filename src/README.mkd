@@ -1,11 +1,8 @@
-**Directories:**
+Source Directories:
+===================
 
-CL-Backend - The Common Lisp backend of LoLi 2
-
-LoLi - The first version of LoLi, stopped
-
-LoLi2 - LoLi 2 interpreter in C++, paused
-
-Parser - A parser and tokenizer by *Kevin Hu(hxy9243)*
-
-vm - The virtual machine of LoLi, just a placeholder for the future development
+- CL-Backend - The Common Lisp backend of LoLi 2
+- LoLi - The first version of LoLi, stopped
+- LoLi2 - LoLi 2 interpreter in C++, paused
+- Parser - A parser and tokenizer by *Kevin Hu(hxy9243)*
+- vm - The virtual machine of LoLi, just a placeholder for the future development
