@@ -1,9 +1,4 @@
-<<<<<<< HEAD
- Created by https://www.gitignore.io
-
 ### C++ ###
-=======
->>>>>>> ac8cc34ca270460def3a5d6fb6996399478c1f62
 # Compiled Object files
 *.slo
 *.lo
@@ -32,7 +27,6 @@
 *.exe
 *.out
 *.app
-<<<<<<< HEAD
 
 
 ### C ###
@@ -108,5 +102,6 @@ tramp
 
 # cask packages
 .cask/
-=======
->>>>>>> ac8cc34ca270460def3a5d6fb6996399478c1f62
+
+# erlang
+*.beam
