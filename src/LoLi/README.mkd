@@ -1,4 +1,4 @@
 LoLi
-=
----
+====
+
 The first version of the LoLi interpreter, the development is stopped.

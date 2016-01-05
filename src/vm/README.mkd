@@ -1,6 +1,6 @@
 LoLi Virtual Environment (Aka. the virtual machine of LoLi)
-=
----
+===========================================================
+
 Just a placeholder, will be implemented in the future.
 
 Plans:
