@@ -1,0 +1,3 @@
+#LoLi Erlang-Backend
+
+Since I'm learning Erlang right now, this is supposed to be an exercise project.
